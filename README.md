@@ -30,7 +30,7 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 
 ![Login Page ](./assets/login.png)
 
-> Replace the above screenshot with your own by placing an image named `demo-landing.png` in the `public/assets/images` folder.
+
 
 ---
 
