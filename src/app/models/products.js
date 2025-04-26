@@ -8,30 +8,45 @@ const productSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: true,
-    min: [0, "Price can't be negative"]
+    required: [true, "Product price is required"],
+    min: [0, "Price must be a positive number"]
   },
-  description: String,
+  description: {
+    type: String,
+    required: [true, "Product description is required"],
+    trim: true
+  },
   category: {
     type: String,
-    enum: ["Headphones", "Keyboard", "mouse", "Handfrees","SSD","NVME","HardDrive","USB","laptopTables","AirBuds","others"],
-    required: true
+    required: [true, "Product category is required"],
+    enum: {
+      values: ["Laptops", "Desktops", "Accessories", "Components", "Other"],
+      message: "{VALUE} is not a valid category"
+    }
+  },
+  subcategory: {
+    type: String,
+    trim: true
   },
   stock: {
     type: Number,
-    default: 0,
-    min: 0
+    required: [true, "Product stock is required"],
+    min: [0, "Stock cannot be negative"],
+    default: 0
   },
-  images: [String], 
-  ratings: {
-    average: { type: Number, default: 0, min: 0, max: 5 },
-    reviews: [{ 
-      user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-      rating: { type: Number, min: 1, max: 5 },
-      comment: String 
-    }]
-},
- timestamps: true }); 
+  images: [{
+    type: String,
+    required: [true, "At least one product image is required"]
+  }]
+}, { 
+  timestamps: true, // Correct way to enable timestamps
+  versionKey: false // Disable the __v field
+});
 
-const Product = mongoose.model("Product", productSchema);
+// Add text index for search functionality
+productSchema.index({ name: 'text', description: 'text', category: 'text' });
+
+// Create model if it doesn't exist, otherwise use existing model
+const Product = mongoose.models.Product || mongoose.model("Product", productSchema);
+
 export default Product;
