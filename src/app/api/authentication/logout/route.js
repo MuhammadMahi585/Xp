@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   try {
-    cookies().delete("token"); // no await here!
+    cookies().delete("token");
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json(
