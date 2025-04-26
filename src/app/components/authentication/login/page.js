@@ -84,7 +84,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
   
@@ -99,7 +99,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
   
@@ -157,7 +157,7 @@ export default function LoginPage() {
         {/* Owner */}
         <div>
           <div className="w-36 h-36 rounded-full overflow-hidden shadow-md mx-auto">
-            <img src="/owner.jpg" alt="Owner" className="w-full h-full object-cover" />
+            <img src="/assets/Image/jameel.jpg" alt="Owner" className="w-full h-full object-cover" />
           </div>
           <p className="mt-2 font-semibold text-black">Jameel Kanasro(co-owner)</p>
         </div>
@@ -184,7 +184,7 @@ export default function LoginPage() {
       {
         name: 'New Xp Computer',
         location: '6th Road Rawalpindi',
-        image: '/assets/Image/blue-area-branch.jpg',
+        image: '/assets/Image/newxp.jpg',
       },
       {
         name: 'Xp Computer accessories',

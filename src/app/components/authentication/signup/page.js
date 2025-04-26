@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
@@ -13,7 +13,19 @@ export default function SignupPage() {
   })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const {auth,setAuth} = useAuth();
   const router = useRouter()
+
+  useEffect(()=>{
+    if(auth.isAuthenticated){
+      if(auth.role==="admin"){
+        router.push("/components/dashboard/admin")
+      }
+      else if(auth.role==="customer"){
+        router.push("/components/dashboard/customer")
+      }
+    }
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -97,7 +109,7 @@ export default function SignupPage() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
   
@@ -113,7 +125,7 @@ export default function SignupPage() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
   
@@ -129,7 +141,7 @@ export default function SignupPage() {
                 minLength="8"
                 value={formData.password}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
   
@@ -144,7 +156,7 @@ export default function SignupPage() {
                 required
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
   
