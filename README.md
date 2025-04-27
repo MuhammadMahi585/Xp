@@ -81,7 +81,7 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 
 1. **Clone** the repo:
    ```bash
-   git clone https://github.com/<your‑username>/xp‑computer.git
+   git clone https://github.com/MuhammadMahi585/Xp
    cd Xp
    ```
 2. **Install dependencies**:
@@ -96,8 +96,7 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 4. **Run the app**:
    ```bash
    npm run dev
-   # or
-   yarn dev
+  
    ```
 
 Open `http://localhost:3000` in your browser.
@@ -120,7 +119,7 @@ Open `http://localhost:3000` in your browser.
 
 ## Deployment
 
-I will deploy to Vercel
+I will deploy this website to Vercel
 
 ---
 
