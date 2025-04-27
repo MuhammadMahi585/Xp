@@ -16,9 +16,6 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 2. [Features](#features)
 3. [Tech Stack](#tech-stack)
 4. [Getting Started](#getting-started)
-5. [Authentication Flow](#authentication-flow)
-6. [Deployment](#deployment)
-7. [Admin Functionalities](#admin-functionalities)
 
 ---
 
@@ -50,16 +47,21 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 
 ## Features
 
+# Functional Features
 - **User Signup & Login** (JWT in HTTP‑only cookies)
 - **Role Guarding**: Separate dashboards for `admin` and `customer`
-- **Client‑side Redirects**: Prevent back‑button access after logout
+- **Product Details Page**: View detailed information about a product, including images, price, description, and stock.
+- **Shopping Cart**: Add products to the shopping cart, view cart details.
+- **Payment Integration**: Integration with Stripe.
+- **Search: Searh Product by Name and category
+- **Profile*: Seperate Page for user Profile
+
+# Additional Feature
 - **Informational Sections**: Owner, Manager, Team members, Branches, Why Join Us, Testimonials
 - **Footer**: Contact info, quick links, social media icons
 - **Mobile‑friendly**: Tailwind CSS grid and responsive utilities
 - **Responsive Design**: Works seamlessly across all device sizes
-- **Product Details Page**: View detailed information about a product, including images, price, description, and reviews.
-- **Shopping Cart**: Add products to the shopping cart, view cart details, and proceed to checkout.
-- **Payment Integration**: Integration with Stripe.
+
 
 
 ---
