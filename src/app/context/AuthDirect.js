@@ -9,7 +9,9 @@ export default function AuthDirect() {
 
     useEffect(() => {
         // Safeguard against undefined auth
-        if (!auth || auth.isLoading) return;
+        if (!auth || auth.isLoading) {
+            router.push("/componets/Loading/screen")
+        }
         if (!auth.isAuthenticated) {
             router.push('/components/authentication/login');
         } else {

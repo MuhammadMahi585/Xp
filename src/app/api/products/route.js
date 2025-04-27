@@ -58,3 +58,25 @@ export async function POST(request) {
     );
   }
 }
+
+export async function Delete({params}) {
+    try{
+       await dbConnect();
+       const {productId} = params
+       
+       const product= await Product.findByIdAndDelete(productId)
+       if (!product) {
+          return NextResponse.json({ success: false, message: "Product not found" }, { status: 404 });
+      }
+       return NextResponse.json(
+        {success:true},
+        {data:product}
+       )
+    }
+    catch(err){
+        console.log("Failed to delete product",err)
+        return NextResponse.json(
+          {error:err}
+        )
+    }
+}

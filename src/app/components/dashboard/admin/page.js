@@ -142,7 +142,10 @@ export default function AdminDashboard() {
   const handleDelete = async (productId) => {
     if (confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`/api/products/${productId}`);
+        const res= await axios.delete(`/api/products/${productId}`);
+        if(res.data.success){
+        alert("Product deleted successfully")
+      }
         fetchProducts();
       } catch (error) {
         console.error('Error deleting product:', error);
@@ -163,7 +166,7 @@ export default function AdminDashboard() {
           setAuth({
             isAuthenticated: false,
             role: null,
-            isLoading: false, // set isLoading to false after logout
+            isLoading: false, 
             error: null
           })
           router.replace("/components/authentication/login")
@@ -287,7 +290,7 @@ export default function AdminDashboard() {
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
@@ -302,7 +305,7 @@ export default function AdminDashboard() {
                     value={formData.price}
                     onChange={(e) => setFormData({...formData, price: e.target.value})}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
@@ -314,7 +317,7 @@ export default function AdminDashboard() {
                     value={formData.category}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="Laptops">Laptops</option>
                     <option value="Desktops">Desktops</option>
@@ -332,7 +335,7 @@ export default function AdminDashboard() {
                     name="subcategory"
                     value={formData.subcategory}
                     onChange={(e) => setFormData({...formData, subcategory: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
@@ -346,7 +349,7 @@ export default function AdminDashboard() {
                     value={formData.stock}
                     onChange={(e) => setFormData({...formData, stock: e.target.value})}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -360,7 +363,7 @@ export default function AdminDashboard() {
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
 
@@ -393,7 +396,7 @@ export default function AdminDashboard() {
                     placeholder="Search products..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-black pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
                 
@@ -420,6 +423,14 @@ export default function AdminDashboard() {
                       <div key={product._id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
                         <div className="flex justify-between items-start gap-3">
                           <div className="flex-1">
+                          {product.images?.[0] && (
+                            <img 
+                              src={product.images[0]} 
+                              alt={product.name}
+                              className="h-12 w-100 h-100 object-cover rounded"
+    
+                            />
+                          )}
                             <h4 className="font-medium text-gray-900 line-clamp-1">{product.name}</h4>
                             <p className="text-blue-600 font-semibold mt-1">€{product.price.toFixed(2)}</p>
                             {product.stock > 0 ? (
@@ -428,13 +439,7 @@ export default function AdminDashboard() {
                               <span className="text-xs text-red-600">Out of Stock</span>
                             )}
                           </div>
-                          {product.images?.[0] && (
-                            <img 
-                              src={product.images[0]} 
-                              alt={product.name}
-                              className="h-12 w-12 object-cover rounded"
-                            />
-                          )}
+                       
                         </div>
                         <div className="mt-4 flex justify-end gap-2">
                           <button 

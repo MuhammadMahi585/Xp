@@ -28,9 +28,27 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 
 ## Demo
 
+## Authentication
+
+# Login Page
 ![Login Page ](./assets/login.png)
 
+# SignUp Page
+![SignUp Page ](./assets/signup.png)
 
+## Admin Functionalities
+
+# Add Product Page
+![Add Product Page ](./assets/addProduct.png)
+
+# View Products Page
+![View Products Page ](./assets/ViewProducts.png)
+
+# Search Products by Name
+![Search Products by Name Page ](./assets/SerachProducr.png)
+
+# Search Products by Category
+![Search Products by Category Page ](./assets/SortProducts.png)
 
 ---
 
