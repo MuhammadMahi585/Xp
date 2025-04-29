@@ -8,11 +8,18 @@ export default function Profile() {
   const router = useRouter()
   const { auth } = useAuth()
 
-  useEffect(() => {
-    if (!auth.isAuthenticated) {
-      router.replace("/components/authentication/login");
+  useEffect(()=>{
+    var redirectPath="/components/customerComponents/profile"
+    if(!auth.isAuthenticated){
+      redirectPath="/components/authenctication/login"
     }
-  }, [auth, router]);
+    if(auth.isAuthenticated){
+      if(auth.role==="admin"){
+        redirectPath="/components/dashboard/admin"
+      }
+    }
+    router.replace(redirectPath)
+  },[auth,router])
 
   return (
     <CustomerLayout>

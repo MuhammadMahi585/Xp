@@ -6,7 +6,7 @@ import dbConnect from "@/app/lib/db";
 export async function POST(req) {
   await dbConnect();
   try {
-    const { name, email, password, type = "customer" } = await req.json();
+    const { name, email, password, type = "customer",number } = await req.json();
 
     const exists = await User.findOne({ email });
     if (exists) {
@@ -23,6 +23,7 @@ export async function POST(req) {
       email,
       password: hashedPassword,
       type,
+      number
     });
 
     const { password: _, ...safeUser } = user.toObject();

@@ -20,6 +20,7 @@ export default function Navigation() {
           error: null
         })
         router.replace("/components/authentication/login")
+        window.location.reload()
       }
     } catch (error) {
       console.error("Error occurred during logout", error)
@@ -33,7 +34,7 @@ export default function Navigation() {
   }, [auth, router])
 
   return (
-    <header className="bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg sticky top-0 z-50">
+    <header className="mb-0 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center animate-fade-in">
         <h1 className="text-4xl font-extrabold tracking-tight mb-4 md:mb-0">
           <span className="text-yellow-300">XP</span> Computers
@@ -63,6 +64,14 @@ export default function Navigation() {
                 className="hover:text-yellow-300 transition-colors duration-300"
               >
                 Cart
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => router.push("/components/customerComponents/order")}
+                className="hover:text-yellow-300 transition-colors duration-300"
+              >
+                Orders
               </a>
             </li>
             <li>

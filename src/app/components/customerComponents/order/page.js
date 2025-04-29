@@ -9,7 +9,7 @@ export default function Cart() {
   const { auth, setAuth } = useAuth()
   
   useEffect(()=>{
-    var redirectPath="/components/customerComponents/cart"
+    var redirectPath="/components/customerComponents/order"
     if(!auth.isAuthenticated){
       redirectPath="/components/authenctication/login"
     }

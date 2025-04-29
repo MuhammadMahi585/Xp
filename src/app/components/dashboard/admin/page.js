@@ -170,12 +170,14 @@ export default function AdminDashboard() {
             error: null
           })
           router.replace("/components/authentication/login")
+          window.location.reload()
         }
       } catch (error) {
         console.error("Error occurred during logout", error)
       }
     }
-
+    
+  
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}

@@ -6,7 +6,7 @@ export default function CustomerLayout({ children }) {
         {/* Navigation stays fixed */}
         <Navigation />
         {/* Main content */}
-        <main className="flex-grow pt-6">{children}</main> {/* Adjust padding here if necessary */}
+        <main className="flex-grow">{children}</main> {/* Adjust padding here if necessary */}
       </div>
     );
 }

@@ -1,4 +1,5 @@
 "use client"
+import {motion} from "framer-motion"
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuth } from '@/app/context/AuthContext'
@@ -8,6 +9,7 @@ export default function SignupPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    number:'',
     password: '',
     confirmPassword: ''
   })
@@ -25,7 +27,7 @@ export default function SignupPage() {
         router.push("/components/dashboard/customer")
       }
     }
-  })
+  },[auth,router])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -50,7 +52,8 @@ export default function SignupPage() {
       const response = await axios.post('/api/authentication/signup', {
         name: formData.name,
         email: formData.email,
-        password: formData.password
+        password: formData.password,
+        number: formData.number
       })
       
       router.push('/components/authentication/login')
@@ -60,15 +63,51 @@ export default function SignupPage() {
       setLoading(false)
     }
   }
+  
+  const letters = ['X','P',' ','C','o','m','p','u','t','e','r','s']
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.5, delayChildren: 0.04 * i },
+    }),
+  };
+
+  const child = {
+    hidden: {
+      opacity: 0,
+      y: `0.25em`,
+    },
+    visible: {
+      opacity: 1,
+      y: `0em`,
+      transition: {
+        duration: 1,
+        ease: [0.2, 0.65, 0.3, 0.9],
+      },
+    },
+  };
 
   return (
     <div className="flex flex-col">
     {/* Signup Section (100vh) */}
     <div className="flex flex-1 min-h-screen">
       {/* Left Side - Brand Section */}
-      <div className="w-1/2 bg-gradient-to-br from-blue-600 to-indigo-900 flex flex-col justify-center p-12 text-white h-screen sticky top-0">
+      <div className="w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-12 sticky top-0 h-screen">
         <div className="max-w-md">
-          <h1 className="text-5xl font-bold mb-4">XP Computer</h1>
+        <motion.div
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      className="text-5xl font-bold mb-4"
+    >
+      {letters.map((char, index) => (
+        <motion.span key={index} variants={child}>
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
+    </motion.div>
           <p className="text-xl mb-8">
             Join our community of tech enthusiasts and professionals.
           </p>
@@ -128,6 +167,26 @@ export default function SignupPage() {
                 className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
+
+            <div>
+            <input
+          id="number"
+          name="number"
+          type="text"
+        placeholder='03XXXXXXXXX or 92XXXXXXXXXX'
+       required
+          value={formData.number}
+        onChange={(e) => {
+         const onlyNumbers = e.target.value.replace(/\D/, ''); // remove non-digits
+          setFormData(prev => ({
+      ...prev,
+      number: onlyNumbers
+        }));
+         }}
+  className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+/>
+</div>
+
   
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
@@ -169,7 +228,7 @@ export default function SignupPage() {
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
               />
               <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
-                I agree to the <a href="#" className="text-blue-600 hover:underline">Terms and Conditions</a>
+                I agree to the <a href="#" className="text-purple-400 hover:underline">Terms and Conditions</a>
               </label>
             </div>
   
@@ -177,7 +236,7 @@ export default function SignupPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
                   loading ? 'opacity-70 cursor-not-allowed' : ''
                 }`}
               >
@@ -188,7 +247,7 @@ export default function SignupPage() {
             <div className="text-sm text-center pt-2">
               <p className="text-gray-600">
                 Already have an account?{' '}
-                <a href="./login" className="font-medium text-blue-600 hover:text-blue-500">
+                <a href="./login" className="font-medium text-purple-400 hover:text-purple-200">
                   Log in
                 </a>
               </p>

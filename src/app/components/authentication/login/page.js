@@ -1,5 +1,5 @@
 "use client";
-
+import {motion} from "framer-motion"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '@/app/context/AuthContext';
@@ -49,6 +49,30 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+  const letters = ['X','P',' ','C','o','m','p','u','t','e','r','s']
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.5, delayChildren: 0.04 * i },
+    }),
+  };
+
+  const child = {
+    hidden: {
+      opacity: 0,
+      y: `0.25em`,
+    },
+    visible: {
+      opacity: 1,
+      y: `0em`,
+      transition: {
+        duration: 2,
+        ease: [0.2, 0.65, 0.3, 0.9],
+      },
+    },
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -57,9 +81,20 @@ export default function LoginPage() {
       <div className="flex flex-1 min-h-screen">
         
         {/* Left Side */}
-        <div className="w-1/2 bg-gradient-to-br from-blue-600 to-indigo-900 flex flex-col justify-center p-12 text-white sticky top-0 h-screen">
+        <div className="w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-12 sticky top-0 h-screen">
           <div className="max-w-md">
-            <h1 className="text-5xl font-bold mb-4">XP Computer</h1>
+          <motion.div
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      className="text-5xl font-bold mb-4"
+    >
+      {letters.map((char, index) => (
+        <motion.span key={index} variants={child}>
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
+    </motion.div>
             <p className="text-xl mb-8">
               Your trusted partner for all computer solutions - sales, service, and support.
             </p>
@@ -118,7 +153,7 @@ export default function LoginPage() {
                 </div>
 
                 <div className="text-sm">
-                  <a href="./signup" className="font-medium text-blue-600 hover:text-blue-500">
+                  <a href="./signup" className="font-medium text-purple-400 hover:text-purple-200">
                     SignUp?
                   </a>
                 </div>
@@ -128,7 +163,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                  className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  ${
                     loading ? 'opacity-70 cursor-not-allowed' : ''
                   }`}
                 >
@@ -145,7 +180,13 @@ export default function LoginPage() {
         <h2 className="text-4xl font-bold mb-8 text-black">Owner</h2>
         <div className="flex justify-center">
           <div className="w-48 h-48 rounded-full overflow-hidden shadow-lg">
-            <img src="/assets/image/nain.jpg" alt="Owner" className="w-full h-full object-cover" />
+            <motion.img
+             src="/assets/image/nain.jpg"
+              alt="Owner"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 5 }}
+               className="w-full h-full object-cover" />
           </div>
         </div>
         <p className="mt-4 text-xl font-semibold text-black">Zulqarnain Mahessar</p>

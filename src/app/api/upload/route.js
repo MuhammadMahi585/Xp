@@ -5,7 +5,7 @@ import path from 'path';
 export async function POST(request) {
   try {
     const formData = await request.formData();
-    const file = formData.get('file'); // Must match your FormData field name
+    const file = formData.get('file');
     
     if (!file) {
       return NextResponse.json(

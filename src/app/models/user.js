@@ -25,16 +25,15 @@ const userSchema = new mongoose.Schema({
     enum: ["customer", "admin"],
     default: "customer"
   },
+  number: {
+    type: String,        // Phone numbers are better stored as String
+    required: true,
+  },
   cart: [{
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product" 
     },
-    quantity: {
-      type: Number,
-      default: 1,
-      min: [1, "Quantity can't be less than 1"]
-    }
   }],
   orders: [{
     type: mongoose.Schema.Types.ObjectId,
