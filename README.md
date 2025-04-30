@@ -31,11 +31,14 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 
 ### Customer Functionalities
 
-#### Home Page for Customer 
+#### Home Page 
 ![Home Page Customer](./assets/HomePageCustomer.png)
 
-#### Product View Page for Customer 
+#### Product View Page 
 ![Product View Page Customer](./assets/productViewPage.png)
+
+#### Product Search Page 
+![Product Search Page Customer](./assets/productSearchCust.png)
 
 ### Admin Functionalities
 
