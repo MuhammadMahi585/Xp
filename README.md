@@ -29,6 +29,14 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 #### SignUp Page
 ![SignUp Page](./assets/signup.png)
 
+### Customer Functionalities
+
+#### Home Page for Customer 
+![Home Page Customer](./assets/HomePageCustomer.png)
+
+#### Product View Page for Customer 
+![Product View Page Customer](./assets/productViewPage.png)
+
 ### Admin Functionalities
 
 #### Add Product Page
@@ -43,11 +51,6 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 #### Search Products by Category
 ![Search Products by Category Page](./assets/SortProducts.png)
 
-#### Home Page for Customer 
-![Home Page Customer](./assets/HomePageCustomer.png)
-
-#### Product View Page for Customer 
-![Product View Page Customer](./assets/productViewPage.png)
 ---
 
 ## Features
