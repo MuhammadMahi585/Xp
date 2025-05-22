@@ -1,5 +1,5 @@
 "use client";
-import {motion} from "framer-motion"
+import {motion,AnimatePresence,} from "framer-motion"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '@/app/context/AuthContext';
@@ -16,7 +16,6 @@ export default function LoginPage() {
   useEffect(() => {
     var redirectPath = "/components/authentication/login";
     if (auth.isAuthenticated) {
-      console.log(auth);
       if (auth.role === "admin") {
         redirectPath = "/components/dashboard/admin";
       } else if (auth.role === "customer") {
@@ -79,15 +78,14 @@ export default function LoginPage() {
 
       {/* Main Login Section */}
       <div className="flex flex-1 min-h-screen">
-        
-        {/* Left Side */}
-        <div className="w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-12 sticky top-0 h-screen">
-          <div className="max-w-md">
-          <motion.div
+       {/* Left Side - Brand Section */}
+<div className="w-full lg:w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-6 md:p-12 sticky top-0 h-screen">
+  <div className="max-w-md">
+    <motion.div
       variants={container}
       initial="hidden"
       animate="visible"
-      className="text-5xl font-bold mb-4"
+      className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
     >
       {letters.map((char, index) => (
         <motion.span key={index} variants={child}>
@@ -95,11 +93,12 @@ export default function LoginPage() {
         </motion.span>
       ))}
     </motion.div>
-            <p className="text-xl mb-8">
-              Your trusted partner for all computer solutions - sales, service, and support.
-            </p>
-          </div>
-        </div>
+    
+    <p className="text-base md:text-xl mb-6 lg:mb-8">
+      Your trusted partner for all computer solutions - sales, service, and support.
+    </p>
+  </div>
+</div>
 
         {/* Right Side - Login Form */}
         <div className="w-1/2 flex items-center justify-center p-12 bg-gray-50 sticky top-0 h-screen">
@@ -152,7 +151,7 @@ export default function LoginPage() {
                   </label>
                 </div>
 
-                <div className="text-sm">
+                <div className="flex items-center">
                   <a href="./signup" className="font-medium text-purple-400 hover:text-purple-200">
                     SignUp?
                   </a>

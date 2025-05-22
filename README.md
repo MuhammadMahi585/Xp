@@ -40,6 +40,12 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 #### Product Search Page 
 ![Product Search Page Customer](./assets/productSearchCust.png)
 
+#### Cart Page 
+![Cart Page Customer](./assets/Cart.png)
+
+#### User Profile Page
+![Cart Page Customer](./assets/userProfile.png)
+
 ### Admin Functionalities
 
 #### Add Product Page

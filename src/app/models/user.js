@@ -34,24 +34,21 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product" 
     },
+    quantity:{ type:Number,
+    required:true}
   }],
   orders: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Order"
   }],
   addresses: [{
-    type: {
-      type: String,
-      enum: ["home", "work", "other"],
-      default: "home"
-    },
-    street: { type: String, required: true },
-    city: { type: String, required: true },
-    state: { type: String, required: true },
-    postalCode: { type: String, required: true },
-    country: { type: String, default: "Pakistan" },
-    isDefault: { type: Boolean, default: false }
-  }]
+  street: { type: String },
+  city: { type: String },
+  state: { type: String },
+  postalCode: { type: String },
+  country: { type: String, default: "Pakistan" },
+  isDefault: { type: Boolean, default: true }
+}] 
 }, { timestamps: true });
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);

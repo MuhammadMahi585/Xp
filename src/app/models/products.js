@@ -39,14 +39,13 @@ const productSchema = new mongoose.Schema({
     required: [true, "At least one product image is required"]
   }]
 }, { 
-  timestamps: true, // Correct way to enable timestamps
-  versionKey: false // Disable the __v field
+  timestamps: true, 
+  versionKey: false 
 });
 
-// Add text index for search functionality
+
 productSchema.index({ name: 'text', description: 'text', category: 'text' });
 
-// Create model if it doesn't exist, otherwise use existing model
 const Product = mongoose.models.Product || mongoose.model("Product", productSchema);
 
 export default Product;

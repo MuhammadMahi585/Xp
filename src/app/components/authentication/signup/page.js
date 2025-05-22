@@ -9,10 +9,15 @@ export default function SignupPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    number:'',
+    number: '',
     password: '',
-    confirmPassword: ''
-  })
+    confirmPassword: '',
+    street: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    country: 'Pakistan'
+  });
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const {auth,setAuth} = useAuth();
@@ -47,18 +52,23 @@ export default function SignupPage() {
       setLoading(false)
       return
     }
-
+  
     try {
       const response = await axios.post('/api/authentication/signup', {
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        number: formData.number
+        number: formData.number,
+        street: formData.street,
+        city: formData.city,
+        state: formData.state,
+        postalCode: formData.postalCode,
+        country: formData.country
       })
-      
+         
       router.push('/components/authentication/login')
     } catch (err) {
-      setError(err.response?.data?.message || 'Signup failed')
+      setError(err.response?.data?.error || err.response?.data?.message || 'Signup failed')
     } finally {
       setLoading(false)
     }
@@ -93,38 +103,44 @@ export default function SignupPage() {
     <div className="flex flex-col">
     {/* Signup Section (100vh) */}
     <div className="flex flex-1 min-h-screen">
-      {/* Left Side - Brand Section */}
-      <div className="w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-12 sticky top-0 h-screen">
-        <div className="max-w-md">
-        <motion.div
+{/* Left Side - Brand Section */}
+<div className="w-full lg:w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-6 md:p-12 sticky top-0 h-screen">
+  <div className="max-w-md">
+    {/* XP Computers Logo/Text - Left Aligned */}
+    <motion.div 
       variants={container}
       initial="hidden"
       animate="visible"
-      className="text-5xl font-bold mb-4"
+      className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-left"
     >
-      {letters.map((char, index) => (
+      {["X","P"," ","C","o","m","p","u","t","e","r","s"].map((char, index) => (
         <motion.span key={index} variants={child}>
           {char === ' ' ? '\u00A0' : char}
         </motion.span>
       ))}
     </motion.div>
-          <p className="text-xl mb-8">
-            Join our community of tech enthusiasts and professionals.
-          </p>
-          <div className="flex space-x-4 mt-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="w-24 h-24 bg-white bg-opacity-20 rounded-full overflow-hidden">
-                <img 
-                  src={`/team-${i}.jpg`} 
-                  alt={`Team member ${i}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+
+    {/* Tagline - Left Aligned */}
+    <p className="text-base md:text-xl mb-6 lg:mb-8 text-left">
+      Join our community of tech enthusiasts and<br />
+      professionals.
+    </p>
+
+    {/* Team Images - Left Aligned Row */}
+    <div className="flex space-x-3 md:space-x-4 mt-6 lg:mt-8">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white bg-opacity-20 rounded-full overflow-hidden">
+          <img 
+            src={`/team-${i}.jpg`} 
+            alt={`Team member ${i}`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
         </div>
-      </div>
-  
+      ))}
+    </div>
+  </div>
+</div>
       {/* Right Side - Signup Form */}
       <div className="w-1/2 flex items-center justify-center p-12 bg-gray-50 h-screen sticky top-0">
         <div className="w-full max-w-md">
@@ -138,12 +154,11 @@ export default function SignupPage() {
             )}
   
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Full Name
-              </label>
+          
               <input
                 id="name"
                 name="name"
+                placeholder="👤 Full Name"
                 type="text"
                 required
                 value={formData.name}
@@ -151,15 +166,12 @@ export default function SignupPage() {
                 className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
-  
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
+           <div>
               <input
                 id="email"
                 name="email"
                 type="email"
+                placeholder="📧 Email"
                 autoComplete="email"
                 required
                 value={formData.email}
@@ -173,7 +185,7 @@ export default function SignupPage() {
           id="number"
           name="number"
           type="text"
-        placeholder='03XXXXXXXXX or 92XXXXXXXXXX'
+        placeholder='📞 03XXXXXXXXX or 92XXXXXXXXXX'
        required
           value={formData.number}
         onChange={(e) => {
@@ -189,13 +201,11 @@ export default function SignupPage() {
 
   
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
               <input
                 id="password"
                 name="password"
                 type="password"
+                placeholder="🔒 Password"
                 required
                 minLength="8"
                 value={formData.password}
@@ -205,20 +215,89 @@ export default function SignupPage() {
             </div>
   
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                Confirm Password
-              </label>
               <input
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
+                placeholder="🔐 Confirm Password"
                 required
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
-  
+            <div className="grid grid-cols-2 gap-4">
+  <div className="col-span-2">
+    
+    <input
+      id="street"
+      name="street"
+      type="text"
+      placeholder="📍 Street Address"
+      required
+      value={formData.street}
+      onChange={handleChange}
+      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+    />
+  </div>
+
+  <div>
+    
+    <input
+      id="city"
+      name="city"
+      type="text"
+      placeholder="🏙️ City"
+      required
+      value={formData.city}
+      onChange={handleChange}
+      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+    />
+  </div>
+
+  <div>
+    
+    <input
+      id="state"
+      name="state"
+      type="text"
+      placeholder="🗺️ Province"
+      required
+      value={formData.state}
+      onChange={handleChange}
+      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+    />
+  </div>
+
+  <div>
+ 
+    <input
+      id="postalCode"
+      name="postalCode"
+      type="text"
+      placeholder="✉️ Postal Code"
+      required
+      value={formData.postalCode}
+      onChange={handleChange}
+      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+    />
+  </div>
+
+  <div>
+    
+    <select
+      id="country"
+      name="country"
+      value={formData.country}
+      onChange={handleChange}
+      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+    >
+      <option value="Pakistan">Pakistan</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+</div>
+
             <div className="flex items-center">
               <input
                 id="terms"
