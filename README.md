@@ -69,8 +69,8 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 - **Role Guarding**: Separate dashboards for `admin` and `customer`
 - **Product Details Page**: View detailed information about a product, including images, price, description, and stock.
 - **Shopping Cart**: Add products to the shopping cart, view cart details.
-- **Search: Searh Product by Name and category
-- **Profile*: Seperate Page for user Profile
+- **Search**: Searh Product by Name and category.
+- **Profile***: Seperate Page for user Profile.
 
 # Additional Feature
 - **Informational Sections**: Owner, Manager, Team members, Branches, Why Join Us, Testimonials
