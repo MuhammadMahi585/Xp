@@ -1,0 +1,46 @@
+import { getUserId } from "@/app/lib/getUserId";
+import Orders from "@/app/models/orders";
+import { unauthorized } from "next/navigation";
+import { NextResponse } from "next/server";
+
+export async function GET() {
+
+    try{
+    const orders = await Orders.find().
+    sort({ createdAt: 1 })
+    .populate('user','name email number')
+    .populate('items.product', 'name price');
+
+         
+    const formattedOrders = orders.map(order => ({
+        orderId: order._id,
+        totalAmount: order.totalAmount,
+        shippingAddress: order.shippingAddress,
+        status: order.status,
+        createdAt: order.createdAt,
+        user: {
+            name: order.user?.name,
+            email: order.user?.email,
+            number: order.user?.number,
+        },
+        items: order.items.map(item => ({
+          productId: item.product._id,
+          productName: item.product.name,
+          quantity: item.quantity,
+          price: item.product.price, 
+        }))
+      }));
+
+      return NextResponse.json({
+        success: true,
+        orders: formattedOrders,
+      });
+    }
+    catch(error){
+        return NextResponse.json({
+            success: false,
+            message: "Failed to fetch orders",
+            error: error.message,
+          }, { status: 500 });
+    }
+}

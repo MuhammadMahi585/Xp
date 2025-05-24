@@ -43,6 +43,9 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 #### Cart Page 
 ![Cart Page Customer](./assets/Cart.png)
 
+#### Orders Page 
+![Cart Page Customer](./assets/ordersCustomerPage.png)
+
 #### User Profile Page
 ![Cart Page Customer](./assets/userProfile.png)
 
@@ -59,6 +62,9 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 
 #### Search Products by Category
 ![Search Products by Category Page](./assets/SortProducts.png)
+
+#### Orders Page
+![View Products Page](./assets/ordersAdminPage.png)
 
 ---
 

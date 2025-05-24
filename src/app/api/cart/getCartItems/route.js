@@ -25,7 +25,10 @@ export async function GET(request) {
         )
     }
    
-    const cartProducts = customer.cart.map(item=>item.product)
+    const cartProducts = customer.cart.map(item=>({
+        product:item.product,
+        quantity:item.quantity
+    }))
    
     return NextResponse.json(
         {cartProducts,

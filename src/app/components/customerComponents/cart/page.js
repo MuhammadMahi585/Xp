@@ -4,33 +4,68 @@ import CustomerLayout from '../../dashboard/customer/layout'
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
-import Product from '../products/page'
+
 
 export default function Cart() {
   const router = useRouter()
   const { auth, setAuth } = useAuth()
   const [cart,setCart] = useState([])
+  const [shippingAddress,setShippingAddress]=useState({
+    street: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    country:'',
+  })
+  
   
   useEffect(()=>{
-    fetchCart()
     var redirectPath="/components/customerComponents/cart"
     if(!auth.isAuthenticated){
       redirectPath="/components/authenctication/login"
+      router.replace(redirectPath)
     }
     if(auth.isAuthenticated){
       if(auth.role==="admin"){
         redirectPath="/components/dashboard/admin"
+      router.replace(redirectPath)
       }
     }
-    router.replace(redirectPath)
     
   },[auth,router])
-      
+
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      fetchCart();
+      setAddress();
+    }
+  }, [auth]);
+  
+  const setAddress = async()=>{
+    try{
+      const res= await axios.get("/api/getUserAddress")
+      if(res.data.success){
+        setShippingAddress({
+          street: res.data.address.street,
+          city: res.data.address.city,
+          state: res.data.address.state,
+          postalCode:res.data.address.postalCode,
+          country:res.data.address.country
+        })
+      }
+      else{
+        console.log(res.data.error)
+      }
+    }
+    catch(err){
+      console.log("error accured while fetching")
+    }
+  }
    const fetchCart =async()=>{
     try{
       const res = await axios.get("/api/cart/getCartItems")
       if(res.data.unauthorized){
-         router.replace("components/authentication/login")
+         router.replace("/components/authentication/login")
          window.location.reload()
       }
       else if(res.data.isCartEmpty){
@@ -44,7 +79,33 @@ export default function Cart() {
        console.log("Error occured while fetching a cart: ",error)
     }
    }
+   const totalAmount = cart.reduce(
+    (sum, item) => sum + (item.product.price * (item.quantity || 1)),
+    0
+  );
+  const placeOrder = async () => {
+    try {
+      const response = await axios.post("/api/orders/addOrder", {
+        shippingAddress,
+        totalAmount,
+      });
   
+      if (response.data.success) {
+        // Order placed successfully
+        console.log("Order placed!");
+        // You can add more logic here, e.g. clear local cart, show message, redirect, etc.
+      } else {
+        // Handle failure response
+        console.log("Failed to place order:", response.data.message);
+      }
+    } catch (error) {
+      // Handle network or server errors
+      console.log("Error placing order:", error.message);
+    }
+  };
+  
+  
+
   return (
     <CustomerLayout>
     <div className="min-h-screen bg-gradient-to-br from-[#15172b] via-[#322f5b] to-[#72649b] px-4 py-8 flex justify-center">
@@ -53,7 +114,7 @@ export default function Cart() {
           {cart.length > 0 ? (
             <>
               {cart.map((item) => (
-                <div key={item._id} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 mb-4 hover:border-purple-400/30 transition-all flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div key={item.product._id} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 mb-4 hover:border-purple-400/30 transition-all flex flex-col sm:flex-row items-center justify-between gap-4">
                   
                   {/* Product Info */}
                   <div className="flex items-center gap-4 flex-1 min-w-0">
@@ -63,33 +124,19 @@ export default function Cart() {
                       </svg>
                     </div>
                     <div className="min-w-0">
-                      <h3 className="text-lg font-semibold text-white truncate">{item.name}</h3>
-                      <p className="text-purple-300 font-medium">Rs. {item.price.toLocaleString()}</p>
+                      <h3 className="text-lg font-semibold text-white truncate">{item.product.name}</h3>
+                      <p className="text-purple-300 font-medium">Rs. {item.product.price.toLocaleString()}</p>
                     </div>
                   </div>
         
                   {/* Quantity Controls */}
                   <div className="flex items-center">
-                    <button className="w-8 h-8 flex items-center justify-center border border-white/20 rounded-l-md hover:bg-white/10 text-white hover:text-purple-300 transition-colors">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-                      </svg>
-                    </button>
-                    <input
-                      type="number"
-                      id={`quantity-${item._id}`}
-                      name="quantity"
-                      min="1"
-                      max="100"
-                      value={item.quantity || 1}
-                      onChange={(e) => updateQuantity(item._id, parseInt(e.target.value))}
-                      className="w-12 h-8 border-t border-b border-white/20 bg-white/5 text-center text-white focus:outline-none focus:ring-1 focus:ring-purple-500"
-                    />
-                    <button className="w-8 h-8 flex items-center justify-center border border-white/20 rounded-r-md hover:bg-white/10 text-white hover:text-purple-300 transition-colors">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                      </svg>
-                    </button>
+                    <h1 
+                    id={`quantity-${item._id}`}
+                     className="w-12 h-8 border-t border-b border-white/20 bg-white/5 text-center text-white focus:outline-none focus:ring-1 focus:ring-purple-500"
+                     >
+                      {item.quantity}
+                    </h1>
                   </div>
         
                   {/* Remove Button */}
@@ -110,11 +157,37 @@ export default function Cart() {
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="text-xl font-semibold">Total</h3>
                   <p className="text-2xl font-bold text-purple-300">
-                    Rs. {cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0).toLocaleString()}
+                    Rs. {cart.reduce((sum, item) => sum + (item.product.price * (item.quantity || 1)), 0).toLocaleString()}
                   </p>
                 </div>
+                <div className="mt-8">
+  <h2 className="text-xl font-semibold mb-4">Shipping Address</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {[
+      { label: "Street", name: "street" },
+      { label: "City", name: "city" },
+      { label: "State/Province", name: "state" },
+      { label: "Postal Code", name: "postalCode" },
+      { label: "Country", name: "country" },
+    ].map(({ label, name }) => (
+      <div key={name}>
+        <label className="block text-sm font-medium text-white mb-1">{label}</label>
+        <input
+          type="text"
+          className="w-full px-3 py-2 rounded-xl bg-white/10 text-white placeholder-white/40 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          value={shippingAddress[name]}
+          onChange={(e) =>
+            setShippingAddress((prev) => ({ ...prev, [name]: e.target.value }))
+          }
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
                 
-                <button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-6 rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-purple-500/20 flex items-center justify-center gap-2">
+                <button
+                onClick={()=>{placeOrder()}} className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-6 rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-purple-500/20 flex items-center justify-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>

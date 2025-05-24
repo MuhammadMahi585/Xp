@@ -65,8 +65,8 @@ export default function AdminDashboard() {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('/api/orders');
-      setOrders(response.data);
+      const response = await axios.get('/api/orders/getAllOrders');
+      setOrders(response.data.orders);
     } catch (error) {
       console.error('Error fetching orders:', error);
     }
@@ -434,7 +434,7 @@ export default function AdminDashboard() {
                             />
                           )}
                             <h4 className="font-medium text-gray-900 line-clamp-1">{product.name}</h4>
-                            <p className="text-blue-600 font-semibold mt-1">€{product.price.toFixed(2)}</p>
+                            <p className="text-blue-600 font-semibold mt-1">Rs {product.price.toFixed(2)}</p>
                             {product.stock > 0 ? (
                               <span className="text-xs text-green-600">In Stock: {product.stock}</span>
                             ) : (
@@ -492,16 +492,16 @@ export default function AdminDashboard() {
 
         {/* Orders Tab */}
         {tab === 'orders' && (
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-gray-200 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-6 text-gray-800">Orders</h2>
             
             <div className="space-y-4">
               {orders.length > 0 ? (
                 orders.map((order) => (
-                  <div key={order._id} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+                  <div key={order.orderId} className="border rounded-lg p-6 hover:shadow-md transition-shadow bg-gray-300">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 ">
                       <div>
-                        <h3 className="font-semibold text-lg">Order #{order.orderNumber}</h3>
+                        <h3 className="font-semibold text-lg text-gray-900">Order #{order.orderId}</h3>
                         <p className="text-gray-500 text-sm">
                           {new Date(order.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric',
@@ -522,44 +522,45 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-                      <div>
-                        <h4 className="font-medium text-gray-900 mb-2">Customer Info</h4>
-                        <p>{order.customer?.name || 'N/A'}</p>
-                        <p className="text-blue-600">{order.customer?.email || 'N/A'}</p>
+                      <div className='text-gray-700'>
+                        <h4 className="font-medium text-gray-700 mb-2">Customer Info</h4>
+                        <p>{order.user?.name || 'N/A'}</p>
+                        <p>{order.user?.number || 'N/A'}</p>
+                        <p className="text-blue-600">{order.user?.email || 'N/A'}</p>
                       </div>
 
-                      <div>
-                        <h4 className="font-medium text-gray-900 mb-2">Delivery Info</h4>
+                      <div className='text-gray-700'>
+                        <h4 className="font-medium text-gray-700 mb-2">Delivery Info</h4>
                         <p>{order.shippingAddress?.street || 'N/A'}</p>
                         <p>{order.shippingAddress?.city || 'N/A'}</p>
-                        <p>
-                          {order.deliveryDate ? new Date(order.deliveryDate).toLocaleDateString() : 'N/A'}
-                        </p>
-                      </div>
+                        <p>{order.shippingAddress?.state || 'N/A'}</p>
+                        <p>{order.shippingAddress?.postalCode || 'N/A'}</p>
+                        <p>{order.shippingAddress?.country || 'N/A'}</p>
+                       </div>
                     </div>
 
                     <div className="mb-4">
-                      <h4 className="font-medium text-gray-900 mb-2">Ordered Products</h4>
+                      <h4 className="font-medium text-gray-700 mb-2">Ordered Products</h4>
                       <ul className="space-y-2">
                         {order.items?.map((item, index) => (
-                          <li key={index} className="flex justify-between">
-                            <span>{item.quantity}x {item.product?.name || 'Unknown Product'}</span>
-                            <span>€{(item.quantity * item.priceAtPurchase).toFixed(2)}</span>
+                          <li key={item.productId} className="flex justify-between text-gray-700">
+                            <span>{item.quantity}x {item.productName || 'Unknown Product'}</span>
+                            <span>Rs {(item.quantity * item.price).toFixed(2)}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
                     <div className="pt-4 border-t">
-                      <div className="flex justify-between font-medium">
+                      <div className="flex justify-between font-medium text-gray-900">
                         <span>Total</span>
-                        <span>€{order.totalAmount?.toFixed(2) || '0.00'}</span>
+                        <span>Rs {order.totalAmount?.toFixed(2) || '0.00'}</span>
                       </div>
                     </div>
                   </div>
                 ))
               ) : (
-                <div className="text-center py-12">
+                <div key="no user found" className="text-center py-12">
                   <div className="mx-auto h-24 w-24 text-gray-400">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />

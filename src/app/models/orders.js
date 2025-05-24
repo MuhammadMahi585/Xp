@@ -10,14 +10,14 @@ const orderSchema = new mongoose.Schema({
       product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
       quantity: { type: Number, min: 1 },
     }],
-    shippingAddress: [{
+    shippingAddress: {
       street: { type: String },
       city: { type: String },
       state: { type: String },
       postalCode: { type: String },
       country: { type: String, default: "Pakistan" },
       isDefault: { type: Boolean, default: true }
-    }],
+    },    
     status: {
       type: String,
       enum: ["pending", "processing", "shipped", "delivered", "cancelled"],
@@ -27,5 +27,6 @@ const orderSchema = new mongoose.Schema({
     trackingNumber: String,
   }, { timestamps: true });
 
-  const Orders = mongoose.model("Orders",orderSchema)
-export default Orders;
+  const Orders = mongoose.models.Orders || mongoose.model("Orders", orderSchema);
+  export default Orders;
+  

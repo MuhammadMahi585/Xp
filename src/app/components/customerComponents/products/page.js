@@ -14,7 +14,7 @@ export default function Product() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [quantities, setQuantities] = useState({});
-  
+ 
   useEffect(() => {
     const redirectPath = !auth.isAuthenticated 
       ? "/components/authenctication/login"
