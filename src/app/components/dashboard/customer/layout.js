@@ -1,3 +1,4 @@
+'use client'
 import Navigation from "../../navigation/page";
 
 export default function CustomerLayout({ children }) {

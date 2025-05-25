@@ -1,11 +1,21 @@
 'use client';
-import { useState, useEffect } from 'react';
+export const dynamic = 'force-dynamic';
+
+import { useState, useEffect, Suspense } from 'react';
 import axios from 'axios';
 import { useAuth } from '@/app/context/AuthContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FiSearch, FiPlus, FiEdit, FiTrash2, FiBox, FiShoppingCart, FiLogOut } from 'react-icons/fi';
 
-export default function AdminDashboard() {
+function LoadingSpinner() {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+  );
+}
+
+function AdminDashboardContent() {
   const {auth,setAuth} = useAuth()
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -632,5 +642,14 @@ const handleStatus = async (e, orderId) => {
         </div>
       </footer>
     </div>
+
+  );
+}
+
+export default function AdminDashboard() {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <AdminDashboardContent />
+    </Suspense>
   );
 }
