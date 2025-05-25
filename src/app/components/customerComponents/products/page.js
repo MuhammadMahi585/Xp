@@ -17,7 +17,7 @@ export default function Product() {
  
   useEffect(() => {
     const redirectPath = !auth.isAuthenticated 
-      ? "/components/authenctication/login"
+      ? "/components/authentication/login"
       : auth.role === "admin"
         ? "/components/dashboard/admin"
         : "/components/customerComponents/products";

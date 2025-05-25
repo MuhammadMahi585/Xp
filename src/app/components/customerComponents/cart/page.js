@@ -1,6 +1,6 @@
 'use client'
 import {useState,useEffect } from 'react'
-import CustomerLayout from '../../dashboard/customer/layout'
+import CustomerLayout from '@/app/components/dashboard/customer/layout';
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
@@ -21,8 +21,8 @@ export default function Cart() {
   
   useEffect(()=>{
     var redirectPath="/components/customerComponents/cart"
-    if(!auth.isAuthenticated){
-      redirectPath="/components/authenctication/login"
+    if(auth?.isAuthenticated ===false || !auth){
+      redirectPath="/components/authentication/login"
       router.replace(redirectPath)
     }
     if(auth.isAuthenticated){
@@ -187,7 +187,7 @@ export default function Cart() {
 
                 
                 <button
-                onClick={()=>{placeOrder()}} className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-6 rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-purple-500/20 flex items-center justify-center gap-2">
+                onClick={()=>{placeOrder()}} className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 mt-4 px-6 rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-purple-500/20 flex items-center justify-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
@@ -215,7 +215,7 @@ export default function Cart() {
         </div>
       </div>
     </div>
-  </CustomerLayout>
+   </CustomerLayout>   
   )
 }
 

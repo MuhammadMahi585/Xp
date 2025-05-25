@@ -12,7 +12,7 @@ export default function Order() {
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
-      router.replace("/components/authenctication/login")
+      router.replace("/components/authentication/login")
     } else if (auth.role === "admin") {
       router.replace("/components/dashboard/admin")
     }

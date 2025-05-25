@@ -26,7 +26,7 @@ export default function Profile() {
 
     let redirectPath = "/components/customerComponents/profile"
     if (!auth.isAuthenticated) {
-      redirectPath = "/components/authenctication/login"
+      redirectPath = "/components/authentication/login"
     } else if (auth.role === "admin") {
       redirectPath = "/components/dashboard/admin"
     }

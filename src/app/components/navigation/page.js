@@ -19,8 +19,10 @@ export default function Navigation() {
           isLoading: false, // set isLoading to false after logout
           error: null
         })
+      console.log("logout success");
         router.replace("/components/authentication/login")
         window.location.reload()
+        
       }
     } catch (error) {
       console.error("Error occurred during logout", error)
