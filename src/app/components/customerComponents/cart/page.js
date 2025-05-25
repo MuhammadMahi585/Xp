@@ -32,7 +32,7 @@ export default function Cart() {
       }
     }
     
-  },[auth,router])
+  },[cart,auth,router])
 
   useEffect(() => {
     if (auth.isAuthenticated) {
@@ -91,11 +91,11 @@ export default function Cart() {
       });
   
       if (response.data.success) {
-        // Order placed successfully
+        setCart([])
         console.log("Order placed!");
-        // You can add more logic here, e.g. clear local cart, show message, redirect, etc.
+       
       } else {
-        // Handle failure response
+        
         console.log("Failed to place order:", response.data.message);
       }
     } catch (error) {
@@ -104,6 +104,23 @@ export default function Cart() {
     }
   };
   
+  const removeFromCart =async(itemId)=>{
+   try{
+    const response = await axios.delete("/api/cart/removeFromCart",
+      {data:{itemId}}
+      )
+      if(response.data.success){
+        console.log("Item Delete Successfully")
+        fetchCart()
+      }
+      else if(response.data.message){
+        console.log(response.data.message)
+      }
+   }
+   catch (error) {
+    console.error("Error removing item from cart", error);
+  }
+  }
   
 
   return (
@@ -141,7 +158,7 @@ export default function Cart() {
         
                   {/* Remove Button */}
                   <button 
-                    onClick={() => removeFromCart(item._id)}
+                    onClick={() => removeFromCart(item.product._id)}
                     className="flex items-center gap-1 text-red-400 hover:text-red-300 transition-colors"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -160,9 +177,8 @@ export default function Cart() {
                     Rs. {cart.reduce((sum, item) => sum + (item.product.price * (item.quantity || 1)), 0).toLocaleString()}
                   </p>
                 </div>
-                <div className="mt-8">
-  <h2 className="text-xl font-semibold mb-4">Shipping Address</h2>
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="mt-8"> <h2 className="text-xl font-semibold mb-4">Shipping Address</h2>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     {[
       { label: "Street", name: "street" },
       { label: "City", name: "city" },

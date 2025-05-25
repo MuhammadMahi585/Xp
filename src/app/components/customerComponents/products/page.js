@@ -101,8 +101,13 @@ export default function Product() {
         router.replace("/components/authentication/login");
         window.location.reload();
       } 
+      else if(response.data.roductoutOfStock){
+        alert("product out of stock")
+      }
       else if (response.data.success) {
         alert(`${quantity} ${product.name}(s) added to cart`);
+        fetchProducts()
+        
       }
     } catch (error) {
       console.error("Failed to add to Cart:", error);

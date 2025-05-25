@@ -12,7 +12,9 @@ export async function GET() {
         })
     }
     try{
-        const orders = await Orders.find({ user: user.userId }).populate("items.product");
+        const orders = await Orders.find({ user: user.userId })
+        .sort({createdAt : -1})
+        .populate("items.product");
          
     const formattedOrders = orders.map(order => ({
         orderId: order._id,
@@ -21,9 +23,9 @@ export async function GET() {
         status: order.status,
         createdAt: order.createdAt,
         items: order.items.map(item => ({
-          productName: item.product.name,
+          productName: item.name,
           quantity: item.quantity,
-          price: item.product.price, 
+          price: item.priceAtPurchase, 
         }))
       }));
 

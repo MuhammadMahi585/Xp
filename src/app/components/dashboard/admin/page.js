@@ -10,6 +10,8 @@ export default function AdminDashboard() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const tab = searchParams.get('tab') || 'products';
+  const options=["processing","pending", "shipped", "delivered", "cancelled"];
+  const [selectedOption,setSelectedOption] =useState({})
   
   const [formData, setFormData] = useState({
     name: '',
@@ -67,6 +69,14 @@ export default function AdminDashboard() {
     try {
       const response = await axios.get('/api/orders/getAllOrders');
       setOrders(response.data.orders);
+
+    const statusMap = {};
+    response.data.orders.forEach(order => {
+      statusMap[order.orderId] = order.status;
+    });
+    
+    setSelectedOption(statusMap)
+
     } catch (error) {
       console.error('Error fetching orders:', error);
     }
@@ -138,6 +148,7 @@ export default function AdminDashboard() {
       alert(error.response?.data?.error || 'Failed to add product');
     }
   };
+ 
 
   const handleDelete = async (productId) => {
     if (confirm('Are you sure you want to delete this product?')) {
@@ -176,6 +187,24 @@ export default function AdminDashboard() {
         console.error("Error occurred during logout", error)
       }
     }
+const handleStatus = async (e, orderId) => {
+  const newStatus = e.target.value;
+
+  setSelectedOption(prev => ({
+    ...prev,
+    [orderId]: newStatus
+  }));
+
+  try {
+    await axios.put('/api/orders/setOrderStatus', {
+      orderId,
+      status: newStatus
+    });
+  } catch (err) {
+    console.error('Failed to update status', err);
+  }
+};
+
     
   
   return (
@@ -517,7 +546,28 @@ export default function AdminDashboard() {
                         order.status === 'processing' ? 'bg-yellow-100 text-yellow-800' :
                         'bg-blue-100 text-blue-800'
                       }`}>
-                        {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+          <div className="px-3 py-1 rounded-full text-sm font-medium self-start sm:self-auto">
+      <select
+        id="status"
+        value={selectedOption[order.orderId] || "pending"}
+        onChange={(e)=>handleStatus(e,order.orderId)}
+        className={`
+          px-2 py-1 rounded 
+          ${selectedOption[order.orderId] === "delivered" ? "bg-green-100 text-green-800" :
+            selectedOption[order.orderId] === "processing" ? "bg-yellow-100 text-yellow-800" :
+            selectedOption[order.orderId] === "pending" ? "bg-blue-100 text-blue-800" :
+            selectedOption[order.orderId] === "cancelled" ? "bg-red-100 text-red-800" :
+            "bg-gray-100 text-gray-800"}
+        `}
+      >
+        {options.map((status) => (
+          <option key={status} value={status}>
+            {status}
+          </option>
+        ))}
+      </select>
+    </div>
+                       
                       </span>
                     </div>
 

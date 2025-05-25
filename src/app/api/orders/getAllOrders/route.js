@@ -7,9 +7,9 @@ export async function GET() {
 
     try{
     const orders = await Orders.find().
-    sort({ createdAt: 1 })
+    sort({ createdAt: -1 })
     .populate('user','name email number')
-    .populate('items.product', 'name price');
+   
 
          
     const formattedOrders = orders.map(order => ({
@@ -24,10 +24,10 @@ export async function GET() {
             number: order.user?.number,
         },
         items: order.items.map(item => ({
-          productId: item.product._id,
-          productName: item.product.name,
+          productId: item.product,
+          productName: item.name,
           quantity: item.quantity,
-          price: item.product.price, 
+          price: item.priceAtPurchase, 
         }))
       }));
 

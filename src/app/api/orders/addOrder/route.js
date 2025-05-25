@@ -16,7 +16,7 @@ export async function POST(req) {
   }
 
   try {
-    const { shippingAddress, totalAmount } = await req.json();
+    const { shippingAddress } = await req.json(); 
     const userData = await User.findById(user.userId).populate("cart.product");
 
     if (!userData || !userData.cart || userData.cart.length === 0) {
@@ -26,11 +26,25 @@ export async function POST(req) {
       );
     }
 
+    const orderItems = userData.cart.map((item) => {
+      return {
+        product: item.product._id,
+        name: item.product.name,
+        priceAtPurchase: item.product.price,
+        quantity: item.quantity,
+      };
+    });
+
+    const calculatedTotal = orderItems.reduce(
+      (sum, item) => sum + item.priceAtPurchase * item.quantity,
+      0
+    );
+
     const order = await Orders.create({
       user: user.userId,
-      items: userData.cart,
+      items: orderItems,
       shippingAddress,
-      totalAmount,
+      totalAmount: calculatedTotal,
     });
 
     await User.findByIdAndUpdate(user.userId, {
