@@ -148,7 +148,7 @@ export default function LoginPage() {
         <h2 className="text-4xl font-bold text-black mb-8">Owner</h2>
         <div className="flex justify-center">
           <img
-            src="/assets/image/nain.jpg"
+            src="/assets/Image/nain.jpg"
             alt="Owner"
             className="w-40 h-40 rounded-full object-cover shadow-lg"
            
