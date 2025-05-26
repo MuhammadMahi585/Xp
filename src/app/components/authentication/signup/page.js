@@ -374,65 +374,36 @@ export default function SignupPage() {
 </section>
 
 {/* Footer */}
-<footer className="bg-gray-900 text-gray-200 py-12 px-6">
-  <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-    
-    {/* Brand & Contact */}
-    <div className="md:w-1/3 space-y-4 text-center md:text-left">
-      <h3 className="text-2xl font-bold mb-2">XP Computer</h3>
-      <p className="text-gray-400 mb-4">Your complete computer solution</p>
-      <p className="flex  md:justify-start space-x-2 text-sm md:text-base">
-        <span>📍</span>
-        <span>Near Rania Mall, Saddar, Rawalpindi</span>
-      </p>
-      <p className="flex md:justify-start space-x-2 text-sm md:text-base">
-        <span>📞</span>
-        <span>+92 308 2269979</span>
-      </p>
-      <p className="flex md:justify-start space-x-2 text-sm md:text-base">
-        <span>✉️</span>
-        <span>xpcomputer789@gmail.com</span>
-      </p>
-    </div>
-
-    {/* Quick Links */}
-    <div className="md:w-1/3">
-      <h4 className="text-xl font-semibold mb-2">Quick Links</h4>
-      <ul className="space-y-1">
-        <li><a href="/components/authentication/login" className="hover:underline">Home</a></li>
-        <li><a href="/components/authentication/login" className="hover:underline">Login</a></li>
-        <li><a href="/components/authentication/signup" className="hover:underline">Sign Up</a></li>
-      </ul>
-    </div>
-
-    {/* Social & Website */}
-    <div className="md:w-1/3 text-center md:text-left space-y-4">
-      <h4 className="text-xl font-semibold mb-4">Follow Us</h4>
-      <div className="flex justify-center md:justify-start space-x-6 text-gray-400">
-        <a href="https://www.facebook.com/Nainmahessar" target="_blank" rel="noopener" className="hover:text-white" aria-label="Facebook">
-          <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M22 12a10 10 0 10-11.5 9.95v-7.05h-2.2v-2.9h2.2V9.8c0-2.18 1.3-3.4 3.3-3.4.95 0 1.95.17 1.95.17v2.14h-1.1c-1.1 0-1.45.69-1.45 1.4v1.7h2.48l-.4 2.9h-2.08v7.05A10 10 0 0022 12z" />
-          </svg>
-        </a>
-        <a href="https://www.instagram.com/xpcomputer" target="_blank" rel="noopener" className="hover:text-white" aria-label="Instagram">
-          <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.75-.5a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5z"/>
-          </svg>
-        </a>
-        <a href="https://xpcomputer.com" target="_blank" rel="noopener" className="hover:text-white" aria-label="Website">
-          <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 4.5a7.5 7.5 0 100 15 7.5 7.5 0 000-15zm0 1.5a6 6 0 110 12 6 6 0 010-12zm0 2.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5z"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div className="mt-8 border-t border-gray-700 pt-6 text-center text-gray-500 text-xs sm:text-sm">
+ <footer className="bg-gray-900 text-gray-200 py-12 px-6">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="text-2xl font-bold mb-2">XP Computer</h3>
+            <p className="text-gray-400 mb-4">Your complete computer solution</p>
+            <p className="flex items-center space-x-2">📍 <span>Near Rania Mall, Saddar, Rawalpindi</span></p>
+            <p className="flex items-center space-x-2">📞 <span>+92 308 2269979</span></p>
+            <p className="flex items-center space-x-2">✉️ <span>xpcomputer789@gmail.com</span></p>
+          </div>
+          <div>
+            <h4 className="text-xl font-semibold mb-2">Quick Links</h4>
+            <ul className="space-y-1">
+              <li><a href="/components/authentication/login" className="hover:underline">Home</a></li>
+              <li><a href="/components/authentication/login" className="hover:underline">Login</a></li>
+              <li><a href="/components/authentication/signup" className="hover:underline">Sign Up</a></li>
+  
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-xl font-semibold mb-2">Follow Us</h4>
+            <div className="flex space-x-4">
+              <a href="https://www.facebook.com/Nainmahessar" target="_blank" rel="noopener noreferrer" className="hover:text-white">Facebook</a>
+              <a href="https://www.instagram.com/xpcomputer" target="_blank" rel="noopener noreferrer" className="hover:text-white">Instagram</a>
+            </div>
+          </div>
+        </div>
+        <div className="mt-8 border-t border-gray-700 pt-6 text-center text-gray-500 text-xs sm:text-sm">
     © {new Date().getFullYear()} XP Computer. All rights reserved.
-  </div>
-</footer>
-
+     </div>
+      </footer>
   </div>
   
   )
