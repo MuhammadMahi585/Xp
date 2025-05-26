@@ -35,7 +35,7 @@ export default function Product() {
       setProducts(response.data.data);
       setCategories(response.data.categories || ['All']);
       
-      // Initialize quantities with default 1 for each product
+      
       const initialQuantities = {};
       response.data.data.forEach(product => {
         initialQuantities[product._id] = 1;
