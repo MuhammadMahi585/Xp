@@ -16,13 +16,12 @@ export default function Navigation() {
         setAuth({
           isAuthenticated: false,
           role: null,
-          isLoading: false, // set isLoading to false after logout
+          isLoading: false,
           error: null
         })
-      console.log("logout success");
+        console.log("logout success");
         router.replace("/components/authentication/login")
         window.location.reload()
-        
       }
     } catch (error) {
       console.error("Error occurred during logout", error)
@@ -37,17 +36,17 @@ export default function Navigation() {
 
   return (
     <header className="mb-0 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center animate-fade-in">
-        <h1 className="text-4xl font-extrabold tracking-tight mb-4 md:mb-0">
+      <div className="container mx-auto px-4 py-4 md:py-6 flex flex-col md:flex-row justify-between items-center animate-fade-in">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4 md:mb-0">
           <span className="text-yellow-300">XP</span> Computers
         </h1>
 
         <nav>
-          <ul className="flex flex-wrap justify-center items-center gap-4 text-lg font-medium">
+          <ul className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-sm sm:text-base md:text-lg font-medium">
             <li>
               <a
                 onClick={() => router.push("/components/dashboard/customer")}
-                className="hover:text-yellow-300 transition-colors duration-300"
+                className="hover:text-yellow-300 transition-colors duration-300 cursor-pointer"
               >
                 Home
               </a>
@@ -55,7 +54,7 @@ export default function Navigation() {
             <li>
               <a
                 onClick={() => router.push("/components/customerComponents/products")}
-                className="hover:text-yellow-300 transition-colors duration-300"
+                className="hover:text-yellow-300 transition-colors duration-300 cursor-pointer"
               >
                 Products
               </a>
@@ -63,7 +62,7 @@ export default function Navigation() {
             <li>
               <a
                 onClick={() => router.push("/components/customerComponents/cart")}
-                className="hover:text-yellow-300 transition-colors duration-300"
+                className="hover:text-yellow-300 transition-colors duration-300 cursor-pointer"
               >
                 Cart
               </a>
@@ -71,7 +70,7 @@ export default function Navigation() {
             <li>
               <a
                 onClick={() => router.push("/components/customerComponents/order")}
-                className="hover:text-yellow-300 transition-colors duration-300"
+                className="hover:text-yellow-300 transition-colors duration-300 cursor-pointer"
               >
                 Orders
               </a>
@@ -79,7 +78,7 @@ export default function Navigation() {
             <li>
               <a
                 onClick={() => router.push("/components/customerComponents/profile")}
-                className="hover:text-yellow-300 transition-colors duration-300"
+                className="hover:text-yellow-300 transition-colors duration-300 cursor-pointer"
               >
                 Profile
               </a>
@@ -87,9 +86,9 @@ export default function Navigation() {
             <li>
               <button
                 onClick={logout}
-                className="flex items-center gap-2 px-4 py-2 rounded bg-red-600 hover:bg-red-700 transition-colors duration-300"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded bg-red-600 hover:bg-red-700 transition-colors duration-300 text-xs sm:text-sm md:text-base"
               >
-                <FiLogOut className="text-white text-xl" />
+                <FiLogOut className="text-white text-base sm:text-lg md:text-xl" />
                 <span>Logout</span>
               </button>
             </li>
