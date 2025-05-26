@@ -396,9 +396,9 @@ export default function SignupPage() {
     </div>
 
     {/* Quick Links */}
-    <div className="md:w-1/3 text-center md:text-left">
-      <h4 className="text-xl font-semibold mb-4">Quick Links</h4>
-      <ul className="space-y-1 text-sm sm:text-base">
+    <div className="md:w-1/3">
+      <h4 className="text-xl font-semibold mb-2">Quick Links</h4>
+      <ul className="space-y-1">
         <li><a href="/components/authentication/login" className="hover:underline">Home</a></li>
         <li><a href="/components/authentication/login" className="hover:underline">Login</a></li>
         <li><a href="/components/authentication/signup" className="hover:underline">Sign Up</a></li>
