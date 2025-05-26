@@ -381,15 +381,15 @@ export default function SignupPage() {
     <div className="md:w-1/3 space-y-4 text-center md:text-left">
       <h3 className="text-2xl font-bold mb-2">XP Computer</h3>
       <p className="text-gray-400 mb-4">Your complete computer solution</p>
-      <p className="flex items-center justify-center md:justify-start space-x-2 text-sm md:text-base">
+      <p className="flex  md:justify-start space-x-2 text-sm md:text-base">
         <span>📍</span>
         <span>Near Rania Mall, Saddar, Rawalpindi</span>
       </p>
-      <p className="flex items-center justify-center md:justify-start space-x-2 text-sm md:text-base">
+      <p className="flex md:justify-start space-x-2 text-sm md:text-base">
         <span>📞</span>
         <span>+92 308 2269979</span>
       </p>
-      <p className="flex items-center justify-center md:justify-start space-x-2 text-sm md:text-base">
+      <p className="flex md:justify-start space-x-2 text-sm md:text-base">
         <span>✉️</span>
         <span>xpcomputer789@gmail.com</span>
       </p>
@@ -399,11 +399,9 @@ export default function SignupPage() {
     <div className="md:w-1/3 text-center md:text-left">
       <h4 className="text-xl font-semibold mb-4">Quick Links</h4>
       <ul className="space-y-1 text-sm sm:text-base">
-        <li><a href="/" className="hover:underline">Home</a></li>
+        <li><a href="/components/authentication/login" className="hover:underline">Home</a></li>
         <li><a href="/components/authentication/login" className="hover:underline">Login</a></li>
         <li><a href="/components/authentication/signup" className="hover:underline">Sign Up</a></li>
-        <li><a href="/components/pages/about" className="hover:underline">About Us</a></li>
-        <li><a href="/components/pages/contact" className="hover:underline">Contact</a></li>
       </ul>
     </div>
 
