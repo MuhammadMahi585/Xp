@@ -119,8 +119,8 @@ const Home = () => {
             <h3 className="text-2xl font-bold mb-2">XP Computer</h3>
             <p className="text-gray-400 mb-4">Your complete computer solution</p>
             <p className="flex items-center">📍 Near Rania Mall, Saddar, Rawalpindi</p>
-            <p className="flex items-center">📞 +92 300 42454893</p>
-            <p className="flex items-center">✉️ info@xpcomputer.com</p>
+            <p className="flex items-center">📞 +92 308 2269979</p>
+            <p className="flex items-center">✉️ xpcomputer789@gmail.com</p>
           </div>
 
           {/* Quick Links */}

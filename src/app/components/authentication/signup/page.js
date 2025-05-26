@@ -128,10 +128,10 @@ export default function SignupPage() {
 
       {/* Team Images - Left Aligned Row */}
       <div className="flex space-x-3 md:space-x-4 mt-6 lg:mt-8">
-        {[1, 2, 3].map((i) => (
+        {[1, 2].map((i) => (
           <div key={i} className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white bg-opacity-20 rounded-full overflow-hidden">
             <img 
-              src={`/team-${i}.jpg`} 
+              src={`/assets/Image/team1.jpg`} 
               alt={`Team member ${i}`}
               className="w-full h-full object-cover"
               loading="lazy"
@@ -358,9 +358,9 @@ export default function SignupPage() {
     <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-black">Our Happy Customers</h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 sm:mt-12">
       {[
-        { name: 'Zain', quote: 'Best Products', role: 'Premium Member' },
-        { name: 'Jamie S.', quote: 'Cheap Prices', role: 'Pro Member' },
-        { name: 'Taylor M.', quote: 'Quality Products', role: 'VIP Member' }
+        { name: 'Taimoor Ayaz', quote: 'Best Products', role: 'Premium Member' },
+        { name: 'Abdul Basit', quote: 'Cheap Prices', role: 'Pro Member' },
+        { name: 'Armaghan Amir', quote: 'Quality Products', role: 'VIP Member' }
       ].map((testimonial, index) => (
         <div key={index} className="p-6 bg-white rounded-lg shadow-sm">
           <div className="h-16 w-16 bg-gray-200 rounded-full mx-auto mb-4"></div>
@@ -387,11 +387,11 @@ export default function SignupPage() {
       </p>
       <p className="flex items-center justify-center md:justify-start space-x-2 text-sm md:text-base">
         <span>📞</span>
-        <span>+92 300 42454893</span>
+        <span>+92 308 2269979</span>
       </p>
       <p className="flex items-center justify-center md:justify-start space-x-2 text-sm md:text-base">
         <span>✉️</span>
-        <span>info@xpcomputer.com</span>
+        <span>xpcomputer789@gmail.com</span>
       </p>
     </div>
 

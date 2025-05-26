@@ -127,7 +127,7 @@ export default function LoginPage() {
                   <input type="checkbox" className="h-4 w-4 text-blue-600 border-gray-300 rounded mr-2" />
                   Remember me
                 </label>
-                <a href="./signup" className="text-purple-500 hover:underline">Sign Up?</a>
+                <a href="./signup" className="text-purple-500 hover:underline">Sign up?</a>
               </div>
               <button
                 type="submit"
@@ -164,6 +164,8 @@ export default function LoginPage() {
           {[
             { name: "Jameel Kanasro (Co-owner)", image: "/assets/Image/jameel.jpg" },
             { name: "Sajjad Soomro (Manager)", image: "/assets/Image/sajjad.png" },
+            { name: "Musharaf Hussain (Vice Manager)", image: "/assets/Image/musho.jpg"},
+             { name: "Sufiyan Mahesar (Vice Manager)", image: "/assets/Image/sufi.png"}
           ].map((member, i) => (
             <div key={i}>
               <img src={member.image} alt={member.name} className="w-36 h-36 rounded-full object-cover mx-auto shadow-md" />
@@ -212,8 +214,8 @@ export default function LoginPage() {
             <h3 className="text-2xl font-bold mb-2">XP Computer</h3>
             <p className="text-gray-400 mb-4">Your complete computer solution</p>
             <p className="flex items-center space-x-2">📍 <span>Near Rania Mall, Saddar, Rawalpindi</span></p>
-            <p className="flex items-center space-x-2">📞 <span>+92 300 42454893</span></p>
-            <p className="flex items-center space-x-2">✉️ <span>info@xpcomputer.com</span></p>
+            <p className="flex items-center space-x-2">📞 <span>+92 308 2269979</span></p>
+            <p className="flex items-center space-x-2">✉️ <span>xpcomputer789@gmail.com</span></p>
           </div>
           <div>
             <h4 className="text-xl font-semibold mb-2">Quick Links</h4>

@@ -465,12 +465,14 @@ const handleStatus = async (e, orderId) => {
                         <div className="flex justify-between items-start gap-3">
                           <div className="flex-1">
                           {product.images?.[0] && (
+                            <div className="bg-white/5 rounded-xl overflow-hidden mb-4 flex items-center justify-center h-48">
                             <img 
                               src={product.images[0]} 
                               alt={product.name}
-                              className="h-12 w-100 h-100 object-cover rounded"
-    
+                              className="w-full h-full object-contain p-4"
+                              
                             />
+                              </div>
                           )}
                             <h4 className="font-medium text-gray-900 line-clamp-1">{product.name}</h4>
                             <p className="text-blue-600 font-semibold mt-1">Rs {product.price.toFixed(2)}</p>
