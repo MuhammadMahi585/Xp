@@ -128,10 +128,10 @@ export default function SignupPage() {
 
       {/* Team Images - Left Aligned Row */}
       <div className="flex space-x-3 md:space-x-4 mt-6 lg:mt-8">
-        {[1, 2,3].map((i) => (
+        {[1,2,3].map((i) => (
           <div key={i} className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white bg-opacity-20 rounded-full overflow-hidden">
             <img 
-              src="/assets/Image/team1.jpg"
+              src="/assets/Image/team1.png"
               alt={`Team member ${i}`}
               className="w-full h-full object-cover"
               loading="lazy"
