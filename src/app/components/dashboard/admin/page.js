@@ -336,7 +336,7 @@ const handleStatus = async (e, orderId) => {
                 </div>
 
                 <div>
-                  <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">Price (€)</label>
+                  <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">Price (Rs)</label>
                   <input
                     type="number"
                     id="price"

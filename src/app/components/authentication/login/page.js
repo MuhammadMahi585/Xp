@@ -236,7 +236,7 @@ export default function LoginPage() {
         </div>
         <div className="mt-8 border-t border-gray-700 pt-6 text-center text-gray-500 text-xs sm:text-sm">
     © {new Date().getFullYear()} XP Computer. All rights reserved.
-  </div>
+     </div>
       </footer>
     </div>
   );

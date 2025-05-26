@@ -53,7 +53,7 @@ export default function Profile() {
                     className="w-24 h-24 rounded-full border-4 border-white shadow-lg"
                   />
                   <div>
-                    <h1 className="text-3xl md:text-4xl font-bold break-words whitespace-normal">Welcome, {user.name}!</h1>
+                    <h1 className="text-3xl md:text-3xl font-bold break-words whitespace-normal">Welcome, {user.name}!</h1>
                     <p className="text-white/80">Explore and manage your profile information</p>
                   </div>
                 </div>
