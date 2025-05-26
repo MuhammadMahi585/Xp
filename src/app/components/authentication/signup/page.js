@@ -100,242 +100,239 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-white">
     {/* Signup Section (100vh) */}
-    <div className="flex flex-1 min-h-screen">
-{/* Left Side - Brand Section */}
-<div className="w-full lg:w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-6 md:p-12 sticky top-0 h-screen">
-  <div className="max-w-md">
-    {/* XP Computers Logo/Text - Left Aligned */}
-    <motion.div 
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-left"
-    >
-      {["X","P"," ","C","o","m","p","u","t","e","r","s"].map((char, index) => (
-        <motion.span key={index} variants={child}>
-          {char === ' ' ? '\u00A0' : char}
-        </motion.span>
-      ))}
-    </motion.div>
+   <div className="flex flex-col lg:flex-row min-h-screen">
+  {/* Left Side - Brand Section */}
+  <div className="w-full lg:w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-6 md:p-12 sticky top-0 lg:h-screen">
+    <div className="max-w-md">
+      {/* XP Computers Logo/Text - Left Aligned */}
+      <motion.div 
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-left"
+      >
+        {["X","P"," ","C","o","m","p","u","t","e","r","s"].map((char, index) => (
+          <motion.span key={index} variants={child}>
+            {char === ' ' ? '\u00A0' : char}
+          </motion.span>
+        ))}
+      </motion.div>
 
-    {/* Tagline - Left Aligned */}
-    <p className="text-base md:text-xl mb-6 lg:mb-8 text-left">
-      Join our community of tech enthusiasts and<br />
-      professionals.
-    </p>
+      {/* Tagline - Left Aligned */}
+      <p className="text-base md:text-xl mb-6 lg:mb-8 text-left">
+        Join our community of tech enthusiasts and<br />
+        professionals.
+      </p>
 
-    {/* Team Images - Left Aligned Row */}
-    <div className="flex space-x-3 md:space-x-4 mt-6 lg:mt-8">
-      {[1, 2, 3].map((i) => (
-        <div key={i} className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white bg-opacity-20 rounded-full overflow-hidden">
-          <img 
-            src={`/team-${i}.jpg`} 
-            alt={`Team member ${i}`}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
-      {/* Right Side - Signup Form */}
-      <div className="w-1/2 flex items-center justify-center p-12 bg-gray-50 h-screen sticky top-0">
-        <div className="w-full max-w-md">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Create Account</h2>
-  
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
-              <div className="p-3 bg-red-100 text-red-700 rounded-md">
-                {error}
-              </div>
-            )}
-  
-            <div>
-          
-              <input
-                id="name"
-                name="name"
-                placeholder="👤 Full Name"
-                type="text"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-           <div>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="📧 Email"
-                autoComplete="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-
-            <div>
-            <input
-          id="number"
-          name="number"
-          type="text"
-        placeholder='📞 03XXXXXXXXX or 92XXXXXXXXXX'
-       required
-          value={formData.number}
-        onChange={(e) => {
-         const onlyNumbers = e.target.value.replace(/\D/, ''); // remove non-digits
-          setFormData(prev => ({
-      ...prev,
-      number: onlyNumbers
-        }));
-         }}
-  className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-/>
-</div>
-
-  
-            <div>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="🔒 Password"
-                required
-                minLength="8"
-                value={formData.password}
-                onChange={handleChange}
-                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-  
-            <div>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                placeholder="🔐 Confirm Password"
-                required
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-  <div className="col-span-2">
-    
-    <input
-      id="street"
-      name="street"
-      type="text"
-      placeholder="📍 Street Address"
-      required
-      value={formData.street}
-      onChange={handleChange}
-      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-    />
-  </div>
-
-  <div>
-    
-    <input
-      id="city"
-      name="city"
-      type="text"
-      placeholder="🏙️ City"
-      required
-      value={formData.city}
-      onChange={handleChange}
-      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-    />
-  </div>
-
-  <div>
-    
-    <input
-      id="state"
-      name="state"
-      type="text"
-      placeholder="🗺️ Province"
-      required
-      value={formData.state}
-      onChange={handleChange}
-      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-    />
-  </div>
-
-  <div>
- 
-    <input
-      id="postalCode"
-      name="postalCode"
-      type="text"
-      placeholder="✉️ Postal Code"
-      required
-      value={formData.postalCode}
-      onChange={handleChange}
-      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-    />
-  </div>
-
-  <div>
-    
-    <select
-      id="country"
-      name="country"
-      value={formData.country}
-      onChange={handleChange}
-      className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-    >
-      <option value="Pakistan">Pakistan</option>
-      <option value="Other">Other</option>
-    </select>
-  </div>
-</div>
-
-            <div className="flex items-center">
-              <input
-                id="terms"
-                name="terms"
-                type="checkbox"
-                required
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-              />
-              <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
-                I agree to the <a href="#" className="text-purple-400 hover:underline">Terms and Conditions</a>
-              </label>
-            </div>
-  
-            <div className="pt-2">
-              <button
-                type="submit"
-                disabled={loading}
-                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
-                  loading ? 'opacity-70 cursor-not-allowed' : ''
-                }`}
-              >
-                {loading ? 'Creating account...' : 'Sign up'}
-              </button>
-            </div>
-  
-            <div className="text-sm text-center pt-2">
-              <p className="text-gray-600">
-                Already have an account?{' '}
-                <a href="./login" className="font-medium text-purple-400 hover:text-purple-200">
-                  Log in
-                </a>
-              </p>
-            </div>
-          </form>
-        </div>
+      {/* Team Images - Left Aligned Row */}
+      <div className="flex space-x-3 md:space-x-4 mt-6 lg:mt-8">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white bg-opacity-20 rounded-full overflow-hidden">
+            <img 
+              src={`/team-${i}.jpg`} 
+              alt={`Team member ${i}`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
     </div>
-  
+  </div>
+
+  {/* Right Side - Signup Form */}
+  <div className="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12 bg-gray-50 sticky top-0 lg:h-screen overflow-auto">
+    <div className="w-full max-w-md">
+      <h2 className="text-3xl font-bold text-gray-900 mb-6">Create Account</h2>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {error && (
+          <div className="p-3 bg-red-100 text-red-700 rounded-md">
+            {error}
+          </div>
+        )}
+
+        <div>
+          <input
+            id="name"
+            name="name"
+            placeholder="👤 Full Name"
+            type="text"
+            required
+            value={formData.name}
+            onChange={handleChange}
+            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="📧 Email"
+            autoComplete="email"
+            required
+            value={formData.email}
+            onChange={handleChange}
+            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <input
+            id="number"
+            name="number"
+            type="text"
+            placeholder="📞 03XXXXXXXXX or 92XXXXXXXXXX"
+            required
+            value={formData.number}
+            onChange={(e) => {
+              const onlyNumbers = e.target.value.replace(/\D/g, ''); // remove non-digits globally
+              setFormData(prev => ({
+                ...prev,
+                number: onlyNumbers
+              }));
+            }}
+            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="🔒 Password"
+            required
+            minLength="8"
+            value={formData.password}
+            onChange={handleChange}
+            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            placeholder="🔐 Confirm Password"
+            required
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        {/* Address fields in 2-column grid on desktop, stacked on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="sm:col-span-2">
+            <input
+              id="street"
+              name="street"
+              type="text"
+              placeholder="📍 Street Address"
+              required
+              value={formData.street}
+              onChange={handleChange}
+              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <input
+              id="city"
+              name="city"
+              type="text"
+              placeholder="🏙️ City"
+              required
+              value={formData.city}
+              onChange={handleChange}
+              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <input
+              id="state"
+              name="state"
+              type="text"
+              placeholder="🗺️ Province"
+              required
+              value={formData.state}
+              onChange={handleChange}
+              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <input
+              id="postalCode"
+              name="postalCode"
+              type="text"
+              placeholder="✉️ Postal Code"
+              required
+              value={formData.postalCode}
+              onChange={handleChange}
+              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <select
+              id="country"
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="Pakistan">Pakistan</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="flex items-center">
+          <input
+            id="terms"
+            name="terms"
+            type="checkbox"
+            required
+            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          />
+          <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
+            I agree to the <a href="#" className="text-purple-400 hover:underline">Terms and Conditions</a>
+          </label>
+        </div>
+
+        <div className="pt-2">
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+              loading ? 'opacity-70 cursor-not-allowed' : ''
+            }`}
+          >
+            {loading ? 'Creating account...' : 'Sign up'}
+          </button>
+        </div>
+
+        <div className="text-sm text-center pt-2">
+          <p className="text-gray-600">
+            Already have an account?{' '}
+            <a href="./login" className="font-medium text-purple-400 hover:text-purple-200">
+              Log in
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
     {/* Additional Content Sections */}
     <section className="w-full h-screen bg-white flex items-center justify-center p-12">
       <div className="max-w-4xl text-center">
@@ -443,3 +440,5 @@ export default function SignupPage() {
   
   )
 }
+
+
