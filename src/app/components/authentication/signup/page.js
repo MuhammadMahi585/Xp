@@ -374,8 +374,8 @@ export default function SignupPage() {
 </section>
 
 {/* Footer */}
-<footer className="bg-gray-900 text-gray-200 py-12 px-6 sm:px-12">
-  <div className="container mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0">
+<footer className="bg-gray-900 text-gray-200 py-12 px-6">
+  <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
     
     {/* Brand & Contact */}
     <div className="md:w-1/3 space-y-4 text-center md:text-left">
