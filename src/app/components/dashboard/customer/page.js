@@ -58,7 +58,8 @@ const Home = () => {
               ))}
             </motion.div>
             <p className="text-base sm:text-lg">
-              Your trusted partner for all computer solutions — sales, service, and support.
+              Your trusted partner for all computer solutions <br />
+              — sales, service, and support.
             </p>
           </div>
         </div>

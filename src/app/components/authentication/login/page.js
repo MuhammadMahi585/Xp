@@ -65,7 +65,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white">
 
       {/* Main Login Section */}
       <div className="flex flex-col lg:flex-row min-h-screen">

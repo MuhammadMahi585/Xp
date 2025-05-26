@@ -1,4 +1,26 @@
-"use client"
+"use client";
+
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "@/app/context/AuthContext";
+import { useRouter } from "next/navigation";
+
+export default function SignupPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    number: "",
+    password: "",
+    confirmPassword: "",
+    street: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    country: "Pakistan",
+  });
+
+  const [error, setError] = "use client"
 import {motion} from "framer-motion"
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -442,4 +464,222 @@ export default function SignupPage() {
   </div>
   
   )
+}
+useState("");
+  const [loading, setLoading] = useState(false);
+  const { auth, setAuth } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      if (auth.role === "admin") router.push("/components/dashboard/admin");
+      else if (auth.role === "customer") router.push("/components/dashboard/customer");
+    }
+  }, [auth, router]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await axios.post("/api/authentication/signup", formData);
+      router.push("/components/authentication/login");
+    } catch (err) {
+      setError(err.response?.data?.error || err.response?.data?.message || "Signup failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.5, delayChildren: 0.04 * i },
+    }),
+  };
+
+  const child = {
+    hidden: { opacity: 0, y: `0.25em` },
+    visible: {
+      opacity: 1,
+      y: `0em`,
+      transition: { duration: 1, ease: [0.2, 0.65, 0.3, 0.9] },
+    },
+  };
+
+  return (
+    <div className="flex flex-col">
+      {/* Main Signup Section */}
+      <div className="flex flex-1 min-h-screen">
+        {/* Left Side Branding */}
+        <div className="w-full lg:w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-6 md:p-12 sticky top-0 h-screen">
+          <div className="max-w-md">
+            <motion.div
+              variants={container}
+              initial="hidden"
+              animate="visible"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-left"
+            >
+              {"XP Computers".split("").map((char, i) => (
+                <motion.span key={i} variants={child}>
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </motion.div>
+            <p className="text-base md:text-xl mb-6 lg:mb-8 text-left">
+              Join our community of tech enthusiasts and <br /> professionals.
+            </p>
+            <div className="flex space-x-3 md:space-x-4 mt-6 lg:mt-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white bg-opacity-20 rounded-full overflow-hidden">
+                  <img
+                    src={`/team-${i}.jpg`}
+                    alt={`Team member ${i}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side Form */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-12 bg-gray-50 h-screen sticky top-0">
+          <div className="w-full max-w-md">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Create Account</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {error && (
+                <div className="p-3 bg-red-100 text-red-700 rounded-md">{error}</div>
+              )}
+
+              <input name="name" placeholder="👤 Full Name" type="text" required value={formData.name} onChange={handleChange} className="input" />
+              <input name="email" placeholder="📧 Email" type="email" required value={formData.email} onChange={handleChange} className="input" />
+              <input name="number" placeholder="📞 03XXXXXXXXX or 92XXXXXXXXXX" type="text" required
+                value={formData.number} onChange={(e) => setFormData((prev) => ({
+                  ...prev,
+                  number: e.target.value.replace(/\D/g, ""),
+                }))} className="input" />
+              <input name="password" placeholder="🔒 Password" type="password" minLength={8} required value={formData.password} onChange={handleChange} className="input" />
+              <input name="confirmPassword" placeholder="🔐 Confirm Password" type="password" required value={formData.confirmPassword} onChange={handleChange} className="input" />
+
+              <input name="street" placeholder="📍 Street Address" required value={formData.street} onChange={handleChange} className="input" />
+              <div className="grid grid-cols-2 gap-4">
+                <input name="city" placeholder="🏙️ City" required value={formData.city} onChange={handleChange} className="input" />
+                <input name="state" placeholder="🗺️ Province" required value={formData.state} onChange={handleChange} className="input" />
+                <input name="postalCode" placeholder="✉️ Postal Code" required value={formData.postalCode} onChange={handleChange} className="input" />
+                <select name="country" value={formData.country} onChange={handleChange} className="input">
+                  <option value="Pakistan">Pakistan</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div className="flex items-center">
+                <input id="terms" type="checkbox" required className="h-4 w-4 text-blue-600 border-gray-300 rounded" />
+                <label htmlFor="terms" className="ml-2 text-sm text-gray-900">
+                  I agree to the <a href="#" className="text-purple-400 hover:underline">Terms and Conditions</a>
+                </label>
+              </div>
+
+              <button type="submit" disabled={loading}
+                className={`w-full py-3 px-4 rounded-md text-white font-medium bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 shadow-lg ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}>
+                {loading ? "Creating account..." : "Sign up"}
+              </button>
+
+              <p className="text-sm text-center pt-2 text-gray-600">
+                Already have an account?{" "}
+                <a href="./login" className="text-purple-400 hover:underline">Log in</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <section className="w-full bg-white p-12 flex items-center justify-center">
+        <div className="max-w-4xl text-center">
+          <h2 className="text-4xl font-bold mb-6 text-black">Why Join Us?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            {[
+              { icon: "💰", title: "Exclusive Deals", description: "Get 5% Discount now" },
+              { icon: "🛠️", title: "Tech Support", description: "24/7 expert assistance" },
+              { icon: "👥", title: "Replaces", description: "Free replacement till 1 week" },
+            ].map((item, i) => (
+              <div key={i} className="p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="text-xl font-semibold text-black">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="w-full bg-gray-50 p-12 flex items-center justify-center">
+        <div className="max-w-4xl text-center">
+          <h2 className="text-4xl font-bold mb-6 text-black">Our Happy Customers</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            {[
+              { name: "Zain", quote: "Best Products", role: "Premium Member" },
+              { name: "Jamie S.", quote: "Cheap Prices", role: "Pro Member" },
+              { name: "Taylor M.", quote: "Quality Products", role: "VIP Member" },
+            ].map((t, i) => (
+              <div key={i} className="p-6 bg-white rounded-lg shadow-sm">
+                <div className="h-16 w-16 bg-gray-200 rounded-full mx-auto mb-4" />
+                <p className="italic mb-4 text-black">"{t.quote}"</p>
+                <p className="font-semibold text-black">{t.name}</p>
+                <p className="text-sm text-gray-500">{t.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-200 py-12 px-6">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
+          <div className="md:w-1/3">
+            <h3 className="text-2xl font-bold mb-2">XP Computer</h3>
+            <p className="text-gray-400 mb-4">Your complete computer solution</p>
+            <p>📍 Near Rania Mall, Saddar, Rawalpindi</p>
+            <p>📞 +92 300 42454893</p>
+            <p>✉️ info@xpcomputer.com</p>
+          </div>
+
+          <div className="md:w-1/3">
+            <h4 className="text-xl font-semibold mb-2">Quick Links</h4>
+            <ul className="space-y-1">
+              <li><a href="/" className="hover:underline">Home</a></li>
+              <li><a href="/components/authentication/login" className="hover:underline">Login</a></li>
+              <li><a href="/components/authentication/signup" className="hover:underline">Sign Up</a></li>
+              <li><a href="/components/pages/about" className="hover:underline">About Us</a></li>
+              <li><a href="/components/pages/contact" className="hover:underline">Contact</a></li>
+            </ul>
+          </div>
+
+          <div className="md:w-1/3">
+            <h4 className="text-xl font-semibold mb-2">Follow Us</h4>
+            <div className="flex space-x-4">
+              <a href="https://www.facebook.com/Nainmahessar" target="_blank" rel="noopener noreferrer" className="hover:text-white">Facebook</a>
+              <a href="https://www.instagram.com/xpcomputer" target="_blank" rel="noopener noreferrer" className="hover:text-white">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 }
