@@ -147,13 +147,11 @@ export default function LoginPage() {
       <section className="w-full py-12 px-4 bg-white text-center">
         <h2 className="text-4xl font-bold text-black mb-8">Owner</h2>
         <div className="flex justify-center">
-          <motion.img
+          <img
             src="/assets/image/nain.jpg"
             alt="Owner"
             className="w-40 h-40 rounded-full object-cover shadow-lg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2 }}
+           
           />
         </div>
         <p className="mt-4 text-lg font-semibold text-black">Zulqarnain Mahessar</p>
