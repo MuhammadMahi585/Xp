@@ -10,7 +10,7 @@ export async function POST(req) {
       name, 
       email, 
       password, 
-      type = "admin",
+      type = "customer",
       number,
       street,
       city,

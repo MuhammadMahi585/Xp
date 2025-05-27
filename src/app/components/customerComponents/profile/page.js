@@ -64,9 +64,8 @@ export default function Profile() {
                 {/* Personal Info Card */}
                 <div className="bg-gradient-to-br from-purple-700 to-indigo-700 p-6 rounded-xl shadow-xl">
                   <h3 className="text-2xl font-semibold mb-4">👤 Personal Info</h3>
-                  <p className="break-words text-sm text-white/90">
-                  <p><span className="font-medium text-pink-200">Email:</span> {user.email}</p>
-                  </p>
+                 
+                  <p><span className="font-medium break-words text-pink-200">Email:</span> {user.email}</p>
                   <p><span className="font-medium text-pink-200">Phone:</span> {user.number}</p>
                   <p><span className="font-medium text-pink-200">Role:</span> {user.type}</p>
                   <p><span className="font-medium text-pink-200">Total Orders:</span> {user.orders?.length || 0}</p>
