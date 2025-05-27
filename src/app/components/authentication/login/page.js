@@ -13,22 +13,21 @@ export default function LoginPage() {
   const { auth, setAuth } = useAuth();
   const router = useRouter();
   
-useEffect(() => {
-  if (auth.isLoading) return;
+  const [checked, setChecked] = useState(false);
 
-  if (auth.isAuthenticated) {
-    const redirectPath =
-      auth.role === "admin"
-        ? "/components/dashboard/admin"
-        : "/components/dashboard/customer";
 
-    router.replace(redirectPath);
-  }
-}, [auth, router]);
-
- 
-
-  if (auth.isLoading || auth.isAuthenticated) return null; 
+  useEffect(() => {
+    if (!auth.isLoading) {
+      if (auth.isAuthenticated) {
+        const target = auth.role === "admin"
+          ? "/components/dashboard/admin"
+          : "/components/dashboard/customer";
+        router.replace(target);
+      } else {
+        setChecked(true); 
+      }
+    }
+  }, [auth, router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,6 +69,13 @@ useEffect(() => {
       transition: { duration: 2, ease: [0.2, 0.65, 0.3, 0.9] },
     },
   };
+  if (auth.isLoading) {
+  return <div className="flex justify-center items-center h-screen">Loading...</div>
+}
+  if (auth.isLoading || !checked) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  }
+
 
   return (
     <div className="flex flex-col min-h-screen bg-white">

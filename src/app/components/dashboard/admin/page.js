@@ -40,22 +40,20 @@ function AdminDashboardContent() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [orders, setOrders] = useState([]);
+  const [checked, setChecked] = useState(false); 
 
 
   useEffect(() => {
-  if (auth.isLoading) return;
-
-  if (auth.isAuthenticated) {
-    if (auth.type === "admin") {
-      router.replace("/components/dashboard/admin");
-    } else if (auth.type === "customer") {
-      router.replace("/components/dashboard/customer");
+    if (!auth.isLoading) {
+      if (!auth.isAuthenticated) {
+        router.replace("/components/authentication/login");
+      } else if (auth.role !== "admin") {
+        router.replace("/components/dashboard/customer");
+      } else {
+        setChecked(true); // Ready to show admin content
+      }
     }
-  }
-  else{
-       window.location.replace("/components/authentication/login");
-    }
-}, [auth, router]);
+  }, [auth, router]);
 
 
 useEffect(() => {
@@ -198,8 +196,7 @@ useEffect(() => {
             isLoading: false, 
             error: null
           })
-    
-   window.location.replace("/components/authentication/login");
+       window.location.replace("/components/authentication/login");
   
         }
       } catch (error) {
@@ -224,7 +221,9 @@ const handleStatus = async (e, orderId) => {
   }
 };
 
-    
+  if (auth.isLoading || !checked) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  }
   
   return (
     <div className="min-h-screen bg-gray-50">

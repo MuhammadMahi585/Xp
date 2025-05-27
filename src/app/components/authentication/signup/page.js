@@ -24,6 +24,7 @@ export default function SignupPage() {
   const router = useRouter()
 
   useEffect(()=>{
+    if(auth.isLoading) return;
     if(auth.isAuthenticated){
       if(auth.role==="admin"){
         router.push("/components/dashboard/admin")

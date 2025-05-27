@@ -9,28 +9,44 @@ export default function Profile() {
   const router = useRouter()
   const { auth } = useAuth()
   const [user, setUser] = useState(null)
+
   useEffect(() => {
+    if (auth.isLoading) return // wait for auth to finish loading
+
+    if (!auth.isAuthenticated) {
+      router.replace("/components/authentication/login")
+      return
+    }
+
+    if (auth.role === "admin") {
+      router.replace("/components/dashboard/admin")
+      return
+    }
+
+    // Only fetch user if authenticated as customer
     const fetchUser = async () => {
       try {
         const response = await axios.get("/api/getUser")
         if (response.data.success) {
           setUser(response.data.user)
+        } else {
+          console.error("Failed to load user data")
         }
       } catch (error) {
-        console.log("unable to detect user", error)
+        console.error("Unable to fetch user data", error)
       }
     }
 
     fetchUser()
-
-    let redirectPath = "/components/customerComponents/profile"
-    if (!auth.isAuthenticated) {
-      redirectPath = "/components/authentication/login"
-    } else if (auth.role === "admin") {
-      redirectPath = "/components/dashboard/admin"
-    }
-    router.replace(redirectPath)
   }, [auth, router])
+
+  if (auth.isLoading) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>
+  }
+
+  if (!auth.isAuthenticated || auth.role === "admin") {
+    return null // Redirect is handled by useEffect
+  }
 
   return (
     <CustomerLayout>

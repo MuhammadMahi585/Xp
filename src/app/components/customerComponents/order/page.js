@@ -11,7 +11,9 @@ export default function Order() {
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
-    if (!auth.isAuthenticated) {
+    if (auth?.isLoading) return // wait for auth to finish loading
+
+    if (!auth || !auth.isAuthenticated) {
       router.replace("/components/authentication/login")
     } else if (auth.role === "admin") {
       router.replace("/components/dashboard/admin")
@@ -19,10 +21,11 @@ export default function Order() {
   }, [auth, router])
 
   useEffect(() => {
-    if (auth.isAuthenticated) {
+    if (auth?.isAuthenticated) {
       fetchOrders()
     }
   }, [auth])
+
 
   const fetchOrders = async () => {
     try {
@@ -35,6 +38,18 @@ export default function Order() {
     } catch (err) {
       console.error("Error fetching orders:", err.message)
     }
+  }
+    if (auth?.isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        Loading...
+      </div>
+    )
+  }
+
+  // Don't render component if not authenticated - redirect happens in useEffect
+  if (!auth?.isAuthenticated) {
+    return null
   }
 
   return (

@@ -9,13 +9,13 @@ export default function Navigation() {
   const router = useRouter()
   const { auth, setAuth } = useAuth()
 
+
   useEffect(() => {
-    if(auth.isLoading) return;
-    if (!auth.isAuthenticated) {
-       window.location.replace("/components/authentication/login");
+    if (!auth.isLoading && !auth.isAuthenticated) {
+      router.replace('/components/authentication/login');
     }
-  }, [auth, router])
-  
+  }, [auth.isLoading, auth.isAuthenticated, router]);
+
    const logout = async () => {
     try {
       const response = await axios.post("/api/authentication/logout")
@@ -33,6 +33,16 @@ export default function Navigation() {
       console.error("Error occurred during logout", error)
     }
   }
+  
+  if (auth.isLoading) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>
+  }
+
+  if (!auth.isAuthenticated) {
+    return null // Redirect happening via useEffect, don't render anything
+  }
+
+
   return (
     <header className="mb-0 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 md:py-6 flex flex-col md:flex-row justify-between items-center animate-fade-in">

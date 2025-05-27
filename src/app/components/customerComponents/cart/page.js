@@ -19,20 +19,18 @@ export default function Cart() {
   })
   
   
-  useEffect(()=>{
-    var redirectPath="/components/customerComponents/cart"
-    if(auth?.isAuthenticated ===false || !auth){
-      redirectPath="/components/authentication/login"
-      router.replace(redirectPath)
+
+  useEffect(() => {
+    if (auth?.isLoading) return; 
+    if (!auth || auth.isAuthenticated === false) {
+      router.replace("/components/authentication/login")
+      return
     }
-    if(auth.isAuthenticated){
-      if(auth.role==="admin"){
-        redirectPath="/components/dashboard/admin"
-      router.replace(redirectPath)
-      }
+    if (auth.role === "admin") {
+      router.replace("/components/dashboard/admin")
+      return
     }
-    
-  },[cart,auth,router])
+  }, [auth, router])
 
   useEffect(() => {
     if (auth.isAuthenticated) {
@@ -121,7 +119,19 @@ export default function Cart() {
     console.error("Error removing item from cart", error);
   }
   }
-  
+  if (auth?.isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        Loading...
+      </div>
+    )
+  }
+
+  // Don't render component if not authenticated - redirect happens in useEffect
+  if (!auth?.isAuthenticated) {
+    return null
+  }
+
 
   return (
     <CustomerLayout>

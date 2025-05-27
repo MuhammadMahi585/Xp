@@ -15,16 +15,23 @@ export default function Product() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [quantities, setQuantities] = useState({});
  
+ // Redirect if not authorized or wrong role
   useEffect(() => {
-    const redirectPath = !auth.isAuthenticated 
-      ? "/components/authentication/login"
-      : auth.role === "admin"
-        ? "/components/dashboard/admin"
-        : "/components/customerComponents/products";
-    
-    router.replace(redirectPath);
-    fetchProducts();
-  }, [searchTerm, selectedCategory, auth, router]);
+    if (!auth?.isLoading) {
+      if (!auth?.isAuthenticated) {
+        router.replace("/components/authentication/login")
+      } else if (auth.role === "admin") {
+        router.replace("/components/dashboard/admin")
+      }
+    }
+  }, [auth, router])
+
+  // Fetch products when search term or category changes (only for customers)
+  useEffect(() => {
+    if (auth?.isAuthenticated && auth.role !== "admin") {
+      fetchProducts()
+    }
+  }, [searchTerm, selectedCategory, auth])
 
   const fetchProducts = async () => {
     try {
