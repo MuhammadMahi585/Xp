@@ -37,7 +37,7 @@ export default function LoginPage() {
       const redirectPath = response.data.user.type === 'admin'
         ? '/components/dashboard/admin'
         : '/components/dashboard/customer';
-      router.push(redirectPath);
+      router.replace(redirectPath);
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     } finally {
