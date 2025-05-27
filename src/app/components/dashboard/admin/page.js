@@ -43,6 +43,7 @@ function AdminDashboardContent() {
 
   // Fetch data based on tab
   useEffect(() => {
+    if(auth.isLoading) return;
     if(auth.isAuthenticated){
       if(auth.type==="admin"){
         router.replace("/components/dashboard/admin")

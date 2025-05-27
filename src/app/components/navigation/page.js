@@ -29,6 +29,7 @@ export default function Navigation() {
   }
 
   useEffect(() => {
+    if(auth.isLoading) return;
     if (!auth.isAuthenticated && !auth.isLoading) {
       router.replace("/components/authentication/login")
     }
