@@ -27,6 +27,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    if (auth.isLoading) return; 
     if (auth.isAuthenticated) {
       if (auth.role === "admin") {
         router.replace("/components/dashboard/admin");
@@ -127,8 +128,8 @@ const Home = () => {
           <div className="md:w-1/3">
             <h4 className="text-xl font-semibold mb-2">Quick Links</h4>
             <ul className="space-y-1">
-              <li><a href="/components/dashboard/customer" className="hover:underline">Home</a></li>
-              <li><a href="/components/dashboard/customer" className="hover:underline">About Us</a></li>
+              <li><a onClick={()=>{router.replace("/components/dashboard/customer")}} className="hover:underline">Home</a></li>
+              <li><a onClick={()=>{router.replace("/components/dashboard/customer")}} className="hover:underline">About Us</a></li>
               <li><a href="#Footer" className="hover:underline">Contact</a></li>
             </ul>
           </div>
