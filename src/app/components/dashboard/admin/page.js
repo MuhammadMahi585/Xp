@@ -43,24 +43,29 @@ function AdminDashboardContent() {
 
   // Fetch data based on tab
   useEffect(() => {
-    if(auth.isLoading) return;
-    if(auth.isAuthenticated){
-      if(auth.type==="admin"){
-        router.replace("/components/dashboard/admin")
-      }
-      else if(auth.type==="customer"){
-        router.replace("/components/dashboard/customer")
-      }
+  if (auth.isLoading) return;
+
+  if (auth.isAuthenticated) {
+    if (auth.type === "admin") {
+      router.replace("/components/dashboard/admin");
+    } else if (auth.type === "customer") {
+      router.replace("/components/dashboard/customer");
     }
-    else if(!auth.isAuthenticated){
-      router.replace("/components/authentication/login")
-    }
-    if (tab === 'products') {
-      fetchProducts();
-    } else if (tab === 'orders') {
-      fetchOrders();
-    }
-  }, [tab, searchTerm, selectedCategory,auth,router]);
+  } else {
+    router.replace("/components/authentication/login");
+  }
+}, [auth, router]);
+
+useEffect(() => {
+  if (!auth.isAuthenticated || auth.isLoading) return;
+
+  if (tab === "products") {
+    fetchProducts();
+  } else if (tab === "orders") {
+    fetchOrders();
+  }
+}, [tab, auth.isAuthenticated, auth.isLoading]);
+
   const fetchProducts = async () => {
     try {
       const response = await axios.get(`/api/products`, {
@@ -192,7 +197,6 @@ function AdminDashboardContent() {
             error: null
           })
           router.replace("/components/authentication/login")
-          window.location.reload()
         }
       } catch (error) {
         console.error("Error occurred during logout", error)
