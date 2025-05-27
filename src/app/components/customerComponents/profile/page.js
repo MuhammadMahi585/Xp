@@ -9,7 +9,6 @@ export default function Profile() {
   const router = useRouter()
   const { auth } = useAuth()
   const [user, setUser] = useState(null)
-
   useEffect(() => {
     const fetchUser = async () => {
       try {

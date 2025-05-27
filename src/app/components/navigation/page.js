@@ -11,8 +11,8 @@ export default function Navigation() {
 
   useEffect(() => {
     if(auth.isLoading) return;
-    if (!auth.isAuthenticated && !auth.isLoading) {
-      router.replace("/components/authentication/login")
+    if (!auth.isAuthenticated) {
+       window.location.replace("/components/authentication/login");
     }
   }, [auth, router])
   
@@ -27,7 +27,7 @@ export default function Navigation() {
           error: null
         })
         console.log("logout success");
-        router.replace("/components/authentication/login")
+      window.location.replace("/components/authentication/login");
       }
     } catch (error) {
       console.error("Error occurred during logout", error)

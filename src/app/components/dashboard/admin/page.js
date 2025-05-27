@@ -41,7 +41,7 @@ function AdminDashboardContent() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [orders, setOrders] = useState([]);
 
-  // Fetch data based on tab
+
   useEffect(() => {
   if (auth.isLoading) return;
 
@@ -51,10 +51,12 @@ function AdminDashboardContent() {
     } else if (auth.type === "customer") {
       router.replace("/components/dashboard/customer");
     }
-  } else {
-    router.replace("/components/authentication/login");
   }
+  else{
+       window.location.replace("/components/authentication/login");
+    }
 }, [auth, router]);
+
 
 useEffect(() => {
   if (!auth.isAuthenticated || auth.isLoading) return;
@@ -196,7 +198,9 @@ useEffect(() => {
             isLoading: false, 
             error: null
           })
-          router.replace("/components/authentication/login")
+    
+   window.location.replace("/components/authentication/login");
+  
         }
       } catch (error) {
         console.error("Error occurred during logout", error)

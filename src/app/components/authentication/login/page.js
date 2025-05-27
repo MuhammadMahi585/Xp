@@ -12,23 +12,24 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { auth, setAuth } = useAuth();
   const router = useRouter();
+  
 useEffect(() => {
-  if (auth.isLoading) return; // Wait until auth is ready
-
-  let redirectPath = "/components/authentication/login";
+  if (auth.isLoading) return;
 
   if (auth.isAuthenticated) {
-    redirectPath =
+    const redirectPath =
       auth.role === "admin"
         ? "/components/dashboard/admin"
         : "/components/dashboard/customer";
-  }
 
-  router.replace(redirectPath);
+    router.replace(redirectPath);
+  }
 }, [auth, router]);
+
  
 
   if (auth.isLoading || auth.isAuthenticated) return null; 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
