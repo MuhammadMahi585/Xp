@@ -112,7 +112,7 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-200 py-12 px-4 sm:px-6 lg:px-16">
+      <footer id="Footer" className="bg-gray-900 text-gray-200 py-12 px-4 sm:px-6 lg:px-16">
         <div className="flex flex-col md:flex-row justify-between items-start space-y-10 md:space-y-0">
           {/* Contact Info */}
           <div className="md:w-1/3">
@@ -127,9 +127,9 @@ const Home = () => {
           <div className="md:w-1/3">
             <h4 className="text-xl font-semibold mb-2">Quick Links</h4>
             <ul className="space-y-1">
-              <li><a href="/" className="hover:underline">Home</a></li>
-              <li><a href="/" className="hover:underline">About Us</a></li>
-              <li><a href="/" className="hover:underline">Contact</a></li>
+              <li><a href="/components/dashboard/customer" className="hover:underline">Home</a></li>
+              <li><a href="/components/dashboard/customer" className="hover:underline">About Us</a></li>
+              <li><a href="#Footer" className="hover:underline">Contact</a></li>
             </ul>
           </div>
 
