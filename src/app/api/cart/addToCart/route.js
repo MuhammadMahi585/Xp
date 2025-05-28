@@ -21,12 +21,6 @@ export async function POST(request) {
   }
 
 
-  await Product.updateOne(
-    { _id: productId },
-    { $inc: { stock: -quantity } }
-  );
-
-
   const userDoc = await User.findOne({
     _id: user.userId,
     "cart.product": productId,

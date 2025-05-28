@@ -22,6 +22,8 @@ function AdminDashboardContent() {
   const tab = searchParams.get('tab') || 'products';
   const options=["processing","pending", "shipped", "delivered", "cancelled"];
   const [selectedOption,setSelectedOption] =useState({})
+ const [edits, setEdits] = useState({});
+
   
   const [formData, setFormData] = useState({
     name: '',
@@ -32,7 +34,8 @@ function AdminDashboardContent() {
     stock: 0,
     images: []
   });
-  
+
+
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [products, setProducts] = useState([]);
@@ -97,7 +100,46 @@ useEffect(() => {
       console.error('Error fetching orders:', error);
     }
   };
+   
+  const handleEditChange = (productId, field, value) => {
+  setEdits(prev => ({
+    ...prev,
+    [productId]: {
+      ...prev[productId],
+      [field]: value,
+    }
+  }));
+};
+const handleSaveEdit = async (productId) => {
+  if (!edits[productId]) return;
 
+  const { price, stock } = edits[productId];
+
+  try {
+    await axios.put("/api/products/editProduct", {
+      id: productId,
+      price: parseFloat(price),
+      stock: parseInt(stock, 10),
+    });
+
+    // Optional: use a toast instead of alert
+    alert('Product updated successfully');
+
+    // Refresh product list
+    fetchProducts();
+
+    // Clear edit state for this product
+    setEdits((prev) => {
+      const updated = { ...prev };
+      delete updated[productId];
+      return updated;
+    });
+  } catch (error) {
+    console.error("Failed to update product:", error);
+    alert(error.response?.data?.error || "Failed to update product");
+  }
+};
+  
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -428,116 +470,188 @@ const handleStatus = async (e, orderId) => {
           </div>
         )}
 
-        {/* Products Tab */}
-        {tab === 'products' && (
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
-              <h2 className="text-xl font-semibold text-gray-800">Product Listing</h2>
-              
-              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                {/* Search Bar */}
-                <div className="relative flex-1">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FiSearch className="text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Search products..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="text-black pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  />
-                </div>
-                
-                {/* Category Filter */}
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                >
-                  {categories.map((category) => (
-                    <option key={category} value={category}>{category}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
+ {/* Products Tab */}
+{tab === 'products' && (
+  <div className="bg-white rounded-lg shadow-md p-6">
+    {/* Header and Controls */}
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
+      <h2 className="text-xl font-semibold text-gray-800">Product Listing</h2>
 
-            {/* Products List */}
-            {Object.keys(productsByCategory).length > 0 ? (
-              Object.entries(productsByCategory).map(([category, categoryProducts]) => (
-                <div key={category} className="mb-8">
-                  <h3 className="text-lg font-semibold text-gray-700 mb-4 pb-2 border-b">{category}</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    {categoryProducts.map((product) => (
-                      <div key={product._id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                        <div className="flex justify-between items-start gap-3">
-                          <div className="flex-1">
-                          {product.images?.[0] && (
-                            <div className="bg-white/5 rounded-xl overflow-hidden mb-4 flex items-center justify-center h-48">
-                            <img 
-                              src={product.images[0]} 
-                              alt={product.name}
-                              className="w-full h-full object-contain p-4"
-                              
-                            />
-                              </div>
-                          )}
-                            <h4 className="font-medium text-gray-900 line-clamp-1">{product.name}</h4>
-                            <p className="text-blue-600 font-semibold mt-1">Rs {product.price.toFixed(2)}</p>
-                            {product.stock > 0 ? (
-                              <span className="text-xs text-green-600">In Stock: {product.stock}</span>
-                            ) : (
-                              <span className="text-xs text-red-600">Out of Stock</span>
-                            )}
-                          </div>
-                       
-                        </div>
-                        <div className="mt-4 flex justify-end gap-2">
-                          <button 
-                            onClick={() => router.push(`/components/dashboard/admin/edit-product?id=${product._id}`)}
-                            className="flex items-center px-3 py-1 text-sm text-blue-600 hover:text-blue-800"
-                          >
-                            <FiEdit className="mr-1" /> Edit
-                          </button>
-                          <button 
-                            onClick={() => handleDelete(product._id)}
-                            className="flex items-center px-3 py-1 text-sm text-red-600 hover:text-red-800"
-                          >
-                            <FiTrash2 className="mr-1" /> Delete
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+      <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+        {/* Search Bar */}
+        <div className="relative flex-1">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <FiSearch className="text-gray-400" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="text-black pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        {/* Category Filter */}
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+        >
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    {/* Products List */}
+    {Object.keys(productsByCategory).length > 0 ? (
+      Object.entries(productsByCategory).map(([category, categoryProducts]) => (
+        <div key={category} className="mb-8">
+          <h3 className="text-lg font-semibold text-gray-700 mb-4 pb-2 border-b">
+            {category}
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {categoryProducts.map((product) => {
+              const edited = edits[product._id] || {};
+
+              return (
+                <div
+                  key={product._id}
+                  className="border rounded-lg p-4 hover:shadow-md transition-shadow bg-white"
+                >
+                  {/* Image */}
+                  {product.images?.[0] && (
+                    <div className="bg-white/5 rounded-xl overflow-hidden mb-4 flex items-center justify-center h-48">
+                      <img
+                        src={product.images[0]}
+                        alt={product.name}
+                        className="w-full h-full object-contain p-4"
+                      />
+                    </div>
+                  )}
+
+                  <h4 className="font-medium text-gray-900 line-clamp-1">
+                    {product.name}
+                  </h4>
+
+                  {/* Price */}
+                  <label className="block text-gray-600 text-sm mt-2">
+                    Price (Rs)
+                    <input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      value={edited.price ?? product.price}
+                      onChange={(e) =>
+                        handleEditChange(product._id, 'price', e.target.value)
+                      }
+                      className="mt-1 w-full border border-gray-300 rounded px-2 py-1 text-sm"
+                    />
+                  </label>
+
+                  {/* Stock */}
+                  <label className="block text-gray-600 text-sm mt-2">
+                    Stock
+                    <input
+                      type="number"
+                      min="0"
+                      value={edited.stock ?? product.stock}
+                      onChange={(e) =>
+                        handleEditChange(product._id, 'stock', e.target.value)
+                      }
+                      className="mt-1 w-full border border-gray-300 rounded px-2 py-1 text-sm"
+                    />
+                  </label>
+
+                  {/* Stock Status */}
+                  <span
+                    className={`text-xs mt-1 ${
+                      (edited.stock ?? product.stock) > 0
+                        ? 'text-green-600'
+                        : 'text-red-600'
+                    }`}
+                  >
+                    {(edited.stock ?? product.stock) > 0
+                      ? `In Stock: ${edited.stock ?? product.stock}`
+                      : 'Out of Stock'}
+                  </span>
+
+                  {/* Action Buttons */}
+                  <div className="mt-4 flex justify-end gap-2">
+                    <button
+                      onClick={() =>
+                        router.push(
+                          `/components/dashboard/admin/edit-product?id=${product._id}`
+                        )
+                      }
+                      className="flex items-center px-3 py-1 text-sm text-blue-600 hover:text-blue-800"
+                    >
+                      <FiEdit className="mr-1" /> Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(product._id)}
+                      className="flex items-center px-3 py-1 text-sm text-red-600 hover:text-red-800"
+                    >
+                      <FiTrash2 className="mr-1" /> Delete
+                    </button>
+                    <button
+                      onClick={() => handleSaveEdit(product._id)}
+                      disabled={!edits[product._id]}
+                      className="flex items-center px-3 py-1 text-sm text-green-600 hover:text-green-800"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
-              ))
-            ) : (
-              <div className="text-center py-12">
-                <div className="mx-auto h-24 w-24 text-gray-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                  </svg>
-                </div>
-                <h3 className="mt-4 text-lg font-medium text-gray-900">No products found</h3>
-                <p className="mt-2 text-gray-500">
-                  {searchTerm || selectedCategory !== 'All' ? (
-                    'Try adjusting your search or filter'
-                  ) : (
-                    'Add your first product to get started'
-                  )}
-                </p>
-                {!searchTerm && selectedCategory === 'All' && (
-                  <button
-                    onClick={() => router.push('/components/dashboard/admin?tab=add-product')}
-                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                  >
-                    Add Product
-                  </button>
-                )}
-              </div>
-            )}
+              );
+            })}
           </div>
+        </div>
+      ))
+    ) : (
+      <div className="text-center py-12">
+        <div className="mx-auto h-24 w-24 text-gray-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+            />
+          </svg>
+        </div>
+        <h3 className="mt-4 text-lg font-medium text-gray-900">
+          No products found
+        </h3>
+        <p className="mt-2 text-gray-500">
+          {searchTerm || selectedCategory !== 'All'
+            ? 'Try adjusting your search or filter'
+            : 'Add your first product to get started'}
+        </p>
+        {!searchTerm && selectedCategory === 'All' && (
+          <button
+            onClick={() =>
+              router.push('/components/dashboard/admin?tab=add-product')
+            }
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          >
+            Add Product
+          </button>
         )}
+      </div>
+    )}
+  </div>
+)}
 
         {/* Orders Tab */}
         {tab === 'orders' && (

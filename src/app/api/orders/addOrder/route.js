@@ -1,3 +1,4 @@
+import Product from "@/app/models/products";
 import dbConnect from "@/app/lib/db";
 import { getUserId } from "@/app/lib/getUserId";
 import Orders from "@/app/models/orders";
@@ -46,17 +47,25 @@ export async function POST(req) {
       shippingAddress,
       totalAmount: calculatedTotal,
     });
+    await Promise.all(
+    orderItems.map(item=>  
+    Product.findByIdAndUpdate(item.product,{
+      $inc:{stock: -item.quantity}
+    })
+    )
+    )
 
     await User.findByIdAndUpdate(user.userId, {
       $push: { orders: order._id },
       $set: { cart: [] },
     });
-
+   console.log("Added item")
     return NextResponse.json({
       success: true,
       message: "Order added successfully",
     });
   } catch (error) {
+    console.log("failed to add item")
     return NextResponse.json(
       { success: false, error: error.message || "Internal Server Error" },
       { status: 500 }
