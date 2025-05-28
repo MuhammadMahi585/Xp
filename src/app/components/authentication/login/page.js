@@ -210,7 +210,7 @@ export default function LoginPage() {
             },
           ].map((branch, index) => (
             <div key={index} className="rounded-lg overflow-hidden shadow-lg">
-              <img src={branch.image} alt={branch.name} className="w-full h-60 object-cover" />
+              <img src={branch.image} alt={branch.name} className="w-full h-120 object-cover" />
               <div className="p-4">
                 <h3 className="text-xl font-semibold text-black">{branch.name}</h3>
                 <p className="text-gray-600">{branch.location}</p>
