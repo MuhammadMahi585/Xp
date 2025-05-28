@@ -122,13 +122,12 @@ const handleSaveEdit = async (productId) => {
       stock: parseInt(stock, 10),
     });
 
-    // Optional: use a toast instead of alert
     alert('Product updated successfully');
 
     // Refresh product list
     fetchProducts();
 
-    // Clear edit state for this product
+  
     setEdits((prev) => {
       const updated = { ...prev };
       delete updated[productId];
@@ -207,20 +206,6 @@ const handleSaveEdit = async (productId) => {
     }
   };
  
-
-  const handleDelete = async (productId) => {
-    if (confirm('Are you sure you want to delete this product?')) {
-      try {
-        const res= await axios.delete(`/api/products/${productId}`);
-        if(res.data.success){
-        alert("Product deleted successfully")
-      }
-        fetchProducts();
-      } catch (error) {
-        console.error('Error deleting product:', error);
-      }
-    }
-  };
 
   const productsByCategory = products.reduce((acc, product) => {
     if (!acc[product.category]) acc[product.category] = [];
@@ -582,23 +567,7 @@ const handleStatus = async (e, orderId) => {
                   </span>
 
                   {/* Action Buttons */}
-                  <div className="mt-4 flex justify-end gap-2">
-                    <button
-                      onClick={() =>
-                        router.push(
-                          `/components/dashboard/admin/edit-product?id=${product._id}`
-                        )
-                      }
-                      className="flex items-center px-3 py-1 text-sm text-blue-600 hover:text-blue-800"
-                    >
-                      <FiEdit className="mr-1" /> Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(product._id)}
-                      className="flex items-center px-3 py-1 text-sm text-red-600 hover:text-red-800"
-                    >
-                      <FiTrash2 className="mr-1" /> Delete
-                    </button>
+               <div className="mt-auto pt-4 flex justify-end gap-2">
                     <button
                       onClick={() => handleSaveEdit(product._id)}
                       disabled={!edits[product._id]}
