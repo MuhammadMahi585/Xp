@@ -84,7 +84,7 @@ export default function LoginPage() {
       <div className="flex flex-col lg:flex-row min-h-screen">
 
         {/* Left: Brand */}
-        <div className="w-full lg:w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white flex items-center justify-center p-6 md:p-12 h-[60vh] lg:h-auto">
+        <div className="w-full lg:w-1/2 bg-gray-600 text-white flex items-center justify-center p-6 md:p-12 h-[60vh] lg:h-auto">
           <div className="max-w-md text-center">
             <motion.div
               variants={container}
@@ -108,7 +108,7 @@ export default function LoginPage() {
         {/* Right: Form */}
         <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-10 md:p-12 bg-gray-50">
           <div className="w-full max-w-md">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Welcome Back</h2>
+            <h2 className="text-3xl font-bold text-gray-600 mb-6">Welcome Back</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && <div className="p-3 bg-red-100 text-red-700 rounded-md">{error}</div>}
               <div>
@@ -140,12 +140,12 @@ export default function LoginPage() {
                   <input type="checkbox" className="h-4 w-4 text-blue-600 border-gray-300 rounded mr-2" />
                   Remember me
                 </label>
-                <a href="./signup" className="text-purple-500 hover:underline">Sign up?</a>
+                <a href="./signup" className="text-gray-600 hover:underline">Sign up?</a>
               </div>
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full flex justify-center py-3 px-4 rounded-md shadow-lg text-sm font-medium text-white bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 ${
+                className={`w-full flex justify-center py-3 px-4 rounded-md shadow-lg text-sm font-medium text-white bg-gray-600  ${
                   loading ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'
                 }`}
               >
@@ -221,7 +221,7 @@ export default function LoginPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-200 py-12 px-6">
+      <footer className="bg-gray-700 text-white py-12 px-6">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-2">XP Computer</h3>

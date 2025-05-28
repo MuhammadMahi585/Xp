@@ -123,17 +123,16 @@ export default function Product() {
   };
 
   return (
-    <CustomerLayout>
-      <div className="min-h-screen bg-gradient-to-br from-[#15172b] via-[#322f5b] to-[#72649b] flex justify-center px-4 py-8">
-        <div className="w-[95%] mx-auto backdrop-blur-md bg-white/10 rounded-2xl shadow-2xl ring-1 ring-white/30 text-white overflow-hidden">
+  <CustomerLayout>
+      <div className="min-h-screen bg-white flex justify-center px-4 py-8">
+        <div className="w-[95%] mx-auto backdrop-blur-md bg-gray-600 rounded-2xl shadow-2xl ring-1 ring-white/40 text-white overflow-hidden">
           {/* Header Section */}
-          <div className="p-6 border-b border-white/20">
+          <div className="p-6 border-b border-white/30">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <h2 className="text-3xl font-bold">Products</h2>
-              
               <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
                 {/* Search Bar */}
-                <div className="relative flex-1 min-w-[250px]">
+                <div className=" relative flex-1 min-w-[250px]">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <FiSearch className="text-white/70" />
                   </div>
@@ -142,15 +141,14 @@ export default function Product() {
                     placeholder="Search products..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="bg-white/10 backdrop-blur-sm text-white pl-10 w-full px-4 py-3 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder-white/50"
+                    className="bg-white/10 backdrop-blur-sm text-white pl-10 w-full px-4 py-3 border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-white-500 focus:border-gray-900 placeholder-white/50"
                   />
                 </div>
-                
                 {/* Category Filter */}
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="bg-white/10 backdrop-blur-sm text-white px-4 py-3 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 min-w-[180px]"
+                  className="bg-white/10 backdrop-blur-sm text-white px-4 py-3 border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-white-500 focus:border-white-500 min-w-[180px]"
                 >
                   {categories.map((category) => (
                     <option key={category} value={category} className="bg-[#322f5b]">
@@ -167,10 +165,10 @@ export default function Product() {
             {Object.keys(productsByCategory).length > 0 ? (
               Object.entries(productsByCategory).map(([category, categoryProducts]) => (
                 <div key={category} className="mb-10">
-                  <h3 className="text-2xl font-semibold mb-6 pb-2 border-b border-white/20">{category}</h3>
+                  <h3 className="text-2xl font-semibold mb-6 pb-2 border-b border-white/30">{category}</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
                     {categoryProducts.map((product) => (
-                      <div key={product._id} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden hover:shadow-lg hover:border-purple-400/30 transition-all">
+                      <div key={product._id} className="bg-gray-500 backdrop-blur-sm border border-white/30 rounded-xl overflow-hidden hover:shadow-lg hover:border-gray-400/30 transition-all">
                         <div className="p-5">
                           {product.images?.[0] && (
                             <div className="bg-white/5 rounded-xl overflow-hidden mb-4 flex items-center justify-center h-48">
@@ -183,13 +181,12 @@ export default function Product() {
                           )}
                           <div className="flex flex-col gap-3">
                             <h4 className="font-medium text-white line-clamp-2 h-14">{product.name}</h4>
-                            <p className="text-purple-300 font-semibold text-xl">Rs. {product.price.toLocaleString()}</p>
+                            <p className="text-gray-900 font-semibold text-xl">Rs. {product.price.toLocaleString()}</p>
                             {product.stock > 0 ? (
-                              <span className="text-sm text-green-300">In Stock: {product.stock}</span>
+                              <span className="text-sm text-white-900">In Stock: {product.stock}</span>
                             ) : (
-                              <span className="text-sm text-red-300">Out of Stock</span>
+                              <span className="text-sm text-gray-900">Out of Stock</span>
                             )}
-                            
                             {/* Quantity Selector */}
                             <div className="flex items-center justify-between mt-2">
                               <span className="text-sm text-white/70">Quantity:</span>
@@ -224,11 +221,7 @@ export default function Product() {
                           <button
                             onClick={() => addToCart(product._id)}
                             disabled={product.stock <= 0}
-                            className={`w-full py-3 px-6 rounded-xl transition-all shadow-lg ${
-                              product.stock > 0
-                                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 hover:shadow-purple-500/20'
-                                : 'bg-gray-600 cursor-not-allowed'
-                            }`}
+                            className={`w-full py-3 px-6 rounded-xl transition-all shadow-lg ${product.stock > 0 ? 'bg-slate-600 hover:bg-slate-7000' : 'bg-gray-600 cursor-not-allowed'}`}
                           >
                             {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                           </button>

@@ -255,7 +255,7 @@ const handleStatus = async (e, orderId) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-600 to-indigo-900 text-white p-4 shadow-md">
+      <header className="bg-gradient-to-r from-gray-600 via-gray-800 to-gray-900 text-white p-4 shadow-md">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
           <h1 className="text-2xl font-bold mb-4 md:mb-0">XP Computer Admin</h1>
           
@@ -264,7 +264,7 @@ const handleStatus = async (e, orderId) => {
               <li>
                 <button 
                   onClick={() => router.push('/components/dashboard/admin?tab=add-product')}
-                  className={`flex items-center px-3 py-2 rounded ${tab === 'add-product' ? 'bg-white text-blue-600' : 'hover:bg-blue-700'}`}
+                  className={`flex items-center px-3 py-2 rounded ${tab === 'add-product' ? 'bg-gray-600 text-white-600' : 'hover:bg-gray-700'}`}
                 >
                   <FiPlus className="mr-1" /> Add Product
                 </button>
@@ -272,7 +272,7 @@ const handleStatus = async (e, orderId) => {
               <li>
                 <button 
                   onClick={() => router.push('/components/dashboard/admin?tab=products')}
-                  className={`flex items-center px-3 py-2 rounded ${tab === 'products' ? 'bg-white text-blue-600' : 'hover:bg-blue-700'}`}
+                  className={`flex items-center px-3 py-2 rounded ${tab === 'products' ? 'bg-gray-600 text-white-600' : 'hover:bg-gray-700'}`}
                 >
                   <FiBox className="mr-1" /> Products
                 </button>
@@ -280,7 +280,7 @@ const handleStatus = async (e, orderId) => {
               <li>
                 <button 
                   onClick={() => router.push('/components/dashboard/admin?tab=orders')}
-                  className={`flex items-center px-3 py-2 rounded ${tab === 'orders' ? 'bg-white text-blue-600' : 'hover:bg-blue-700'}`}
+                  className={`flex items-center px-3 py-2 rounded ${tab === 'orders' ? 'bg-gray-600 text-white-600' : 'hover:bg-gray-700'}`}
                 >
                   <FiShoppingCart className="mr-1" /> Orders
                 </button>
@@ -288,7 +288,7 @@ const handleStatus = async (e, orderId) => {
               <li>
                 <button 
                   onClick={logout}
-                  className="flex items-center px-3 py-2 rounded hover:bg-blue-700"
+                  className="flex items-center px-3 py-2 rounded text-white-600' hover:bg-gray-600"
                 >
                   <FiLogOut className="mr-1" /> Logout
                 </button>
@@ -302,7 +302,7 @@ const handleStatus = async (e, orderId) => {
         {/* Add Product Tab */}
         {tab === 'add-product' && (
           <div className="bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto">
-            <h2 className="text-xl font-semibold mb-6 text-gray-800">Add New Product</h2>
+            <h2 className="text-xl font-semibold mb-6 text-gray-600">Add New Product</h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Image Upload */}
@@ -314,7 +314,7 @@ const handleStatus = async (e, orderId) => {
                       type="file"
                       onChange={handleFileChange}
                       accept="image/jpeg, image/png, image/webp"
-                      className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-gray-700 hover:file:bg-gray-100"
                       disabled={isUploading}
                     />
                   </div>
@@ -322,7 +322,7 @@ const handleStatus = async (e, orderId) => {
                     type="button"
                     onClick={handleImageUpload}
                     disabled={!file || isUploading}
-                    className={`px-4 py-2 rounded text-white font-medium flex-shrink-0 ${(!file || isUploading) ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'}`}
+                    className={`px-4 py-2 rounded text-white font-medium flex-shrink-0 ${(!file || isUploading) ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-500 hover:bg-gray-600'}`}
                   >
                     {isUploading ? 'Uploading...' : 'Upload Image'}
                   </button>
@@ -343,7 +343,7 @@ const handleStatus = async (e, orderId) => {
                             ...prev,
                             images: prev.images.filter((_, i) => i !== index)
                           }))}
-                          className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                          className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-gray-600"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -366,12 +366,12 @@ const handleStatus = async (e, orderId) => {
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     required
-                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">Price (Rs)</label>
+                  <label htmlFor="price" className="block text-sm font-medium text-gray-600 mb-1">Price (Rs)</label>
                   <input
                     type="number"
                     id="price"
@@ -381,19 +381,19 @@ const handleStatus = async (e, orderId) => {
                     value={formData.price}
                     onChange={(e) => setFormData({...formData, price: e.target.value})}
                     required
-                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                  <label htmlFor="category" className="block text-sm font-medium text-gray-600 mb-1">Category</label>
                   <select
                     id="category"
                     name="category"
                     value={formData.category}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
                     required
-                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="Laptops">Laptops</option>
                     <option value="Desktops">Desktops</option>
@@ -404,19 +404,19 @@ const handleStatus = async (e, orderId) => {
                 </div>
 
                 <div>
-                  <label htmlFor="subcategory" className="block text-sm font-medium text-gray-700 mb-1">Subcategory</label>
+                  <label htmlFor="subcategory" className="block text-sm font-medium text-gray-600 mb-1">Subcategory</label>
                   <input
                     type="text"
                     id="subcategory"
                     name="subcategory"
                     value={formData.subcategory}
                     onChange={(e) => setFormData({...formData, subcategory: e.target.value})}
-                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="stock" className="block text-sm font-medium text-gray-700 mb-1">Stock</label>
+                  <label htmlFor="stock" className="block text-sm font-medium text-gray-600 mb-1">Stock</label>
                   <input
                     type="number"
                     id="stock"
@@ -425,13 +425,13 @@ const handleStatus = async (e, orderId) => {
                     value={formData.stock}
                     onChange={(e) => setFormData({...formData, stock: e.target.value})}
                     required
-                    className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <label htmlFor="description" className="block text-sm font-medium text-gray-600 mb-1">Description</label>
                 <textarea
                   id="description"
                   name="description"
@@ -439,14 +439,14 @@ const handleStatus = async (e, orderId) => {
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                   required
-                  className="text-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
 
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-blue-600 text-white font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="px-6 py-2 bg-slate-600 text-white font-medium rounded-md shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   Add Product
                 </button>
@@ -460,20 +460,20 @@ const handleStatus = async (e, orderId) => {
   <div className="bg-white rounded-lg shadow-md p-6">
     {/* Header and Controls */}
     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
-      <h2 className="text-xl font-semibold text-gray-800">Product Listing</h2>
+      <h2 className="text-xl font-semibold text-gray-600">Product Listing</h2>
 
       <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
         {/* Search Bar */}
         <div className="relative flex-1">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <FiSearch className="text-gray-400" />
+            <FiSearch className="text-gray-600" />
           </div>
           <input
             type="text"
             placeholder="Search products..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="text-black pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="text-gray-600 pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-gray-900"
           />
         </div>
 
@@ -481,7 +481,7 @@ const handleStatus = async (e, orderId) => {
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="px-3 py-2 text-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          className="px-3 py-2 text-gray-600 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-gray-900"
         >
           {categories.map((category) => (
             <option key={category} value={category}>
@@ -496,7 +496,7 @@ const handleStatus = async (e, orderId) => {
     {Object.keys(productsByCategory).length > 0 ? (
       Object.entries(productsByCategory).map(([category, categoryProducts]) => (
         <div key={category} className="mb-8">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4 pb-2 border-b">
+          <h3 className="text-lg font-semibold text-gray-600 mb-4 pb-2 border-b">
             {category}
           </h3>
 
@@ -507,7 +507,7 @@ const handleStatus = async (e, orderId) => {
               return (
                 <div
                   key={product._id}
-                  className="border rounded-lg p-4 hover:shadow-md transition-shadow bg-white"
+                  className="border rounded-lg p-4 hover:shadow-md transition-shadow bg-gradient-to-r from-gray-500 via-gray-600 to-gray-600"
                 >
                   {/* Image */}
                   {product.images?.[0] && (
@@ -520,12 +520,12 @@ const handleStatus = async (e, orderId) => {
                     </div>
                   )}
 
-                  <h4 className="font-medium text-gray-900 line-clamp-1">
+                  <h4 className="font-medium text-white line-clamp-1">
                     {product.name}
                   </h4>
 
                   {/* Price */}
-                  <label className="block text-gray-600 text-sm mt-2">
+                  <label className="block text-white-700 text-sm mt-2">
                     Price (Rs)
                     <input
                       type="number"
@@ -540,7 +540,7 @@ const handleStatus = async (e, orderId) => {
                   </label>
 
                   {/* Stock */}
-                  <label className="block text-gray-600 text-sm mt-2">
+                  <label className="block text-white-600 text-sm mt-2">
                     Stock
                     <input
                       type="number"
@@ -557,8 +557,8 @@ const handleStatus = async (e, orderId) => {
                   <span
                     className={`text-xs mt-1 ${
                       (edited.stock ?? product.stock) > 0
-                        ? 'text-green-600'
-                        : 'text-red-600'
+                        ? 'text-white-900'
+                        : 'text-white-600'
                     }`}
                   >
                     {(edited.stock ?? product.stock) > 0
@@ -571,9 +571,9 @@ const handleStatus = async (e, orderId) => {
                     <button
                       onClick={() => handleSaveEdit(product._id)}
                       disabled={!edits[product._id]}
-                      className="flex items-center px-3 py-1 text-sm text-green-600 hover:text-green-800"
+                      className="flex items-center px-3 py-1 text-sm text-white-900 hover:text-white-200"
                     >
-                      Save
+                      ✏️Edit
                     </button>
                   </div>
                 </div>
@@ -612,7 +612,7 @@ const handleStatus = async (e, orderId) => {
             onClick={() =>
               router.push('/components/dashboard/admin?tab=add-product')
             }
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="mt-4 px-4 py-2 bg-slate-600 text-white rounded-md hover:bg-slate-700"
           >
             Add Product
           </button>
@@ -624,17 +624,17 @@ const handleStatus = async (e, orderId) => {
 
         {/* Orders Tab */}
         {tab === 'orders' && (
-          <div className="bg-gray-200 rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-6 text-gray-800">Orders</h2>
+          <div className="bg-gray-600 rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-semibold mb-6 text-white">Orders</h2>
             
             <div className="space-y-4">
               {orders.length > 0 ? (
                 orders.map((order) => (
-                  <div key={order.orderId} className="border rounded-lg p-6 hover:shadow-md transition-shadow bg-gray-300">
+                  <div key={order.orderId} className="border rounded-lg p-6 hover:shadow-md transition-shadow bg-gray-500">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 ">
                       <div>
-                        <h3 className="font-semibold text-lg text-gray-900">Order #{order.orderId}</h3>
-                        <p className="text-gray-500 text-sm">
+                        <h3 className="font-semibold text-lg text-white">Order #{order.orderId}</h3>
+                        <p className="text-white-600 text-sm">
                           {new Date(order.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'short',
@@ -647,7 +647,7 @@ const handleStatus = async (e, orderId) => {
                       <span className={`px-3 py-1 rounded-full text-sm font-medium self-start sm:self-auto ${
                         order.status === 'completed' ? 'bg-green-100 text-green-800' :
                         order.status === 'processing' ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-blue-100 text-blue-800'
+                        'bg-slate-600 text-white-800'
                       }`}>
           <div className="px-3 py-1 rounded-full text-sm font-medium self-start sm:self-auto">
       <select
@@ -658,7 +658,7 @@ const handleStatus = async (e, orderId) => {
           px-2 py-1 rounded 
           ${selectedOption[order.orderId] === "delivered" ? "bg-green-100 text-green-800" :
             selectedOption[order.orderId] === "processing" ? "bg-yellow-100 text-yellow-800" :
-            selectedOption[order.orderId] === "pending" ? "bg-blue-100 text-blue-800" :
+            selectedOption[order.orderId] === "pending" ? "bg-slate-600 text-white-800" :
             selectedOption[order.orderId] === "cancelled" ? "bg-red-100 text-red-800" :
             "bg-gray-100 text-gray-800"}
         `}
@@ -675,15 +675,15 @@ const handleStatus = async (e, orderId) => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-                      <div className='text-gray-700'>
-                        <h4 className="font-medium text-gray-700 mb-2">Customer Info</h4>
+                      <div className='text-white'>
+                        <h4 className="font-medium text-white mb-2">Customer Info</h4>
                         <p>{order.user?.name || 'N/A'}</p>
                         <p>{order.user?.number || 'N/A'}</p>
-                        <p className="text-blue-600">{order.user?.email || 'N/A'}</p>
+                        <p className="text-white-600">{order.user?.email || 'N/A'}</p>
                       </div>
 
-                      <div className='text-gray-700'>
-                        <h4 className="font-medium text-gray-700 mb-2">Delivery Info</h4>
+                      <div className='text-white'>
+                        <h4 className="font-medium text-gray mb-2">Delivery Info</h4>
                         <p>{order.shippingAddress?.street || 'N/A'}</p>
                         <p>{order.shippingAddress?.city || 'N/A'}</p>
                         <p>{order.shippingAddress?.state || 'N/A'}</p>
@@ -693,10 +693,10 @@ const handleStatus = async (e, orderId) => {
                     </div>
 
                     <div className="mb-4">
-                      <h4 className="font-medium text-gray-700 mb-2">Ordered Products</h4>
+                      <h4 className="font-medium text-white mb-2">Ordered Products</h4>
                       <ul className="space-y-2">
                         {order.items?.map((item, index) => (
-                          <li key={item.productId} className="flex justify-between text-gray-700">
+                          <li key={item.productId} className="flex justify-between text-white">
                             <span>{item.quantity}x {item.productName || 'Unknown Product'}</span>
                             <span>Rs {(item.quantity * item.price).toFixed(2)}</span>
                           </li>
@@ -705,7 +705,7 @@ const handleStatus = async (e, orderId) => {
                     </div>
 
                     <div className="pt-4 border-t">
-                      <div className="flex justify-between font-medium text-gray-900">
+                      <div className="flex justify-between font-medium text-white">
                         <span>Total</span>
                         <span>Rs {order.totalAmount?.toFixed(2) || '0.00'}</span>
                       </div>

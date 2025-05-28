@@ -105,7 +105,7 @@ export default function SignupPage() {
     {/* Signup Section (100vh) */}
    <div className="flex flex-col lg:flex-row min-h-screen">
   {/* Left Side - Brand Section */}
-  <div className="w-full lg:w-1/2 bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white shadow-lg flex flex-col justify-center p-6 md:p-12 sticky top-0 lg:h-screen">
+  <div className="w-full lg:w-1/2 bg-gray-600  text-white shadow-lg flex flex-col justify-center p-6 md:p-12 sticky top-0 lg:h-screen">
     <div className="max-w-md">
       {/* XP Computers Logo/Text - Left Aligned */}
       <motion.div 
@@ -304,8 +304,8 @@ export default function SignupPage() {
             required
             className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
           />
-          <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
-            I agree to the <a href="#" className="text-purple-400 hover:underline">Terms and Conditions</a>
+          <label htmlFor="terms" className="ml-2 block text-sm text-gray-600">
+            I agree to the <a href="#" className="text-gray-900 hover:underline">Terms and Conditions</a>
           </label>
         </div>
 
@@ -313,7 +313,7 @@ export default function SignupPage() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+            className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 ${
               loading ? 'opacity-70 cursor-not-allowed' : ''
             }`}
           >
@@ -324,7 +324,7 @@ export default function SignupPage() {
         <div className="text-sm text-center pt-2">
           <p className="text-gray-600">
             Already have an account?{' '}
-            <a href="./login" className="font-medium text-purple-400 hover:text-purple-200">
+            <a href="./login" className="font-medium text-gray-400 hover:text-gray-300">
               Log in
             </a>
           </p>
@@ -375,7 +375,7 @@ export default function SignupPage() {
 </section>
 
 {/* Footer */}
- <footer className="bg-gray-900 text-gray-200 py-12 px-6">
+ <footer className="bg-gray-700 text-white py-12 px-6">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-2">XP Computer</h3>

@@ -40,13 +40,13 @@ https://xp-navy.vercel.app
 ![Product View Page Customer](./assets/productViewPage.png)
 
 #### Product Search Page 
-![Product Search Page Customer](./assets/productSearchCust.png)
+![Product Search Page Customer](./assets/productSearchCust2.png)
 
 #### Cart Page 
-![Cart Page Customer](./assets/Cart.png)
+![Cart Page Customer](./assets/Cart2.png)
 
 #### Orders Page 
-![Cart Page Customer](./assets/ordersCustomerPage.png)
+![Cart Page Customer](./assets/OrderCustomerPage.png)
 
 #### User Profile Page
 ![Cart Page Customer](./assets/userProfile.png)
@@ -60,13 +60,13 @@ https://xp-navy.vercel.app
 ![View Products Page](./assets/ViewProducts.png)
 
 #### Search Products by Name
-![Search Products by Name Page](./assets/SearchProduct.png)
+![Search Products by Name Page](./assets/SearchProduct2.png)
 
 #### Search Products by Category
-![Search Products by Category Page](./assets/SortProducts2.png)
+![Search Products by Category Page](./assets/SortProduct.png)
 
 #### Orders Page
-![View Products Page](./assets/ordersAdminPage2.png)
+![View Products Page](./assets/ordersAdminPage.png)
 
 ---
 

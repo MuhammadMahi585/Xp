@@ -135,24 +135,24 @@ export default function Cart() {
 
   return (
     <CustomerLayout>
-    <div className="min-h-screen bg-gradient-to-br from-[#15172b] via-[#322f5b] to-[#72649b] px-4 py-8 flex justify-center">
-      <div className="w-[95%] backdrop-blur-md bg-white/10 rounded-2xl shadow-2xl ring-1 ring-white/30 text-white overflow-hidden">
-        <div className="p-6">
+    <div className="min-h-screen bg-white px-4 py-4 flex justify-center">
+      <div className="bg-gray-600 w-[99%] backdrop-blur-md bg-white/10 rounded-2xl shadow-2xl ring-1 ring-white/30 text-white overflow-hidden">
+        <div className="p-6 bg-gray-600">
           {cart.length > 0 ? (
             <>
               {cart.map((item) => (
-                <div key={item.product._id} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 mb-4 hover:border-purple-400/30 transition-all flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div key={item.product._id} className="bg-gray-500 backdrop-blur-sm border border-white/10 rounded-xl p-4 mb-4 hover:border-purple-400/30 transition-all flex flex-col sm:flex-row items-center justify-between gap-4">
                   
                   {/* Product Info */}
                   <div className="flex items-center gap-4 flex-1 min-w-0">
-                    <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 p-2 rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="bg-slate-600 p-2 rounded-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                       </svg>
                     </div>
                     <div className="min-w-0">
                       <h3 className="text-lg font-semibold text-white truncate">{item.product.name}</h3>
-                      <p className="text-purple-300 font-medium">Rs. {item.product.price.toLocaleString()}</p>
+                      <p className="text-white font-medium">Rs. {item.product.price.toLocaleString()}</p>
                     </div>
                   </div>
         
@@ -169,7 +169,7 @@ export default function Cart() {
                   {/* Remove Button */}
                   <button 
                     onClick={() => removeFromCart(item.product._id)}
-                    className="flex items-center gap-1 text-red-400 hover:text-red-300 transition-colors"
+                    className="flex items-center gap-1 text-white-600 hover:text-gray-900 transition-colors"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -183,7 +183,7 @@ export default function Cart() {
               <div className="mt-8 pt-6 border-t border-white/20">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="text-xl font-semibold">Total</h3>
-                  <p className="text-2xl font-bold text-purple-300">
+                  <p className="text-2xl font-bold text-white">
                     Rs. {cart.reduce((sum, item) => sum + (item.product.price * (item.quantity || 1)), 0).toLocaleString()}
                   </p>
                 </div>
@@ -213,7 +213,7 @@ export default function Cart() {
 
                 
                 <button
-                onClick={()=>{placeOrder()}} className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 mt-4 px-6 rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-purple-500/20 flex items-center justify-center gap-2">
+                onClick={()=>{placeOrder()}} className="w-full h-10 bg-slate-600 mt-4  transition-all shadow-lg hover:bg-slate-700 flex items-center justify-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
@@ -232,7 +232,7 @@ export default function Cart() {
               <p className="mt-2 text-white/70">Add some products to your cart</p>
               <button
               onClick={()=>{router.push("/../../components/customerComponents/products")}}
-               className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all"
+               className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all"
                >
                 Continue Shopping
               </button>

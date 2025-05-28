@@ -44,7 +44,7 @@ const Home = () => {
       {/* Hero & About Section */}
       <section className="flex flex-col lg:flex-row w-full">
         {/* Hero */}
-        <div className="w-full lg:w-1/2 min-h-[100vh] flex items-center justify-center bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 text-white px-4 py-12 sm:px-6 md:px-10 lg:px-16">
+        <div className="w-full lg:w-1/2 min-h-[100vh] flex items-center justify-center bg-gray-600 text-white px-4 py-12 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-md sm:max-w-lg text-center lg:text-left">
             <motion.div
               variants={container}
@@ -68,21 +68,21 @@ const Home = () => {
         {/* About */}
         <div className="w-full lg:w-1/2 min-h-[100vh] flex items-center justify-center bg-white px-4 py-12 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-md sm:max-w-lg">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">About Us</h1>
-            <p className="mb-4 text-sm sm:text-base">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-gray-600">About Us</h1>
+            <p className="mb-4 text-sm sm:text-base text-gray-700">
               Welcome to <strong>XP Computer</strong> — your one-stop destination for all things tech. We're a passionate team committed to delivering top-quality computer accessories, laptops, and essential gadgets to customers across the region.
             </p>
-            <p className="mb-4 text-sm sm:text-base">
+            <p className="mb-4 text-sm sm:text-base text-gray-700">
               Founded with a vision to make technology <strong>accessible, affordable, and reliable</strong>, XP Computer offers a diverse range of products, including:
             </p>
-            <ul className="list-none space-y-2 text-sm sm:text-base">
+            <ul className="list-none space-y-2 text-sm sm:text-base text-gray-700">
               <li>💾 High-performance RAMs and SSDs</li>
               <li>💻 Premium laptops for work, gaming, and studies</li>
               <li>🔋 Long-lasting power banks</li>
               <li>🖥️ Ergonomic laptop tables and accessories</li>
               <li>🧩 Upgrade kits & peripherals</li>
             </ul>
-            <p className="mt-4 text-sm sm:text-base">
+            <p className="mt-4 text-sm sm:text-base text-gray-700">
               At XP Computer, we don’t just sell tech — <strong>we simplify it</strong>.
             </p>
           </div>
@@ -91,7 +91,7 @@ const Home = () => {
 
       {/* Products Section */}
       <section className="w-full py-16 bg-white text-center px-4 sm:px-6 md:px-10 lg:px-16">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-black">Our Products</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-gray-600">Our Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { name: "Computer accessories", image: "/assets/Image/accessories.png" },
@@ -105,7 +105,7 @@ const Home = () => {
                 className="w-full h-64 object-contain bg-gray-100"
               />
               <div className="p-4">
-                <h3 className="text-xl font-semibold text-black">{item.name}</h3>
+                <h3 className="text-xl font-semibold text-gray-600">{item.name}</h3>
               </div>
             </div>
           ))}
@@ -113,7 +113,7 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer id="Footer" className="bg-gray-900 text-gray-200 py-12 px-4 sm:px-6 lg:px-16">
+      <footer id="Footer" className="bg-gray-700 text-white py-12 px-4 sm:px-6 lg:px-16">
         <div className="flex flex-col md:flex-row justify-between items-start space-y-10 md:space-y-0">
           {/* Contact Info */}
           <div className="md:w-1/3">
