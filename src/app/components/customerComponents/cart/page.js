@@ -200,7 +200,7 @@ export default function Cart() {
         <label className="block text-sm font-medium text-white mb-1">{label}</label>
         <input
           type="text"
-          className="w-full px-3 py-2 rounded-xl bg-white/10 text-white placeholder-white/40 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="w-full px-3 py-2 rounded-xl bg-white/10 text-white placeholder-white/40 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white"
           value={shippingAddress[name]}
           onChange={(e) =>
             setShippingAddress((prev) => ({ ...prev, [name]: e.target.value }))

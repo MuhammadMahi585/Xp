@@ -120,7 +120,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
                 />
               </div>
               <div>
@@ -132,12 +132,12 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
                 />
               </div>
               <div className="flex items-center justify-between">
-                <label className="flex items-center text-sm text-gray-900">
-                  <input type="checkbox" className="h-4 w-4 text-blue-600 border-gray-300 rounded mr-2" />
+                <label className="flex items-center text-sm text-gray-600">
+                  <input type="checkbox" className="h-4 w-4 text-gray-600 border-gray-300 rounded mr-2" />
                   Remember me
                 </label>
                 <a href="./signup" className="text-gray-600 hover:underline">Sign up?</a>
@@ -158,7 +158,7 @@ export default function LoginPage() {
 
       {/* Owner Section */}
       <section className="w-full py-12 px-4 bg-white text-center">
-        <h2 className="text-4xl font-bold text-black mb-8">Owner</h2>
+        <h2 className="text-4xl font-bold text-gray-600 mb-8">Owner</h2>
         <div className="flex justify-center">
           <img
             src="/assets/Image/nain.jpg"
@@ -167,12 +167,12 @@ export default function LoginPage() {
            
           />
         </div>
-        <p className="mt-4 text-lg font-semibold text-black">Zulqarnain Mahessar</p>
+        <p className="mt-4 text-lg font-semibold text-gray-600">Zulqarnain Mahessar</p>
       </section>
 
       {/* Our Team */}
       <section className="w-full py-12 px-4 bg-gray-50 text-center">
-        <h2 className="text-4xl font-bold text-black mb-8">Our Team</h2>
+        <h2 className="text-4xl font-bold text-gray-600 mb-8">Our Team</h2>
         <div className="flex flex-wrap justify-center gap-8">
           {[
             { name: "Jameel Kanasro (Co-owner)", image: "/assets/Image/jameel.jpg" },
@@ -182,7 +182,7 @@ export default function LoginPage() {
           ].map((member, i) => (
             <div key={i}>
               <img src={member.image} alt={member.name} className="w-36 h-36 rounded-full object-cover mx-auto shadow-md" />
-              <p className="mt-2 font-semibold text-black">{member.name}</p>
+              <p className="mt-2 font-semibold text-gray-600">{member.name}</p>
             </div>
           ))}
         </div>
@@ -190,7 +190,7 @@ export default function LoginPage() {
 
       {/* Branches */}
       <section className="w-full py-12 px-6 md:px-12 bg-white text-center">
-        <h2 className="text-4xl font-bold text-black mb-8">Our Branches</h2>
+        <h2 className="text-4xl font-bold text-gray-600 mb-8">Our Branches</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             {
@@ -212,7 +212,7 @@ export default function LoginPage() {
             <div key={index} className="rounded-lg overflow-hidden shadow-lg">
               <img src={branch.image} alt={branch.name} className="w-full h-120 object-cover" />
               <div className="p-4">
-                <h3 className="text-xl font-semibold text-black">{branch.name}</h3>
+                <h3 className="text-xl font-semibold text-gray-600">{branch.name}</h3>
                 <p className="text-gray-600">{branch.location}</p>
               </div>
             </div>

@@ -146,7 +146,7 @@ export default function SignupPage() {
   {/* Right Side - Signup Form */}
   <div className="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12 bg-gray-50 sticky top-0 lg:h-screen overflow-auto">
     <div className="w-full max-w-md">
-      <h2 className="text-3xl font-bold text-gray-900 mb-6">Create Account</h2>
+      <h2 className="text-3xl font-bold text-gray-600 mb-6">Create Account</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
@@ -164,7 +164,7 @@ export default function SignupPage() {
             required
             value={formData.name}
             onChange={handleChange}
-            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
           />
         </div>
 
@@ -178,7 +178,7 @@ export default function SignupPage() {
             required
             value={formData.email}
             onChange={handleChange}
-            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-blue-600"
           />
         </div>
 
@@ -197,7 +197,7 @@ export default function SignupPage() {
                 number: onlyNumbers
               }));
             }}
-            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
           />
         </div>
 
@@ -211,7 +211,7 @@ export default function SignupPage() {
             minLength="8"
             value={formData.password}
             onChange={handleChange}
-            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
           />
         </div>
 
@@ -224,7 +224,7 @@ export default function SignupPage() {
             required
             value={formData.confirmPassword}
             onChange={handleChange}
-            className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
           />
         </div>
 
@@ -239,7 +239,7 @@ export default function SignupPage() {
               required
               value={formData.street}
               onChange={handleChange}
-              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
             />
           </div>
 
@@ -252,7 +252,7 @@ export default function SignupPage() {
               required
               value={formData.city}
               onChange={handleChange}
-              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
             />
           </div>
 
@@ -265,7 +265,7 @@ export default function SignupPage() {
               required
               value={formData.state}
               onChange={handleChange}
-              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
             />
           </div>
 
@@ -278,7 +278,7 @@ export default function SignupPage() {
               required
               value={formData.postalCode}
               onChange={handleChange}
-              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
             />
           </div>
 
@@ -288,7 +288,7 @@ export default function SignupPage() {
               name="country"
               value={formData.country}
               onChange={handleChange}
-              className="text-black mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="text-gray-600 mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
             >
               <option value="Pakistan">Pakistan</option>
               <option value="Other">Other</option>
@@ -302,10 +302,10 @@ export default function SignupPage() {
             name="terms"
             type="checkbox"
             required
-            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            className="h-4 w-4 text-gray-600 focus:ring-blue-500 border-gray-300 rounded"
           />
           <label htmlFor="terms" className="ml-2 block text-sm text-gray-600">
-            I agree to the <a href="#" className="text-gray-900 hover:underline">Terms and Conditions</a>
+            I agree to the <a href="#" className="text-gray-300 hover:underline">Terms and Conditions</a>
           </label>
         </div>
 
@@ -313,7 +313,7 @@ export default function SignupPage() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 ${
+            className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 ${
               loading ? 'opacity-70 cursor-not-allowed' : ''
             }`}
           >
@@ -337,7 +337,7 @@ export default function SignupPage() {
   {/* Additional Content Sections */}
 <section className="w-full min-h-screen bg-white flex items-center justify-center p-6 sm:p-12">
   <div className="max-w-4xl text-center">
-    <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-black">Why Join Us?</h2>
+    <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-600">Why Join Us?</h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 sm:mt-12">
       {[
         { title: 'Exclusive Deals', icon: '💰', description: 'Get 5% Discount now' },
@@ -346,7 +346,7 @@ export default function SignupPage() {
       ].map((item, index) => (
         <div key={index} className="p-6 bg-gray-50 rounded-lg shadow-sm">
           <div className="text-4xl sm:text-5xl mb-4">{item.icon}</div>
-          <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-black">{item.title}</h3>
+          <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-gray-600">{item.title}</h3>
           <p className="text-gray-600 text-sm sm:text-base">{item.description}</p>
         </div>
       ))}
@@ -356,7 +356,7 @@ export default function SignupPage() {
 
 <section className="w-full min-h-screen bg-gray-50 flex items-center justify-center p-6 sm:p-12">
   <div className="max-w-4xl text-center">
-    <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-black">Our Happy Customers</h2>
+    <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-600">Our Happy Customers</h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 sm:mt-12">
       {[
         { name: 'Taimoor Ayaz', quote: 'Best Products', role: 'Premium Member' },
@@ -365,8 +365,8 @@ export default function SignupPage() {
       ].map((testimonial, index) => (
         <div key={index} className="p-6 bg-white rounded-lg shadow-sm">
           <div className="h-16 w-16 bg-gray-200 rounded-full mx-auto mb-4"></div>
-          <p className="italic mb-4 text-black text-sm sm:text-base">"{testimonial.quote}"</p>
-          <p className="font-semibold text-black">{testimonial.name}</p>
+          <p className="italic mb-4 text-gray-600 text-sm sm:text-base">"{testimonial.quote}"</p>
+          <p className="font-semibold text-gray-600">{testimonial.name}</p>
           <p className="text-xs sm:text-sm text-gray-500">{testimonial.role}</p>
         </div>
       ))}

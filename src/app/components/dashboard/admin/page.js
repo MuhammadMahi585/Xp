@@ -314,7 +314,7 @@ const handleStatus = async (e, orderId) => {
                       type="file"
                       onChange={handleFileChange}
                       accept="image/jpeg, image/png, image/webp"
-                      className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-gray-700 hover:file:bg-gray-100"
+                      className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-600 hover:file:bg-gray-200"
                       disabled={isUploading}
                     />
                   </div>
@@ -322,7 +322,7 @@ const handleStatus = async (e, orderId) => {
                     type="button"
                     onClick={handleImageUpload}
                     disabled={!file || isUploading}
-                    className={`px-4 py-2 rounded text-white font-medium flex-shrink-0 ${(!file || isUploading) ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-500 hover:bg-gray-600'}`}
+                    className={`px-4 py-2 rounded text-white font-medium flex-shrink-0 ${(!file || isUploading) ? 'bg-gray-600 cursor-not-allowed' : 'bg-gray-600 hover:bg-gray-700'}`}
                   >
                     {isUploading ? 'Uploading...' : 'Upload Image'}
                   </button>
@@ -366,7 +366,7 @@ const handleStatus = async (e, orderId) => {
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     required
-                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
                   />
                 </div>
 
@@ -381,7 +381,7 @@ const handleStatus = async (e, orderId) => {
                     value={formData.price}
                     onChange={(e) => setFormData({...formData, price: e.target.value})}
                     required
-                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
                   />
                 </div>
 
@@ -393,7 +393,7 @@ const handleStatus = async (e, orderId) => {
                     value={formData.category}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
                     required
-                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
                   >
                     <option value="Laptops">Laptops</option>
                     <option value="Desktops">Desktops</option>
@@ -411,7 +411,7 @@ const handleStatus = async (e, orderId) => {
                     name="subcategory"
                     value={formData.subcategory}
                     onChange={(e) => setFormData({...formData, subcategory: e.target.value})}
-                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
                   />
                 </div>
 
@@ -425,7 +425,7 @@ const handleStatus = async (e, orderId) => {
                     value={formData.stock}
                     onChange={(e) => setFormData({...formData, stock: e.target.value})}
                     required
-                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
                   />
                 </div>
               </div>
@@ -439,14 +439,14 @@ const handleStatus = async (e, orderId) => {
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                   required
-                  className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
                 />
               </div>
 
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-slate-600 text-white font-medium rounded-md shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="px-6 py-2 bg-slate-600 text-white font-medium rounded-md shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600"
                 >
                   Add Product
                 </button>
@@ -473,7 +473,7 @@ const handleStatus = async (e, orderId) => {
             placeholder="Search products..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="text-gray-600 pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-gray-900"
+            className="text-gray-600 pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
           />
         </div>
 
@@ -481,7 +481,7 @@ const handleStatus = async (e, orderId) => {
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="px-3 py-2 text-gray-600 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-gray-900"
+          className="px-3 py-2 text-gray-600 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
         >
           {categories.map((category) => (
             <option key={category} value={category}>
@@ -525,7 +525,7 @@ const handleStatus = async (e, orderId) => {
                   </h4>
 
                   {/* Price */}
-                  <label className="block text-white-700 text-sm mt-2">
+                  <label className="block text-white text-sm mt-2">
                     Price (Rs)
                     <input
                       type="number"
@@ -535,12 +535,12 @@ const handleStatus = async (e, orderId) => {
                       onChange={(e) =>
                         handleEditChange(product._id, 'price', e.target.value)
                       }
-                      className="mt-1 w-full border border-gray-300 rounded px-2 py-1 text-sm"
+                      className="text-white mt-1 w-full border border-gray-300 rounded px-2 py-1 text-sm"
                     />
                   </label>
 
                   {/* Stock */}
-                  <label className="block text-white-600 text-sm mt-2">
+                  <label className="block text-white text-sm mt-2">
                     Stock
                     <input
                       type="number"
@@ -549,7 +549,7 @@ const handleStatus = async (e, orderId) => {
                       onChange={(e) =>
                         handleEditChange(product._id, 'stock', e.target.value)
                       }
-                      className="mt-1 w-full border border-gray-300 rounded px-2 py-1 text-sm"
+                      className="text-white mt-1 w-full border border-gray-300 rounded px-2 py-1 text-sm"
                     />
                   </label>
 
@@ -557,7 +557,7 @@ const handleStatus = async (e, orderId) => {
                   <span
                     className={`text-xs mt-1 ${
                       (edited.stock ?? product.stock) > 0
-                        ? 'text-white-900'
+                        ? 'text-white'
                         : 'text-white-600'
                     }`}
                   >
@@ -571,7 +571,7 @@ const handleStatus = async (e, orderId) => {
                     <button
                       onClick={() => handleSaveEdit(product._id)}
                       disabled={!edits[product._id]}
-                      className="flex items-center px-3 py-1 text-sm text-white-900 hover:text-white-200"
+                      className="flex items-center px-3 py-1 text-sm text-white-900 hover:text-white"
                     >
                       ✏️Edit
                     </button>
@@ -599,7 +599,7 @@ const handleStatus = async (e, orderId) => {
             />
           </svg>
         </div>
-        <h3 className="mt-4 text-lg font-medium text-gray-900">
+        <h3 className="mt-4 text-lg font-medium text-gray-600">
           No products found
         </h3>
         <p className="mt-2 text-gray-500">
@@ -679,11 +679,11 @@ const handleStatus = async (e, orderId) => {
                         <h4 className="font-medium text-white mb-2">Customer Info</h4>
                         <p>{order.user?.name || 'N/A'}</p>
                         <p>{order.user?.number || 'N/A'}</p>
-                        <p className="text-white-600">{order.user?.email || 'N/A'}</p>
+                        <p className="text-white">{order.user?.email || 'N/A'}</p>
                       </div>
 
                       <div className='text-white'>
-                        <h4 className="font-medium text-gray mb-2">Delivery Info</h4>
+                        <h4 className="font-medium text-white mb-2">Delivery Info</h4>
                         <p>{order.shippingAddress?.street || 'N/A'}</p>
                         <p>{order.shippingAddress?.city || 'N/A'}</p>
                         <p>{order.shippingAddress?.state || 'N/A'}</p>
@@ -719,8 +719,8 @@ const handleStatus = async (e, orderId) => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                   </div>
-                  <h3 className="mt-4 text-lg font-medium text-gray-900">No orders yet</h3>
-                  <p className="mt-2 text-gray-500">Orders will appear here when customers make purchases</p>
+                  <h3 className="mt-4 text-lg font-medium text-white">No orders yet</h3>
+                  <p className="mt-2 text-white">Orders will appear here when customers make purchases</p>
                 </div>
               )}
             </div>
