@@ -67,7 +67,7 @@ useEffect(() => {
   } else if (tab === "orders") {
     fetchOrders();
   }
-}, [tab, auth.isAuthenticated, auth.isLoading]);
+}, [tab, auth.isAuthenticated, auth.isLoading, searchTerm, selectedCategory]);
 
   const fetchProducts = async () => {
     try {
@@ -481,7 +481,7 @@ const handleStatus = async (e, orderId) => {
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          className="px-3 py-2 text-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
         >
           {categories.map((category) => (
             <option key={category} value={category}>

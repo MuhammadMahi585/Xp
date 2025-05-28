@@ -60,13 +60,13 @@ https://xp-navy.vercel.app
 ![View Products Page](./assets/ViewProducts.png)
 
 #### Search Products by Name
-![Search Products by Name Page](./assets/SerachProducr.png)
+![Search Products by Name Page](./assets/SearchProduct.png)
 
 #### Search Products by Category
-![Search Products by Category Page](./assets/SortProducts.png)
+![Search Products by Category Page](./assets/SortProducts2.png)
 
 #### Orders Page
-![View Products Page](./assets/ordersAdminPage.png)
+![View Products Page](./assets/ordersAdminPage2.png)
 
 ---
 
@@ -77,6 +77,7 @@ https://xp-navy.vercel.app
 - **Role Guarding**: Separate dashboards for `admin` and `customer`
 - **Product Details Page**: View detailed information about a product, including images, price, description, and stock.
 - **Shopping Cart**: Add products to the shopping cart, view cart details.
+- **Place Order**: Place Order by entering the address of delievery.
 - **Search**: Searh Product by Name and category.
 - **Profile***: Seperate Page for user Profile.
 
