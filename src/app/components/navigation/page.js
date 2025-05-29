@@ -26,11 +26,10 @@ export default function Navigation() {
           isLoading: false,
           error: null
         })
-        console.log("logout success");
       window.location.replace("/components/authentication/login");
       }
     } catch (error) {
-      console.error("Error occurred during logout", error)
+      
     }
   }
   
