@@ -103,7 +103,7 @@ export default function Product() {
         productId,
         quantity
       });
-      
+
       
       if (response.data.unauthorized) {
         router.replace("/components/authentication/login");
@@ -182,7 +182,7 @@ export default function Product() {
                           )}
                           <div className="flex flex-col gap-3">
                             <h4 className="font-medium text-white line-clamp-2 h-14">{product.name}</h4>
-                            <p className="text-gray-700 font-semibold text-xl">Rs. {product.price.toLocaleString()}</p>
+                            <p className="text-white-900 font-semibold text-xl">Rs. {product.price.toLocaleString()}</p>
                             {product.stock > 0 ? (
                               <span className="text-sm text-white-900">In Stock: {product.stock}</span>
                             ) : (
