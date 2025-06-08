@@ -10,7 +10,7 @@ Welcome to the **XP Computer** Next.js project! This repository contains a fully
 
 ---
 ### You can visit website by clicking on link below
-https://xp-navy.vercel.app
+https://xpcomputers.shop
 
 ## Table of Contents
 
