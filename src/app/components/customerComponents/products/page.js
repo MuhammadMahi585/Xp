@@ -104,6 +104,7 @@ export default function Product() {
         quantity
       });
       
+      
       if (response.data.unauthorized) {
         router.replace("/components/authentication/login");
         window.location.reload();

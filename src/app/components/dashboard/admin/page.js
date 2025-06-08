@@ -396,9 +396,11 @@ const handleStatus = async (e, orderId) => {
                     className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
                   >
                     <option value="Laptops">Laptops</option>
-                    <option value="Desktops">Desktops</option>
-                    <option value="Accessories">Accessories</option>
-                    <option value="Components">Components</option>
+                    <option value="Laptop and Desktop Accessories">Laptop and Desktop Accessories</option>
+                    <option value="Gaming Accessories">Gaming Accessories</option>
+                    <option value="Mobile Accessories">Mobile Accessories</option>
+                    <option value="Cameras or Drones">Cameras or Drones</option>
+                    <option value="USB's or Memory Cards">USB's or Memory Cards</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
