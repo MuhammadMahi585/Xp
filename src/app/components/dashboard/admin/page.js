@@ -53,7 +53,7 @@ function AdminDashboardContent() {
       } else if (auth.role !== "admin") {
         router.replace("/components/dashboard/customer");
       } else {
-        setChecked(true); // Ready to show admin content
+        setChecked(true); 
       }
     }
   }, [auth, router]);
@@ -124,7 +124,7 @@ const handleSaveEdit = async (productId) => {
 
     alert('Product updated successfully');
 
-    // Refresh product list
+  
     fetchProducts();
 
   
@@ -395,14 +395,45 @@ const handleStatus = async (e, orderId) => {
                     required
                     className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gray-600 focus:border-gray-600"
                   >
-                    <option value="Laptops">Laptops</option>
-                    <option value="Laptop and Desktop Accessories">Laptop and Desktop Accessories</option>
-                    <option value="Gaming Accessories">Gaming Accessories</option>
-                    <option value="Mobile Accessories">Mobile Accessories</option>
-                    <option value="Cameras or Drones">Cameras or Drones</option>
-                    <option value="USB's or Memory Cards">USB's or Memory Cards</option>
-                    <option value="Other">Other</option>
-                  </select>
+                   <option value="Laptops">Laptops</option>
+<option value="Laptops | Used">Laptops | Used</option>
+<option value="Laptop Accessories">Laptop Accessories</option>
+<option value="Cameras | Drones">Cameras | Drones</option>
+<option value="Cartridges & Toners">Cartridges & Toners</option>
+<option value="Casing">Casing</option>
+<option value="Cooling Solutions">Cooling Solutions</option>
+<option value="Desktop Computers">Desktop Computers</option>
+<option value="Gaming Consoles">Gaming Consoles</option>
+<option value="Gaming Products">Gaming Products</option>
+<option value="Graphic Cards">Graphic Cards</option>
+<option value="Graphic Tablets">Graphic Tablets</option>
+<option value="Hard Drives">Hard Drives</option>
+<option value="Headsets | Headphones | Mic">Headsets | Headphones | Mic</option>
+<option value="Keyboard">Keyboard</option>
+<option value="LCD/LED Monitors">LCD/LED Monitors</option>
+<option value="Memory Cards">Memory Cards</option>
+<option value="Memory Module / RAM">Memory Module / RAM</option>
+<option value="Motherboards">Motherboards</option>
+<option value="Mouse">Mouse</option>
+<option value="Network Products">Network Products</option>
+<option value="Peripherals / Misc">Peripherals / Misc</option>
+<option value="Power Supply">Power Supply</option>
+<option value="Presenters">Presenters</option>
+<option value="Printers">Printers</option>
+<option value="Processors">Processors</option>
+<option value="Projectors">Projectors</option>
+<option value="Scanner">Scanner</option>
+<option value="Smart Watches">Smart Watches</option>
+<option value="Softwares">Softwares</option>
+<option value="Solid-State Drives (SSD)">Solid-State Drives (SSD)</option>
+<option value="Speakers">Speakers</option>
+<option value="Tablet PC">Tablet PC</option>
+<option value="Tablet Accessories">Tablet Accessories</option>
+<option value="TV Devices | Streaming Media Players">TV Devices | Streaming Media Players</option>
+<option value="USB Flash Drives">USB Flash Drives</option>
+<option value="Used Products">Used Products</option>
+<option value="Other">Other</option>
+</select>
                 </div>
 
                 <div>
