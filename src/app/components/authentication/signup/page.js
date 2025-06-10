@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
+import 'primeicons/primeicons.css';
+        
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -101,6 +103,7 @@ export default function SignupPage() {
   };
 
   return (
+  
     <div className="flex flex-col bg-white">
     {/* Signup Section (100vh) */}
    <div className="flex flex-col lg:flex-row min-h-screen">

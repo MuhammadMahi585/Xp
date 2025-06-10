@@ -4,7 +4,8 @@ import CustomerLayout from '@/app/components/dashboard/customer/layout'
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
-
+import 'primeicons/primeicons.css';
+        
 export default function Cart() {
   const router = useRouter()
   const { auth } = useAuth()
@@ -150,19 +151,19 @@ export default function Cart() {
   }
 
   if (auth?.isLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>
+    return <div className="flex justify-center items-center h-screen bg-gray-700">
+      <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
+    </div>
   }
   if (!auth?.isAuthenticated) return null
-
-  return (
-    <CustomerLayout>
-      <div className="min-h-screen bg-white px-4 py-4 flex justify-center">
+  const content = (
+          <div className="min-h-screen bg-white px-4 py-4 flex justify-center">
         <div className="bg-gray-600 w-[99%] backdrop-blur-md bg-white/10 rounded-2xl shadow-2xl ring-1 ring-white/30 text-white overflow-hidden">
           <div className="p-6 bg-gray-600">
 
        
             {statusSummary && (
-              <div className="mb-10 bg-red-700/60 rounded-xl p-4">
+              <div className="mb-10 bg-gray-700 rounded-xl p-4">
                 <h2 className="text-lg font-semibold mb-2">Order adjustments</h2>
                 <p className="mb-4">
                   Some items were adjusted or removed due to stock issues. Please review and
@@ -284,7 +285,7 @@ export default function Cart() {
                 </div>
               </>
             ) : (
-              /* Empty-cart UI is ONLY shown if we are NOT in review mode */
+              
               !statusSummary && (
                 <div className="text-center py-16">
                   <div className="mx-auto h-24 w-24 text-white/30">
@@ -306,6 +307,9 @@ export default function Cart() {
           </div>
         </div>
       </div>
-    </CustomerLayout>
+  )
+
+  return (
+      <CustomerLayout>{content}</CustomerLayout>  
   )
 }

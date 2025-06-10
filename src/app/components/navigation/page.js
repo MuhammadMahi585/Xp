@@ -3,7 +3,8 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import { useAuth } from '@/app/context/AuthContext'
-import { FiLogOut } from 'react-icons/fi'
+import {FiBox,FiLogOut,FiShoppingCart,FiHome,FiShoppingBag } from 'react-icons/fi';
+import 'primeicons/primeicons.css';
 
 export default function Navigation() {
   const router = useRouter()
@@ -34,11 +35,13 @@ export default function Navigation() {
   }
   
   if (auth.isLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>
+    return <div className="flex justify-center items-center h-screen bg-gray-700">
+      <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
+    </div>
   }
 
   if (!auth.isAuthenticated) {
-    return null // Redirect happening via useEffect, don't render anything
+    return null 
   }
 
 
@@ -50,45 +53,45 @@ export default function Navigation() {
         </h1>
 
         <nav>
-          <ul className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-sm sm:text-base md:text-lg font-medium">
+          <ul className="flex flex-wrap justify-center items-center gap-2 sm:gap-6 text-sm sm:text-base md:text-lg font-medium">
             <li>
               <a
                 onClick={() => router.push("/components/dashboard/customer")}
-                className="hover:text-gray-300 transition-colors duration-300 cursor-pointer"
+                className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
-                Home
+               <FiHome className="mr-1" /> Home
               </a>
             </li>
             <li>
               <a
                 onClick={() => router.push("/components/customerComponents/products")}
-                className="text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
+                className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
-                Products
+                <FiBox className="mr-1" /> Products
               </a>
             </li>
             <li>
               <a
                 onClick={() => router.push("/components/customerComponents/cart")}
-                className="text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
+                className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
-                Cart
+                <FiShoppingCart className="mr-1" /> Cart
               </a>
             </li>
             <li>
               <a
                 onClick={() => router.push("/components/customerComponents/order")}
-                className="text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
+                className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
-                Orders
+                <FiShoppingBag className="mr-1" /> Orders
               </a>
             </li>
             <li>
               <a
                 onClick={() => router.push("/components/customerComponents/profile")}
-                className="text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
+                className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
-                Profile
+                <span className="pi pi-user" > Profile</span>
               </a>
             </li>
             <li>

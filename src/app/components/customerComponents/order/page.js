@@ -4,6 +4,8 @@ import CustomerLayout from '../../dashboard/customer/layout'
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
+import 'primeicons/primeicons.css';
+        
 
 export default function Order() {
   const router = useRouter()
@@ -11,8 +13,7 @@ export default function Order() {
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
-    if (auth?.isLoading) return // wait for auth to finish loading
-
+    if (auth?.isLoading) return 
     if (!auth || !auth.isAuthenticated) {
       router.replace("/components/authentication/login")
     } else if (auth.role === "admin") {
@@ -41,13 +42,13 @@ export default function Order() {
   }
     if (auth?.isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        Loading...
+      <div className="flex justify-center items-center h-screen bg-gray-700">
+       <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
       </div>
     )
   }
 
-  // Don't render component if not authenticated - redirect happens in useEffect
+
   if (!auth?.isAuthenticated) {
     return null
   }

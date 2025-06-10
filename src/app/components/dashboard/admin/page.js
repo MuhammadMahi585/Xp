@@ -5,6 +5,7 @@ import { useState, useEffect, Suspense } from 'react';
 import axios from 'axios';
 import { useAuth } from '@/app/context/AuthContext';
 import { useRouter, useSearchParams } from 'next/navigation';
+import 'primeicons/primeicons.css';
 import { FiSearch, FiPlus, FiEdit, FiTrash2, FiBox, FiShoppingCart, FiLogOut } from 'react-icons/fi';
 
 function LoadingSpinner() {
@@ -249,7 +250,8 @@ const handleStatus = async (e, orderId) => {
 };
 
   if (auth.isLoading || !checked) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return <div className="bg-gray-700 flex justify-center items-center h-screen">
+      <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i></div>;
   }
   
   return (

@@ -5,6 +5,8 @@ import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
 import { FiSearch, FiPlus, FiEdit, FiTrash2, FiBox, FiShoppingCart, FiLogOut } from 'react-icons/fi';
 import axios from 'axios'
+import LayoutBeforeLogin from '../../authentication/layout'
+import 'primeicons/primeicons.css';
 
 export default function Product() {
   const router = useRouter()
@@ -14,26 +16,20 @@ export default function Product() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [quantities, setQuantities] = useState({});
+   const [checked, setChecked] = useState(false);
  
- // Redirect if not authorized or wrong role
   useEffect(() => {
     if (!auth?.isLoading) {
-      if (!auth?.isAuthenticated) {
-        router.replace("/components/authentication/login")
-      } else if (auth.role === "admin") {
+      if (auth.role === "admin") {
         router.replace("/components/dashboard/admin")
       }
+      else {
+        setChecked(true); 
+      }
     }
+   
   }, [auth, router])
-
-  // Fetch products when search term or category changes (only for customers)
-  useEffect(() => {
-    if (auth?.isAuthenticated && auth.role !== "admin") {
-      fetchProducts()
-    }
-  }, [searchTerm, selectedCategory, auth])
-
-  const fetchProducts = async () => {
+    const fetchProducts = async () => {
     try {
       const response = await axios.get('/api/products', {
         params: { search: searchTerm, category: selectedCategory }
@@ -52,6 +48,19 @@ export default function Product() {
       console.error('Error fetching products:', err);
     }
   };
+
+  useEffect(() => {
+    if (auth.role !== "admin") {
+      fetchProducts()
+    }
+  }, [searchTerm, selectedCategory, auth])
+
+
+  if (auth.isLoading || !checked) {
+    return <div className="flex justify-center items-center h-screen bg-gray-700">
+      <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
+    </div>;
+  }
 
   const productsByCategory = products.reduce((acc, product) => {
     if (!acc[product.category]) acc[product.category] = [];
@@ -90,41 +99,33 @@ export default function Product() {
   };
 
   const addToCart = async (productId) => {
-    try {
-      const quantity = quantities[productId] || 1;
-      const product = products.find(p => p._id === productId);
-      
-      if (!product || product.stock <= 0) {
-        alert("This product is out of stock");
-        return;
-      }
+    const quantity = quantities[productId] || 1
+    const product  = products.find(p => p._id === productId)
+    if (!product || product.stock <= 0) {
+      alert('This product is out of stock')
+      return
+    }
 
-      const response = await axios.post('/api/cart/addToCart', {
-        productId,
-        quantity
-      });
+    if(!auth?.isAuthenticated){
+      alert("Please login to add items in cart")
+      return
+    }
 
-      
-      if (response.data.unauthorized) {
-        router.replace("/components/authentication/login");
-        window.location.reload();
-      } 
-      else if(response.data.roductoutOfStock){
-        alert("product out of stock")
-      }
-      else if (response.data.success) {
-        alert(`${quantity} ${product.name}(s) added to cart`);
+    if (auth?.isAuthenticated) {
+      try {
+        await axios.post('/api/cart/addToCart', { productId, quantity })
+        alert(`${quantity} ${product.name}(s) added to cart`)
         fetchProducts()
-        
+      } catch (err) {
+        console.error(err)
+        alert('Failed to add to cart')
       }
-    } catch (error) {
-      console.error("Failed to add to Cart:", error);
-      alert("Failed to add product to cart");
+      return
     }
   };
+   
 
-  return (
-  <CustomerLayout>
+  const content =(
       <div className="min-h-screen bg-white flex justify-center px-4 py-8">
         <div className="w-[95%] mx-auto backdrop-blur-md bg-gray-600 rounded-2xl shadow-2xl ring-1 ring-white/40 text-white overflow-hidden">
           {/* Header Section */}
@@ -246,6 +247,11 @@ export default function Product() {
           </div>
         </div>
       </div>
-    </CustomerLayout>
+  )
+
+  return (
+   auth?.isAuthenticated ? (<CustomerLayout>{content}</CustomerLayout>  
+   ):
+   (<LayoutBeforeLogin>{content}</LayoutBeforeLogin>)
   )
 }

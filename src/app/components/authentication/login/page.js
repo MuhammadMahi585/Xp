@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
+import 'primeicons/primeicons.css';
+        
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -70,14 +73,19 @@ export default function LoginPage() {
     },
   };
   if (auth.isLoading) {
-  return <div className="flex justify-center items-center h-screen">Loading...</div>
+  return <div className="flex justify-center items-center h-screen bg-gray-700">
+    <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
+  </div>
 }
   if (auth.isLoading || !checked) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return <div className="flex justify-center items-center h-screen bg-gray-700">
+      <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
+    </div>;
   }
 
 
   return (
+  
     <div className="flex flex-col min-h-screen bg-white">
 
       {/* Main Login Section */}
@@ -252,5 +260,6 @@ export default function LoginPage() {
      </div>
       </footer>
     </div>
-  );
+    
+  )
 }

@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
+import 'primeicons/primeicons.css';
+        
 
 const Home = () => {
   const { auth } = useAuth();
@@ -38,6 +40,12 @@ const Home = () => {
       router.replace("/components/authentication/login");
     }
   }, [auth, router]);
+  
+    if (auth.isLoading) {
+    return <div className="flex justify-center items-center h-screen bg-gray-700">
+      <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
+    </div>
+  }
 
   return (
     <div className="w-screen min-h-screen flex flex-col bg-white text-black">

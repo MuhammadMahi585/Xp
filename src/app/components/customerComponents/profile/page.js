@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import CustomerLayout from '../../dashboard/customer/layout'
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
+import 'primeicons/primeicons.css';
 import axios from 'axios'
 
 export default function Profile() {
@@ -41,7 +42,9 @@ export default function Profile() {
   }, [auth, router])
 
   if (auth.isLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>
+    return <div className="flex justify-center items-center h-screen bg-gray-700">
+      <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
+    </div>
   }
 
   if (!auth.isAuthenticated || auth.role === "admin") {

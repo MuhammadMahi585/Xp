@@ -7,14 +7,14 @@ export default function AuthDirect() {
     const auth = useAuth();
     const router = useRouter();
 
-    useEffect(() => {
-        // Safeguard against undefined auth
+    useEffect(() => {      
         if (!auth || auth.isLoading) {
-            router.push("/componets/Loading/screen")
+            router.push("/components/loading")
         }
-        if (!auth.isAuthenticated) {
-            router.push('/components/authentication/login');
-        } else {
+        else if (!auth.isAuthenticated) {
+            router.push('/components/customerComponents/products');
+        } 
+        else {
             cconsole.log(auth.role)
             const redirectPath = auth.role === "admin" 
                 ? '/components/dashboard/admin' 

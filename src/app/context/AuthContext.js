@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
                 })
                 
                 if (!res.ok) {
-                    // More detailed error handling
+                   
                     const errorData = await res.json().catch(() => ({}))
                     throw new Error(
                         errorData.message || 
