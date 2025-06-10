@@ -21,7 +21,7 @@ export default function PublicNavigation() {
           <ul className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-sm sm:text-base md:text-lg font-medium">
             <li>
               <a
-                onClick={() => router.push("/components/customerComponents/products")}
+                onClick={() => router.replace("/components/customerComponents/products")}
                 className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
               
@@ -30,7 +30,7 @@ export default function PublicNavigation() {
             </li>
             <li>
               <a
-                onClick={() => router.push("/components/authentication/login")}
+                onClick={() => router.replace("/components/authentication/login")}
                 className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
                 <FiLogIn className="mr-1" /> Login

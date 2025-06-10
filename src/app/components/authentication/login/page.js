@@ -5,6 +5,8 @@ import axios from "axios";
 import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
 import 'primeicons/primeicons.css';
+import Link from 'next/link'
+
         
 
 
@@ -148,7 +150,7 @@ export default function LoginPage() {
                   <input type="checkbox" className="h-4 w-4 text-gray-600 border-gray-300 rounded mr-2" />
                   Remember me
                 </label>
-                <a href="./signup" className="text-gray-600 hover:underline">Sign up?</a>
+                <Link href="./signup" className="text-gray-600 hover:underline">Sign up?</Link>
               </div>
               <button
                 type="submit"

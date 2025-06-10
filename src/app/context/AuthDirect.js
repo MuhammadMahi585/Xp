@@ -9,10 +9,10 @@ export default function AuthDirect() {
 
     useEffect(() => {      
         if (!auth || auth.isLoading) {
-            router.push("/components/loading")
+            router.replace("/components/loading")
         }
         else if (!auth.isAuthenticated) {
-            router.push('/components/customerComponents/products');
+            router.replace('/components/customerComponents/products');
         } 
         else {
             cconsole.log(auth.role)
@@ -20,7 +20,7 @@ export default function AuthDirect() {
                 ? '/components/dashboard/admin' 
                 : '/components/dashboard/customer';
               
-            router.push(redirectPath);
+            router.replace(redirectPath);
             window.history.replaceState(null, '', redirectPath);
         }
     }, [auth, router]);

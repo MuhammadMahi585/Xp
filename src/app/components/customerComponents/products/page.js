@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import CustomerLayout from '../../dashboard/customer/layout'
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
-import { FiSearch, FiPlus, FiEdit, FiTrash2, FiBox, FiShoppingCart, FiLogOut } from 'react-icons/fi';
+import { FiSearch} from 'react-icons/fi';
 import axios from 'axios'
 import LayoutBeforeLogin from '../../authentication/layout'
 import 'primeicons/primeicons.css';
@@ -26,7 +26,7 @@ export default function Product() {
       else {
         setChecked(true); 
       }
-    }
+    }   
    
   }, [auth, router])
     const fetchProducts = async () => {
