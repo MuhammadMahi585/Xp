@@ -29,16 +29,12 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (auth.isLoading) return; 
-    if (auth.isAuthenticated) {
-      if (auth.role === "admin") {
+  if (!auth.isLoading) {
+      if (!auth.isAuthenticated) {
+        router.replace("/components/authentication/login");
+      } else if (auth.role !== "customer") {
         router.replace("/components/dashboard/admin");
-      } else if (auth.role === "customer") {
-        router.replace("/components/dashboard/customer");
       }
-    }
-    else {
-      router.replace("/components/authentication/login");
     }
   }, [auth, router]);
   
