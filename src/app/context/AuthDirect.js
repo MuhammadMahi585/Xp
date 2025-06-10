@@ -12,7 +12,7 @@ export default function AuthDirect() {
             router.replace("/components/loading")
         }
         else if (!auth.isAuthenticated) {
-            router.replace('/components/customerComponents/products');
+            router.replace('/components/authentication/login');
         } 
         else {
             cconsole.log(auth.role)

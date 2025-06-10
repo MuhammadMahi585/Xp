@@ -32,11 +32,10 @@ const Home = () => {
   useEffect(() => {
     if (ran.current || auth.isLoading) return;
     ran.current = true;
-
     if (!auth.isAuthenticated) {
-      router.push('/components/authentication/login');   // keep history
+      router.replace('/components/authentication/login');   
     } else if (auth.role !== 'customer') {
-      router.push('/components/dashboard/admin');
+      router.replace('/components/dashboard/admin');
     }
   }, [auth, router]);
   
