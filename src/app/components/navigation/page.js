@@ -56,7 +56,7 @@ export default function Navigation() {
           <ul className="flex flex-wrap justify-center items-center gap-2 sm:gap-6 text-sm sm:text-base md:text-lg font-medium">
             <li>
               <a
-                onClick={() => router.push("/components/dashboard/customer")}
+                onClick={() => router.replace("/components/dashboard/customer")}
                 className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
                <FiHome className="mr-1" /> Home
@@ -64,7 +64,7 @@ export default function Navigation() {
             </li>
             <li>
               <a
-                onClick={() => router.push("/components/customerComponents/products")}
+                onClick={() => router.replace("/components/customerComponents/products")}
                 className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
                 <FiBox className="mr-1" /> Products
@@ -72,7 +72,7 @@ export default function Navigation() {
             </li>
             <li>
               <a
-                onClick={() => router.push("/components/customerComponents/cart")}
+                onClick={() => router.replace("/components/customerComponents/cart")}
                 className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
                 <FiShoppingCart className="mr-1" /> Cart
@@ -80,7 +80,7 @@ export default function Navigation() {
             </li>
             <li>
               <a
-                onClick={() => router.push("/components/customerComponents/order")}
+                onClick={() => router.replace("/components/customerComponents/order")}
                 className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
                 <FiShoppingBag className="mr-1" /> Orders
@@ -88,7 +88,7 @@ export default function Navigation() {
             </li>
             <li>
               <a
-                onClick={() => router.push("/components/customerComponents/profile")}
+                onClick={() => router.replace("/components/customerComponents/profile")}
                 className="flex items-center text-white-600 hover:text-gray-300 transition-colors duration-300 cursor-pointer"
               >
                 <span className="pi pi-user" > Profile</span>

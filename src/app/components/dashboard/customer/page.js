@@ -36,7 +36,8 @@ const Home = () => {
       } else if (auth.role === "customer") {
         router.replace("/components/dashboard/customer");
       }
-    } else {
+    }
+    else {
       router.replace("/components/authentication/login");
     }
   }, [auth, router]);
