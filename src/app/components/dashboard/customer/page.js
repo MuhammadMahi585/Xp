@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect,useRef } from "react";
 import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
 import 'primeicons/primeicons.css';
@@ -27,19 +27,18 @@ const Home = () => {
       transition: { duration: 2, ease: [0.2, 0.65, 0.3, 0.9] },
     },
   };
+    const ran = useRef(false);
 
   useEffect(() => {
-  if (!auth.isLoading) {
-      if (!auth.isAuthenticated) {
-        router.replace("/components/authentication/login");
-      } else if (auth.role !== "customer") {
-        router.replace("/components/dashboard/admin");
-      }
+    if (ran.current || auth.isLoading) return;
+    ran.current = true;
+
+    if (!auth.isAuthenticated) {
+      router.push('/components/authentication/login');   // keep history
+    } else if (auth.role !== 'customer') {
+      router.push('/components/dashboard/admin');
     }
   }, [auth, router]);
-  useEffect(() => {
-  if (!auth.isAuthenticated || auth.isLoading) return;
-}, [auth.isAuthenticated, auth.isLoading]);
   
     if (auth.isLoading) {
     return <div className="flex justify-center items-center h-screen bg-gray-700">

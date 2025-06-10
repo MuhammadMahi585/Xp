@@ -9,9 +9,12 @@ import 'primeicons/primeicons.css';
 
 export default function PublicNavigation() {
   const router = useRouter()
+  const {auth} = useAuth()
+
+
 
   return (
-    <header className="mb-0 bg-gradient-to-r from-gray-600 via-gray-800 to-gray-900 text-white shadow-lg sticky top-0 z-50">
+<header className="mb-0 bg-gradient-to-r from-gray-600 via-gray-800 to-gray-900 text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 md:py-6 flex flex-col md:flex-row justify-between items-center animate-fade-in">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4 md:mb-0">
           <span className="text-yellow-300">XP</span> Computers
