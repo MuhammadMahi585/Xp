@@ -33,7 +33,7 @@ export default function LoginPage() {
       }
     }
   }, [auth, router]);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

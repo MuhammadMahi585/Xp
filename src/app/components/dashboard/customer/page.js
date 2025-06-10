@@ -37,6 +37,9 @@ const Home = () => {
       }
     }
   }, [auth, router]);
+  useEffect(() => {
+  if (!auth.isAuthenticated || auth.isLoading) return;
+}, [auth.isAuthenticated, auth.isLoading]);
   
     if (auth.isLoading) {
     return <div className="flex justify-center items-center h-screen bg-gray-700">
