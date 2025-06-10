@@ -17,38 +17,48 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { auth, setAuth } = useAuth();
   const router = useRouter();
-  
   const [checked, setChecked] = useState(false);
+
+
 
 
   useEffect(() => {
     if (!auth.isLoading) {
       if (auth.isAuthenticated) {
-        const target = auth.role === "admin"
-          ? "/components/dashboard/admin"
-          : "/components/dashboard/customer";
-        router.replace(target);
+        const target =
+          auth.role === "admin"
+            ? "/components/dashboard/admin"
+            : "/components/dashboard/customer";
+        router.replace(target); // Safe redirect
       } else {
         setChecked(true); 
       }
     }
   }, [auth, router]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     try {
-      const response = await axios.post('/api/authentication/login', { email, password });
+      const response = await axios.post('/api/authentication/login', {
+        email,
+        password,
+      });
+
+      const userType = response.data.user.type;
+      const redirectTo =
+        userType === "admin"
+          ? "/components/dashboard/admin"
+          : "/components/dashboard/customer";
+
       setAuth({
         isAuthenticated: true,
-        role: response.data.user.type,
+        role: userType,
         isLoading: false,
       });
-      const redirectPath = response.data.user.type === 'admin'
-        ? '/components/dashboard/admin'
-        : '/components/dashboard/customer';
-      router.replace(redirectPath);
+
+      router.replace(redirectTo); 
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     } finally {
@@ -74,11 +84,6 @@ export default function LoginPage() {
       transition: { duration: 2, ease: [0.2, 0.65, 0.3, 0.9] },
     },
   };
-  if (auth.isLoading) {
-  return <div className="flex justify-center items-center h-screen bg-gray-700">
-    <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
-  </div>
-}
   if (auth.isLoading || !checked) {
     return <div className="flex justify-center items-center h-screen bg-gray-700">
       <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>

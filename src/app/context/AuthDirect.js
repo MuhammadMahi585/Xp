@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContext";
 import { useRouter } from "next/navigation";
 
 export default function AuthDirect() {
-    const auth = useAuth();
+    const auth =  useAuth();
     const router = useRouter();
 
     useEffect(() => {      
@@ -12,15 +12,14 @@ export default function AuthDirect() {
             router.push("/components/loading")
         }
         else if (!auth.isAuthenticated) {
-            router.push('/components/customerComponents/products');
+            router.replace('/components/customerComponents/products');
         } 
         else {
-            cconsole.log(auth.role)
             const redirectPath = auth.role === "admin" 
                 ? '/components/dashboard/admin' 
                 : '/components/dashboard/customer';
               
-            router.push(redirectPath);
+            router.replace(redirectPath);
             window.history.replaceState(null, '', redirectPath);
         }
     }, [auth, router]);

@@ -17,6 +17,7 @@ export default function Navigation() {
     }
   }, [auth.isLoading, auth.isAuthenticated, router]);
 
+
    const logout = async () => {
     try {
       const response = await axios.post("/api/authentication/logout")

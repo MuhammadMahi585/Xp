@@ -29,10 +29,10 @@ export default function SignupPage() {
     if(auth.isLoading) return;
     if(auth.isAuthenticated){
       if(auth.role==="admin"){
-        router.push("/components/dashboard/admin")
+        router.replace("/components/dashboard/admin")
       }
       else if(auth.role==="customer"){
-        router.push("/components/dashboard/customer")
+        router.replace("/components/dashboard/customer")
       }
     }
   },[auth,router])
@@ -69,7 +69,7 @@ export default function SignupPage() {
         country: formData.country
       })
          
-      router.push('/components/authentication/login')
+      router.replace('/components/authentication/login')
     } catch (err) {
       setError(err.response?.data?.error || err.response?.data?.message || 'Signup failed')
     } finally {
