@@ -171,38 +171,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Owner Section */}
-      <section className="w-full py-12 px-4 bg-white text-center">
-        <h2 className="text-4xl font-bold text-gray-600 mb-8">Owner</h2>
-        <div className="flex justify-center">
-          <img
-            src="/assets/Image/nain.jpg"
-            alt="Owner"
-            className="w-40 h-40 rounded-full object-cover shadow-lg"
-           
-          />
-        </div>
-        <p className="mt-4 text-lg font-semibold text-gray-600">Zulqarnain Mahessar</p>
-      </section>
-
-      {/* Our Team */}
-      <section className="w-full py-12 px-4 bg-gray-50 text-center">
-        <h2 className="text-4xl font-bold text-gray-600 mb-8">Our Team</h2>
-        <div className="flex flex-wrap justify-center gap-8">
-          {[
-            { name: "Jameel Kanasro (Co-owner)", image: "/assets/Image/jameel.jpg" },
-            { name: "Sajjad Soomro (Manager)", image: "/assets/Image/sajjad.png" },
-            { name: "Musharaf Hussain (Vice Manager)", image: "/assets/Image/musho.jpg"},
-             { name: "Sufiyan Mahesar (Vice Manager)", image: "/assets/Image/sufi.png"}
-          ].map((member, i) => (
-            <div key={i}>
-              <img src={member.image} alt={member.name} className="w-36 h-36 rounded-full object-cover mx-auto shadow-md" />
-              <p className="mt-2 font-semibold text-gray-600">{member.name}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Branches */}
       <section className="w-full py-12 px-6 md:px-12 bg-white text-center">
         <h2 className="text-4xl font-bold text-gray-600 mb-8">Our Branches</h2>
