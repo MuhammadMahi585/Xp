@@ -288,6 +288,14 @@ const handleStatus = async (e, orderId) => {
                 </button>
               </li>
               <li>
+                <button
+                  onClick={() => router.push('/components/dashboard/admin?tab=analytics')}
+                  className={`flex items-center px-3 py-2 rounded ${tab === 'analytics' ? 'bg-gray-600 text-white-600' : 'hover:bg-gray-700'}`}
+                >
+                  Analytics
+                </button>
+              </li>
+              <li>
                 <button 
                   onClick={logout}
                   className="flex items-center px-3 py-2 rounded text-white-600' hover:bg-gray-600"
@@ -656,6 +664,24 @@ const handleStatus = async (e, orderId) => {
     )}
   </div>
 )}
+
+        {/* Analytics Tab */}
+        {tab === 'analytics' && (
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-semibold mb-4 text-gray-600">Analytics</h2>
+            <div className="w-full overflow-hidden">
+              <iframe
+                title="xp"
+                src="https://app.powerbi.com/reportEmbed?reportId=fbaeecf2-8bb6-4cb2-824e-c1412b5752c7&autoAuth=true&ctid=1511ab2e-502b-4e2d-bd68-f679f549b5a2"
+                width="100%"
+                height="700"
+                frameBorder="0"
+                allowFullScreen
+                className="w-full border-0 rounded-md"
+              ></iframe>
+            </div>
+          </div>
+        )}
 
         {/* Orders Tab */}
         {tab === 'orders' && (
