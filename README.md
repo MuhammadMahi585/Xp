@@ -31,6 +31,11 @@ https://xpcomputers.shop
 #### SignUp Page
 ![SignUp Page](./assets/signup.png)
 
+### Power BI Analytics
+
+#### Analytics Page
+![Analytics Page](./assets/Analytics.png)
+
 ### Customer Functionalities
 
 #### Home Page 
