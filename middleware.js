@@ -5,7 +5,7 @@ export async function middleware(request) {
   const token = request.cookies.get("token")?.value; 
 
   if (!token) {
-    return NextResponse.redirect(new URL('/components/authentication/logi', request.url));
+    return NextResponse.redirect(new URL('/components/authentication/login', request.url));
   }
 
   try {
