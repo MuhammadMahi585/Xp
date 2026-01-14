@@ -19,7 +19,7 @@
     "jwt-decode": "^4.0.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.13.2",
-    "next": "^15.3.2",
+    "next": "15.3.8",
     "primeicons": "^7.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
