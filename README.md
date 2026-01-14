@@ -33,8 +33,12 @@ https://xpcomputers.shop
 
 ### Power BI Analytics
 
-#### Analytics Page
-![Analytics Page](./assets/Analytics.png)
+#### Analytics Pages
+![Products Analytics Page](./assets/Analytics.png)
+
+![Sales Analytics Page](./assets/ProductSoldAnalytics.png)
+
+![User Analytics Page](./assets/userAnalytics.png)
 
 ### Customer Functionalities
 
