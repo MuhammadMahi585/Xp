@@ -21,7 +21,7 @@ https://xpcomputers.shop
 
 ---
 
-## Demol
+## Demo
 
 ### Authentication
 
